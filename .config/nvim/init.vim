@@ -9,8 +9,8 @@ endif
 
 " Vim-Plug Setup
 call plug#begin('~/.config/nvim/plugged')
-    " Async
-    Plug 'skywind3000/asyncrun.vim'
+    "" Async
+    " Plug 'skywind3000/asyncrun.vim'
 
     " Themes
     Plug 'morhetz/gruvbox'
@@ -18,10 +18,10 @@ call plug#begin('~/.config/nvim/plugged')
     " Syntax
     Plug 'chrisbra/Colorizer'
     Plug 'terminalnode/sway-vim-syntax'
-    Plug 'sheerun/vim-polyglot'
+    " Plug 'sheerun/vim-polyglot' " 80ms
 
     " Statusline
-    Plug 'vim-airline/vim-airline' " Really slow (adds over 400ms startup time)
+    " Plug 'vim-airline/vim-airline' " Really slow (adds over 200ms startup time without extensions)
     " Plug 'vim-airline/vim-airline-themes'
 
     " Startup Screen
@@ -32,10 +32,10 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/fzf'
     Plug 'majutsushi/tagbar'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'scrooloose/nerdtree'
+    " Plug 'ryanoasis/vim-devicons'
+    " Plug 'scrooloose/nerdtree'
     Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-fugitive'
+    " Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-sleuth'
     Plug 'wsdjeg/vim-todo'
     Plug 'wsdjeg/FlyGrep.vim'
@@ -61,12 +61,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'honza/vim-snippets'
 
     " TMUX integration
-     Plug 'tmux-plugins/vim-tmux-focus-events'
-     Plug 'edkolev/tmuxline.vim'
+     Plug 'tmux-plugins/vim-tmux-focus-events' " makes automatic reloading of changed files work (in tmux)
+     " Plug 'edkolev/tmuxline.vim'
 call plug#end()
 
-" Deoplete Setup
-let g:deoplete#enable_at_startup = 1
+"" Deoplete Setup
+" let g:deoplete#enable_at_startup = 1 " don't start automatically (300ms)
 call deoplete#custom#option({
 \   'smart_case': v:true,
 \ })
@@ -87,15 +87,14 @@ set completeopt-=longest   " don't insert the longest common text
 set completeopt+=preview
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 
-" " Airline Setup
-" let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
+"" Airline Setup
+" let g:airline_extensions = ["tabline"]
+" let g:airline_powerline_fonts = 1
+" let g:airline_skip_empty_sections = 1
 
 " " Tmuxline Setup
 " let g:tmuxline_preset = 'full'
-let g:tmuxline_preset = 'powerline'
+" let g:tmuxline_preset = 'powerline'
 
 " Language client Setup
 let g:LanguageClient_hasSnippetSupport = 0
@@ -147,11 +146,8 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" Polyglot Setup
-" let g:polyglot_disabled = ['latex']
-
 " EditorConfig Setup
-let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
+" let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
 
 " Startify Setup
 " let g:startify_files_number = 5
@@ -179,14 +175,13 @@ endif
 
 " ======================= VIM =======================
 
-" use Unicode file encoding
+" use Unicode file encoding by default
 set encoding=utf-8
 
-" set tabwith to 2
+" <TAB> and <DELETE> will behave on spaces as on tabs
 set smarttab
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+" set tabwith to 2
+set tabstop=2 softtabstop=2 shiftwidth=2
 
 " automatically expand tabs to spaces
 set expandtab
@@ -198,9 +193,9 @@ set autoindent
 set number relativenumber
 
 " enforce dark color scheme
-"set background=light
-"
-" spell checking
+" set background=light
+
+" spell checking default language
 set spelllang=de_20
 
 " enable syntax highlighting in most files
@@ -231,9 +226,9 @@ endif
 " Colorscheme
 colorscheme gruvbox
 " Transparent background
-autocmd BufEnter * :highlight Normal ctermbg=None
+" autocmd BufEnter * :highlight Normal ctermbg=None
 
-" Whitespace fixes
+" Highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
@@ -260,26 +255,26 @@ nmap <silent> <C-p> :FZF<CR>
 map <silent> <C-s> :Commentary<CR>
 imap <C-s> <c-o><C-s>
 
-" Asyncronously run ~/.scripts/compiler
-map <silent> <leader>c :w<CR>:AsyncRun compiler %<CR>
-map <silent> <leader>o :silent !compiler --open "<c-r>%" & > /dev/null<CR>
+"" Asyncronously run ~/.scripts/compiler
+" map <silent> <leader>c :w<CR>:AsyncRun compiler %<CR>
+" map <silent> <leader>o :silent !compiler --open "<c-r>%" & > /dev/null<CR>
 
-" LaTeX related stuff
-function! SyncTexForward()
-let linenumber=line(".")
-let colnumber=col(".")
-let filename=bufname("%")
-let filenamePDF=filename[:-4]."pdf"
-let execstr="silent !zathura --synctex-forward " . linenumber . ":" . colnumber . ":\"" . filename . "\" \"" . filenamePDF . "\"&>/dev/null &"
-exec execstr
-endfunction
-autocmd FileType tex map <silent> <C-b> :call SyncTexForward()<cr>
+"" LaTeX related stuff
+" function! SyncTexForward()
+" let linenumber=line(".")
+" let colnumber=col(".")
+" let filename=bufname("%")
+" let filenamePDF=filename[:-4]."pdf"
+" let execstr="silent !zathura --synctex-forward " . linenumber . ":" . colnumber . ":\"" . filename . "\" \"" . filenamePDF . "\"&>/dev/null &"
+" exec execstr
+" endfunction
+" autocmd FileType tex map <silent> <C-b> :call SyncTexForward()<cr>
 
-" no plaintex
+"" no plaintex
 let g:tex_flavor = 'latex'
 
-" autoxrdb
-autocmd BufWritePost *.Xresources,*.Xdefaults :silent !xrdb -merge %
+"" autoxrdb
+" autocmd BufWritePost *.Xresources,*.Xdefaults :silent !xrdb -merge %
 
 " format JSON using jq
 autocmd FileType json map <silent> <A-S-f> :silent %!jq .<CR>
