@@ -23,6 +23,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Statusline
     " Plug 'vim-airline/vim-airline' " Really slow (adds over 200ms startup time without extensions)
     " Plug 'vim-airline/vim-airline-themes'
+    Plug 'itchyny/lightline.vim'
 
     " Startup Screen
     " Plug 'mhinz/vim-startify'
@@ -86,6 +87,11 @@ set completeopt+=menuone   " show the popup menu even when there is only 1 match
 set completeopt-=longest   " don't insert the longest common text
 set completeopt+=preview
 autocmd CompleteDone * if !pumvisible() | pclose | endif
+
+"" Lightline Setup
+let g:lightline = {
+\   'colorscheme': 'gruvbox'
+\}
 
 "" Airline Setup
 " let g:airline_extensions = ["tabline"]
