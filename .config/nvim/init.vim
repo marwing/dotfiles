@@ -49,6 +49,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Universal
     Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+    " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' } " Doesn't work on my non-avx laptop
     " Vim
     Plug 'Shougo/neco-vim'
     " Python
@@ -77,6 +78,7 @@ call deoplete#custom#option('sources', {
 \   'vim': ['vim', 'neosnippet'],
 \ })
 " \   'python': ['jedi', 'neosnippet'],
+" \   '_': ['tabnine', 'neosnippet', 'around', 'file'],
 call deoplete#custom#source(
     \ '_',
     \ 'disabled_syntaxes', ['Comment', 'String']
@@ -102,7 +104,7 @@ let g:lightline = {
 " let g:tmuxline_preset = 'full'
 " let g:tmuxline_preset = 'powerline'
 
-" Language client Setup
+" LanguageClient Setup
 let g:LanguageClient_hasSnippetSupport = 0
 let g:LanguageClient_serverCommands = {
 \   'c': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators'],
