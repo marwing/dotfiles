@@ -141,8 +141,8 @@ nnoremap <silent> <F12> :call LanguageClient#textDocument_switchSourceHeader()<C
 
 " Echodoc Setup
 let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'signature'
-" let g:echodoc#type = 'floating'
+" let g:echodoc#type = 'signature'
+let g:echodoc#type = 'floating'
 
 " Neosnippets Setup
 " let g:neosnippet#enable_complete_done = 1
