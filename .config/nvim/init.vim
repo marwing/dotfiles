@@ -74,7 +74,6 @@ call deoplete#custom#option({
 \ })
 call deoplete#custom#option('sources', {
 \   '_': ['LanguageClient', 'neosnippet', 'around', 'file'],
-\   'tex': ['LanguageClient', 'neosnippet', 'spell', 'around', 'file'],
 \   'vim': ['vim', 'neosnippet'],
 \ })
 " \   'python': ['jedi', 'neosnippet'],
