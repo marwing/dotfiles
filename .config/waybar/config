@@ -1,0 +1,166 @@
+// vim: ft=json
+
+{
+  "layer": "top",
+  "position": "top",
+
+  "modules-left": [
+    "idle_inhibitor",
+    "sway/workspaces",
+    "sway/mode",
+    "custom/right-arrow-dark",
+    "custom/right-arrow-light",
+    "sway/window",
+    "custom/right-arrow-dark"
+  ],
+  "modules-center": [
+    "custom/left-arrow-dark",
+    "clock",
+    "custom/right-arrow-dark"
+  ],
+  "modules-right": [
+    "custom/left-arrow-dark",
+    "backlight",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "pulseaudio",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "memory",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "cpu",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "battery",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "disk#root",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "disk#home",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
+    "tray"
+  ],
+
+  "custom/left-arrow-dark": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/left-arrow-light": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/right-arrow-dark": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/right-arrow-light": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "sway/workspaces": {
+    "format": "{name}",
+    "disable-scroll": true,
+    "disable-click": true,
+    "numeric-first": true
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": "{:%X}",
+    "tooltip": true,
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": " {icon}  {volume}%",
+    "format-muted": " {volume}%",
+    "format-icons": {
+      "headphone": "",
+      "default": [
+        "",
+        ""
+      ]
+    },
+    "on-click": "pamixer -t",
+    "on-click-right": "pavucontrol"
+  },
+
+  "memory": {
+    "interval": 5,
+    "format": " {used:.2f}GiB ({percentage}%)",
+    "on-click": "$TERMINAL -e 'htop -s PERCENT_MEM'"
+  },
+
+  "cpu": {
+    "interval": 5,
+    "format": " {usage}%",
+    "on-click": "$TERMINAL -e 'htop -s PERCENT_CPU'"
+  },
+
+  "battery": {
+    "format": " {icon} {capacity}% ({time})",
+    "format-discharging": "{icon} {capacity}% ({time})",
+    "format-unknown": "",
+    "format-full": "{icon}",
+    "format-time": "{H}:{M}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    // "format-icons": [
+      // "",
+      // "",
+      // "",
+      // "",
+      // ""
+    // ],
+    "states": {
+      "warning": 10,
+      "critical": 5
+    }
+  },
+
+  "disk#home": {
+    "format": " {percentage_used}%",
+    "path": "/home"
+  },
+  "disk#root": {
+    "format": " {percentage_used}%",
+    "path": "/"
+  },
+
+  "tray": {
+    "spacing": 5
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  }
+}
