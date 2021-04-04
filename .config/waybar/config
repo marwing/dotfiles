@@ -35,10 +35,7 @@
     "battery",
     "custom/left-arrow-light",
     "custom/left-arrow-dark",
-    "disk#root",
-    "custom/left-arrow-light",
-    "custom/left-arrow-dark",
-    "disk#home",
+    "disk#zfs",
     "custom/left-arrow-light",
     "custom/left-arrow-dark",
     "tray"
@@ -143,12 +140,8 @@
     }
   },
 
-  "disk#home": {
-    "format": " {percentage_used}%",
-    "path": "/home"
-  },
-  "disk#root": {
-    "format": " {percentage_used}%",
+  "disk#zfs": {
+    "format": " {free}",
     "path": "/"
   },
 
