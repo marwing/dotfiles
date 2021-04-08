@@ -1,0 +1,11 @@
+program_options:
+    tray:               auto
+    menu:               flat
+    automount:          true
+    notify:             true
+    password_cache:     false
+    terminal:           open_terminal_at_path.sh
+    file_manager:       open_ranger_at_path.sh
+
+notifications:
+    timeout:            10
