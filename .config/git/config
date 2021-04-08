@@ -1,0 +1,31 @@
+[user]
+	name = Marwin Glaser
+	email = marwin_g@icloud.com
+	signingkey = 499C6CFDB79123E8ACEF88C9D036F177D2F0B595
+[commit]
+	gpgSign = true
+[tag]
+	forceSignAnnotated = true
+	gpgSign = true
+[init]
+	defaultBranch = master
+[push]
+	followTags = true
+[pull]
+	rebase = true
+[rebase]
+	autoStash = false
+[branch]
+	autosetuprebase = always
+[submodule]
+	recurse = true
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false
+
+[alias]
+	ls = ls-tree --full-tree --abbrev -r --name-only
+	lg = log --all --decorate --oneline --graph
+	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
