@@ -16,3 +16,7 @@ input type:keyboard {
   # xkb_capslock disabled # currently crashes firefox (see: https://bugzilla.mozilla.org/show_bug.cgi?id=1652820)
   # xkb_numlock enabled
 }
+
+seat * {
+  hide_cursor 2000
+}
