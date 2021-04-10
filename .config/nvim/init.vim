@@ -19,6 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'chrisbra/Colorizer'
     Plug 'terminalnode/sway-vim-syntax'
     " Plug 'sheerun/vim-polyglot' " 80ms
+    Plug 'HerringtonDarkholme/yats.vim'
 
     " Statusline
     " Plug 'vim-airline/vim-airline' " Really slow (adds over 200ms startup time without extensions)
@@ -110,8 +111,10 @@ let g:LanguageClient_serverCommands = {
 \   'cpp': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-cross-file-rename'],
 \   'java': ['jdtls.sh'],
 \   'python': ['pyls'],
-\   'typescript': ['typescript-language-server', '--stdio'],
 \   'javascript': ['typescript-language-server', '--stdio'],
+\   'javascriptreact': ['typescript-language-server', '--stdio'],
+\   'typescript': ['typescript-language-server', '--stdio'],
+\   'typescriptreact': ['typescript-language-server', '--stdio'],
 \   'css': ['css-languageserver', '--stdio'],
 \   'sass': ['css-languageserver', '--stdio'],
 \   'scss': ['css-languageserver', '--stdio'],
