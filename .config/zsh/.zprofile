@@ -37,7 +37,7 @@ export RANGER_LOAD_DEFAULT_RC=false
 export DVDCSS_CACHE="${XDG_DATA_HOME:-$HOME/.local/share}"/dvdcss
 
 # use ccache in cmake builds if available
-if command -v /usr/bin/ccache; then
+if command -v /usr/bin/ccache 2>&1 >/dev/null; then
     for lang in "C" "CXX"; do
         export CMAKE_${lang}_COMPILER_LAUNCHER="ccache"
         export ${lang}FLAGS="${${(P)lang}FLAGS} -fdiagnostics-color=always"
