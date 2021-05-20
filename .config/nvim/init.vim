@@ -22,9 +22,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'HerringtonDarkholme/yats.vim'
 
     " Statusline
-    " Plug 'vim-airline/vim-airline' " Really slow (adds over 200ms startup time without extensions)
-    " Plug 'vim-airline/vim-airline-themes'
-    Plug 'itchyny/lightline.vim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    " Plug 'itchyny/lightline.vim'
 
     " Startup Screen
     " Plug 'mhinz/vim-startify'
@@ -36,8 +36,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'majutsushi/tagbar'
     " Plug 'ryanoasis/vim-devicons'
     " Plug 'scrooloose/nerdtree'
+    Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-commentary'
-    " Plug 'tpope/vim-fugitive'
+
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
+    Plug 'shumphrey/fugitive-gitlab.vim'
     Plug 'tpope/vim-sleuth'
     Plug 'wsdjeg/vim-todo'
     Plug 'wsdjeg/FlyGrep.vim'
@@ -91,14 +95,15 @@ set completeopt+=preview
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 
 "" Lightline Setup
-let g:lightline = {
-\   'colorscheme': 'gruvbox'
-\}
+" let g:lightline = {
+" \   'colorscheme': 'gruvbox'
+" \}
 
 "" Airline Setup
-" let g:airline_extensions = ["tabline"]
-" let g:airline_powerline_fonts = 1
-" let g:airline_skip_empty_sections = 1
+let g:airline_extensions = ["branch", "fugitiveline", "hunks", "languageclient", "obsession", "tabline", "tagbar", "whitespace", "wordcount"]
+let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#hunks#non_zero_only = 1
 
 " " Tmuxline Setup
 " let g:tmuxline_preset = 'full'
