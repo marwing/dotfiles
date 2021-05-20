@@ -46,6 +46,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'wsdjeg/vim-todo'
     Plug 'wsdjeg/FlyGrep.vim'
     Plug 'tpope/vim-obsession'
+    Plug 'cdelledonne/vim-cmake'
 
     " Autocompletition
     " Plug 'Shougo/denite.nvim'
@@ -100,7 +101,7 @@ autocmd CompleteDone * if !pumvisible() | pclose | endif
 " \}
 
 "" Airline Setup
-let g:airline_extensions = ["branch", "fugitiveline", "hunks", "languageclient", "obsession", "tabline", "tagbar", "whitespace", "wordcount"]
+let g:airline_extensions = ["branch", "fugitiveline", "hunks", "languageclient", "obsession", "tabline", "tagbar", "vimcmake", "whitespace", "wordcount"]
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#hunks#non_zero_only = 1
@@ -189,6 +190,13 @@ let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+"" vim-cmake Setup
+let g:cmake_build_dir_location = "build"
+let g:cmake_link_compile_commands = 1
+let g:cmake_generate_options = ["-GNinja"]
+nmap cb <Plug>(CMakeBuild)
+nmap cC <Plug>(CMakeClose)
 
 " EditorConfig Setup
 " let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
