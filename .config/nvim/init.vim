@@ -198,6 +198,9 @@ let g:cmake_generate_options = ["-GNinja"]
 nmap cb <Plug>(CMakeBuild)
 nmap cC <Plug>(CMakeClose)
 
+"" vim-gitgutter Setup
+let g:gitgutter_signs = 0
+
 " EditorConfig Setup
 " let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
 
