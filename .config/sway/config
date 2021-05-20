@@ -4,7 +4,7 @@ font pango:FontAwesome 8
 
 focus_follows_mouse no
 
-xwayland disable
+# xwayland disable
 
 # Setup GTK-3 theme as it doesn't read XDG_CONFIG_HOME/gtk-3.0/settings.ini under wayland
 set $gnome-schema org.gnome.desktop.interface
