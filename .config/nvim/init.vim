@@ -201,6 +201,10 @@ nmap cC <Plug>(CMakeClose)
 "" vim-gitgutter Setup
 let g:gitgutter_signs = 0
 
+"" vim-commentary Setup
+" I rarely use folds and vim-commentary doesn't do multiline anyway
+autocmd FileType c,cpp setlocal commentstring=//\ %s
+
 " EditorConfig Setup
 " let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
 
