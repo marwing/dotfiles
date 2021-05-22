@@ -196,7 +196,7 @@ let g:cmake_build_dir_location = "build"
 let g:cmake_link_compile_commands = 1
 let g:cmake_generate_options = ["-GNinja"]
 nmap cb <Plug>(CMakeBuild)
-nmap cC <Plug>(CMakeClose)
+nmap cq <Plug>(CMakeClose)
 
 "" vim-gitgutter Setup
 let g:gitgutter_signs = 0
