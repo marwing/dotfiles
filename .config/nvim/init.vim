@@ -284,6 +284,9 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
+" How fast some features update (some airline plugins, tagbar, ...)
+set updatetime=300
+
 " Colorscheme
 colorscheme gruvbox
 " Transparent background
