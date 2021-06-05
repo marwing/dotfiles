@@ -1,0 +1,12 @@
+[submodule ".config/zsh/.omz_custom/themes/powerlevel10k"]
+	path = .config/zsh/.omz_custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".config/zsh/.omz_custom/plugins/zsh-autosuggestions"]
+	path = .config/zsh/.omz_custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule ".config/zsh/.omz_custom/plugins/zsh-completions"]
+	path = .config/zsh/.omz_custom/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule ".config/zsh/.omz_custom/plugins/zsh-syntax-highlighting"]
+	path = .config/zsh/.omz_custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
