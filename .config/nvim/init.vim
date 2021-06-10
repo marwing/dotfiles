@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'terminalnode/sway-vim-syntax'
     " Plug 'sheerun/vim-polyglot' " 80ms
     Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'MaxMEllon/vim-jsx-pretty'
 
     " Statusline
     Plug 'vim-airline/vim-airline'
