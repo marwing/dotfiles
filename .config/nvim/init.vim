@@ -75,7 +75,7 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 "" Deoplete Setup
-" let g:deoplete#enable_at_startup = 1 " don't start automatically (300ms)
+let g:deoplete#enable_at_startup = 1 " don't start automatically (300ms)
 call deoplete#custom#option({
 \   'smart_case': v:true,
 \ })
@@ -116,6 +116,7 @@ let g:LanguageClient_hasSnippetSupport = 0
 let g:LanguageClient_serverCommands = {
 \   'c': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-cross-file-rename', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim'],
 \   'cpp': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-cross-file-rename', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim'],
+\   'go': ['gopls'],
 \   'java': ['jdtls.sh'],
 \   'python': ['pyls'],
 \   'javascript': ['typescript-language-server', '--stdio'],
