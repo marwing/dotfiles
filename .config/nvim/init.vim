@@ -44,6 +44,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-rhubarb'
     Plug 'shumphrey/fugitive-gitlab.vim'
     Plug 'tpope/vim-sleuth'
+    Plug 'tpope/vim-surround'
     Plug 'wsdjeg/vim-todo'
     Plug 'wsdjeg/FlyGrep.vim'
     Plug 'tpope/vim-obsession'
