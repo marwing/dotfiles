@@ -282,10 +282,10 @@ set colorcolumn=80
 
 set scrolloff=5
 
-" enable 24-bit colorsupport if available
-if (has("termguicolors"))
-    set termguicolors
-endif
+" enable 24-bit colorsupport if available " Breaks in alacritty
+" if (has("termguicolors"))
+"     set termguicolors
+" endif
 
 " How fast some features update (some airline plugins, tagbar, ...)
 set updatetime=300
