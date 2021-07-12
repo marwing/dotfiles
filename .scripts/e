@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "$1" = "Session.vim" ]; then
+  if [[ -n $TMUX ]]; then
+    tmux new-window $EDITOR -S "$1"
+  else
+    $EDITOR -S "$1"
+  fi
+else
+  if [[ -n $TMUX ]]; then
+    tmux new-window $EDITOR "$1"
+  else
+    $EDITOR "$1"
+  fi
+fi
