@@ -1,7 +1,3 @@
-# Setting up synctex
-set synctex true
-set synctex-editor-command "nvr --remote-silent +%{line} %{input}"
-
 # shorter names
 set window-title-basename true
 set statusbar-home-tilde true
