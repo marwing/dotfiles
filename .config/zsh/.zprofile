@@ -1,5 +1,5 @@
 # set PATH so it includes .yarn/bin folder if it exists
-if [ -d "$(yarn global bin)" ] ; then
+if command -v yarn && [ -d "$(yarn global bin)" ] ; then
     PATH="$(yarn global bin):$PATH"
 fi
 
@@ -23,7 +23,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export BROWSER="firefox"
 export PAGER="less"
-export TERMINAL="termite"
+export TERMINAL="alacritty"
 
 # enable wayland
 export MOZ_ENABLE_WAYLAND=1
