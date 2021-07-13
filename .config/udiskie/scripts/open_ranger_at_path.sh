@@ -1,3 +1,3 @@
 #!/bin/sh
 
-${TERMINAL:-termite} -e "ranger $@"
+${TERMINAL:-alacritty} -e ranger $@

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-${TERMINAL:-termite} -d $@
+${TERMINAL:-alacritty} --working-directory $@
