@@ -25,10 +25,7 @@ bindswitch --reload --locked lid:off output eDP-1 dpms on
 # Example configuration:
 
 exec swayidle -w \
-         timeout 300 '$locker' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep '$locker'
-
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+  timeout 240 'brightnessctl --quiet --save set 1' resume 'brightnessctl --quiet --restore' \
+  timeout 300 '$locker' \
+  timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+  before-sleep '$locker'
