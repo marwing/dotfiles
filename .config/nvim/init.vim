@@ -163,7 +163,7 @@ nmap <F5> <Plug>(lcn-menu)
 nmap <silent>KK <Plug>(lcn-hover)
 nmap <silent> Kk <Plug>(lcn-code-action)
  " Use direct call for now as it is the only possibility to give split argument
-nnoremap <silent> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'tabnew'})<CR>
 " nmap <silent> gd <Plug>(lcn-definition)
 nmap <silent> <F2> <Plug>(lcn-rename)
 nmap <silent> <A-S-f> <Plug>(lcn-format)
