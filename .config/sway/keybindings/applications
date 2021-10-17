@@ -17,7 +17,7 @@ bindsym {
 
 
 mode "open" {
-    bindsym h exec notify-send "Help:" "f: $BROWSER\ng: gotop\nr: ranger\nv: neovim"
+    bindsym h exec $TERMINAL -e htop ; mode "default"
     bindsym f exec $BROWSER ; mode "default"
     bindsym g exec $TERMINAL -e gotop ; mode "default"
     # bindsym i exec $TERMINAL -e irssi ; mode "default"

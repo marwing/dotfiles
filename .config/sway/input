@@ -15,6 +15,7 @@ input type:keyboard {
   xkb_layout de
   # xkb_capslock disabled # currently crashes firefox (see: https://bugzilla.mozilla.org/show_bug.cgi?id=1652820)
   # xkb_numlock enabled
+  xkb_options caps:escape
 }
 
 seat * {
