@@ -88,7 +88,7 @@ plugins=(
     encode64                # base64 encode decode
     gitignore               # gitignore.io shortcut
     # systemadmin
-    # ufw                     # ufw completion
+    ufw                     # ufw completion
     yarn                    # yarn completion and aliases
     zsh-autosuggestions     # Fish-like autosuggestions for zsh
     zsh-completions         # additional completions
