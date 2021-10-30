@@ -131,34 +131,6 @@ let g:LanguageClient_serverCommands = {
 \   'sh': ['bash-language-server', 'start'],
 \ }
 
-let g:LanguageClient_semanticHighlightMaps = {}
-let g:LanguageClient_semanticHighlightMaps['cpp'] = {
-      \ '^entity.name.function.cpp': 'Function',
-      \ '^entity.name.function.method.cpp': 'Function',
-      \ '^entity.name.function.preprocessor.cpp': 'PreProc',
-      \ '^entity.name.namespace.cpp': 'Type',
-      \ '^entity.name.type.class.cpp': 'Type',
-      \ '^entity.name.type.enum.cpp': 'Type',
-      \ '^entity.name.type.template.cpp': 'Type',
-      \ '^meta.disabled': 'Comment',
-      \ '^variable.other.cpp': 'Variable',
-      \ '^variable.other.enummember.cpp': 'Constant',
-      \ '^variable.other.field.cpp': 'Variable',
-      \ }
-let g:LanguageClient_semanticHighlightMaps['c'] = {
-      \ '^entity.name.function.cpp': 'Function',
-      \ '^entity.name.function.method.cpp': 'Function',
-      \ '^entity.name.function.preprocessor.cpp': 'PreProc',
-      \ '^entity.name.namespace.cpp': 'Type',
-      \ '^entity.name.type.class.cpp': 'Type',
-      \ '^entity.name.type.enum.cpp': 'Type',
-      \ '^entity.name.type.template.cpp': 'Type',
-      \ '^meta.disabled': 'Comment',
-      \ '^variable.other.cpp': 'Variable',
-      \ '^variable.other.enummember.cpp': 'Constant',
-      \ '^variable.other.field.cpp': 'Variable',
-      \ }
-
 nmap <F5> <Plug>(lcn-menu)
 nmap <silent>KK <Plug>(lcn-hover)
 nmap <silent> Kk <Plug>(lcn-code-action)
