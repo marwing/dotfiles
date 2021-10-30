@@ -7,7 +7,7 @@ default_floating_border pixel 1
 assign [ app_id="firefox" ] workspace $ws2
 
 for_window [ app_id="pavucontrol" ] floating enable
-for_window [ app_id="grub-customizer" ] floating enable
+for_window [ app_id="nm-connection-editor" ] floating enable
 for_window [ app_id="solaar" ] floating enable
 for_window [ app_id="firefox" title="Bild-im-Bild" ] floating enable, sticky enable
 for_window [ app_id="firefox" title="^Über Mozilla Firefox$" ] floating enable
