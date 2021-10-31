@@ -63,7 +63,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Python
     " Plug 'deoplete-plugins/deoplete-jedi'
     " LaTeX
-    " Plug 'lervag/vimtex'
+    Plug 'lervag/vimtex'
 
     " Snippets
     Plug 'Shougo/neosnippet-snippets'
@@ -177,6 +177,15 @@ nmap cq <Plug>(CMakeClose)
 
 "" vim-gitgutter Setup
 let g:gitgutter_signs = 0
+
+"" vimtex setup
+let g:tex_flavor = 'latex'
+let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_quickfix_mode = 0
+let g:vimtex_compiler_latexmk = {
+  \ 'build_dir' : 'dist',
+  \}
 
 "" vim-commentary Setup
 " I rarely use folds and vim-commentary doesn't do multiline anyway
@@ -293,24 +302,6 @@ nmap <silent> <C-p> :FZF<CR>
 
 map <silent> <C-s> :Commentary<CR>
 imap <C-s> <c-o><C-s>
-
-"" Asyncronously run ~/.scripts/compiler
-" map <silent> <leader>c :w<CR>:AsyncRun compiler %<CR>
-" map <silent> <leader>o :silent !compiler --open "<c-r>%" & > /dev/null<CR>
-
-"" LaTeX related stuff
-" function! SyncTexForward()
-" let linenumber=line(".")
-" let colnumber=col(".")
-" let filename=bufname("%")
-" let filenamePDF=filename[:-4]."pdf"
-" let execstr="silent !zathura --synctex-forward " . linenumber . ":" . colnumber . ":\"" . filename . "\" \"" . filenamePDF . "\"&>/dev/null &"
-" exec execstr
-" endfunction
-" autocmd FileType tex map <silent> <C-b> :call SyncTexForward()<cr>
-
-"" no plaintex
-let g:tex_flavor = 'latex'
 
 "" autoxrdb
 " autocmd BufWritePost *.Xresources,*.Xdefaults :silent !xrdb -merge %
