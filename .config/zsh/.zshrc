@@ -81,6 +81,7 @@ ZSH_CUSTOM=$ZDOTDIR/.omz_custom
 plugins=(
     # auto-notify             # notify when long-running processes end
     # git
+    git-auto-fetch
     git-flow                # completion for git-flow
     cp                      # cpv command
     # debian                  # apt and dpkg aliases and functions
