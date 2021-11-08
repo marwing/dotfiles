@@ -103,7 +103,7 @@ autocmd CompleteDone * if !pumvisible() | pclose | endif
 " \}
 
 "" Airline Setup
-let g:airline_extensions = ["branch", "fugitiveline", "hunks", "languageclient", "obsession", "tabline", "tagbar", "vimcmake", "whitespace", "wordcount"]
+let g:airline_extensions = ["branch", "fugitiveline", "hunks", "languageclient", "obsession", "tabline", "tagbar", "vimcmake", "vimtex", "whitespace", "wordcount"]
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#hunks#non_zero_only = 1
@@ -186,6 +186,7 @@ let g:vimtex_view_automatic_xwin = 0
 let g:vimtex_compiler_latexmk = {
   \ 'build_dir' : 'dist',
   \}
+autocmd FileType tex set textwidth=80
 
 "" vim-commentary Setup
 " I rarely use folds and vim-commentary doesn't do multiline anyway
