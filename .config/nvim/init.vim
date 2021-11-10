@@ -117,6 +117,7 @@ let g:LanguageClient_hasSnippetSupport = 0
 let g:LanguageClient_serverCommands = {
 \   'c': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-cross-file-rename', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim'],
 \   'cpp': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-cross-file-rename', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim'],
+\   'rust': ['rls'],
 \   'go': ['gopls'],
 \   'java': ['jdtls.sh'],
 \   'python': ['pyls'],
