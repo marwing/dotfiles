@@ -151,5 +151,8 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # Fixes commands not being available in the already running sessions after installing them.
 zstyle ":completion:*:commands" rehash 1
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
+if zmodload zsh/terminfo && (( terminfo[colors] >= 256 )); then
+  [[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
+else
+  [[ ! -f "$ZDOTDIR/.p10k-portable.zsh" ]] || source "$ZDOTDIR/.p10k-portable.zsh"
+fi
