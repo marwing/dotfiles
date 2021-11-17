@@ -1,6 +1,6 @@
 # set PATH so it includes .yarn/bin folder if it exists
-if (( $+commands[yarn] )) && [ -d "$(yarn global bin)" ] ; then
-    PATH="$(yarn global bin):$PATH"
+if (( $+commands[yarn] )) && [ -d "$(yarn --offline global bin)" ] ; then
+    PATH="$(yarn --offline global bin):$PATH"
 fi
 
 # set PATH so it includes .local/bin folder if it exists
