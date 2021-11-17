@@ -1,5 +1,5 @@
 # set PATH so it includes .yarn/bin folder if it exists
-if command -v yarn 2>&1 >/dev/null && [ -d "$(yarn global bin)" ] ; then
+if (( $+commands[yarn] )) && [ -d "$(yarn global bin)" ] ; then
     PATH="$(yarn global bin):$PATH"
 fi
 

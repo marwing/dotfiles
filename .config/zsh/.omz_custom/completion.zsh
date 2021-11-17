@@ -1,3 +1,3 @@
-if command -v op 2>&1 >/dev/null; then
+if (( $+commands[op] )); then
   eval "$(op completion zsh)"; compdef _op op # op
 fi
