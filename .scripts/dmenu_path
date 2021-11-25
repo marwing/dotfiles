@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+print -rC1 -- ${(ko)commands}
