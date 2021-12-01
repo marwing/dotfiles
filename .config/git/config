@@ -23,6 +23,8 @@
 	tool = nvimdiff
 [difftool]
 	prompt = false
+[merge]
+	tool = nvimdiff
 [advice]
 	detachedHead = false
 
