@@ -107,6 +107,7 @@ let g:airline_extensions = ["branch", "fugitiveline", "hunks", "languageclient",
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline#extensions#vimtex#wordcount = 1
 
 " " Tmuxline Setup
 " let g:tmuxline_preset = 'full'
