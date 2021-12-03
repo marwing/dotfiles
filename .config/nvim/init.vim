@@ -28,7 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'itchyny/lightline.vim'
 
     " Startup Screen
-    " Plug 'mhinz/vim-startify'
+    Plug 'mhinz/vim-startify'
 
     " IDE?
     Plug 'editorconfig/editorconfig-vim'
@@ -36,7 +36,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/fzf'
     Plug 'majutsushi/tagbar'
     " Plug 'ryanoasis/vim-devicons'
-    " Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdtree'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-commentary'
 
@@ -200,14 +200,14 @@ autocmd FileType c,cpp setlocal commentstring=//\ %s
 " Startify Setup
 " let g:startify_files_number = 5
 
-" let g:startify_commands = [
-" \   { 'up': ['Update Plugins', ':PlugUpdate'] },
-" \ ]
+let g:startify_commands = [
+\   { 'up': ['Update Plugins', ':PlugUpdate'] },
+\ ]
 
-" let g:startify_bookmarks = [
-" \   { 'c': '~/.config/nvim/init.vim' },
-" \   { 'g': '~/.config/git/ignore' },
-" \ ]
+let g:startify_bookmarks = [
+\   { 'c': '~/.config/nvim/init.vim' },
+\   { 'g': '~/.config/git/ignore' },
+\ ]
 
 
 " ================ Persistent Undo ==================
