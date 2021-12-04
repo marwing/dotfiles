@@ -35,8 +35,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/fzf'
     Plug 'majutsushi/tagbar'
-    " Plug 'ryanoasis/vim-devicons'
+    Plug 'ryanoasis/vim-devicons'
     Plug 'scrooloose/nerdtree'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-commentary'
 
@@ -209,6 +210,21 @@ let g:startify_bookmarks = [
 \   { 'g': '~/.config/git/ignore' },
 \ ]
 
+" NERDTree Setup
+let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+let g:NERDTreeLimitedSyntax = 1
+
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+nmap <silent> <F7> :NERDTreeToggleVCS<CR>
+imap <silent> <F7> <C-o><F7>
+
 
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
@@ -296,9 +312,7 @@ map <A-l> <C-w>l
 map <leader>n <ESC>:tabprevious<CR>
 map <leader>m <ESC>:tabnext<CR>
 
-nmap <silent> <F7> :NERDTreeToggle<CR>
 nmap <silent> <F8> :TagbarToggle<CR>
-imap <silent> <F7> <C-o><F7>
 imap <silent> <F8> <C-o><F8>
 
 nmap <silent> <C-p> :FZF<CR>
