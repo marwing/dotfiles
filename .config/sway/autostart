@@ -1,5 +1,5 @@
 # exec pasystray &
-exec system-config-printer-applet &
+# exec system-config-printer-applet &
 exec udiskie --appindicator &
 exec nm-applet --indicator &
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
