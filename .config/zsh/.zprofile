@@ -37,6 +37,8 @@ export RANGER_LOAD_DEFAULT_RC=false
 
 export DVDCSS_CACHE="${XDG_DATA_HOME:-$HOME/.local/share}"/dvdcss
 
+export MAKEFLAGS=-j$(($(nproc) + 2))
+
 # use ccache in cmake builds if available
 if (( $+commands[ccache] )); then
     for lang in "C" "CXX"; do
