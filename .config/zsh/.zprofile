@@ -28,6 +28,7 @@ export TERMINAL="alacritty"
 # enable wayland
 export MOZ_ENABLE_WAYLAND=1
 export MOZ_DBUS_REMOTE=1
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 export RANGER_LOAD_DEFAULT_RC=false
 
