@@ -131,6 +131,7 @@ let g:LanguageClient_serverCommands = {
 \   'scss': ['css-languageserver', '--stdio'],
 \   'tex': ['texlab'],
 \   'sh': ['bash-language-server', 'start'],
+\   'cmake': ['cmake-language-server']
 \ }
 
 nmap <F5> <Plug>(lcn-menu)
