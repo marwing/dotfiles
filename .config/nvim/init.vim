@@ -115,7 +115,6 @@ let g:airline#extensions#vimtex#wordcount = 1
 " let g:tmuxline_preset = 'powerline'
 
 " LanguageClient Setup
-let g:LanguageClient_hasSnippetSupport = 0
 let g:LanguageClient_serverCommands = {
 \   'c': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim'],
 \   'cpp': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim'],
@@ -161,7 +160,7 @@ let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'floating'
 
 " Neosnippets Setup
-" let g:neosnippet#enable_complete_done = 1
+let g:neosnippet#enable_complete_done = 1
 let g:neosnippet#enable_completed_snippet = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
