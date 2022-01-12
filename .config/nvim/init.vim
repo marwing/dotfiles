@@ -121,7 +121,7 @@ let g:LanguageClient_serverCommands = {
 \   'rust': ['rls'],
 \   'go': ['gopls'],
 \   'java': ['jdtls.sh'],
-\   'python': ['pyls'],
+\   'python': ['pylsp'],
 \   'javascript': ['typescript-language-server', '--stdio'],
 \   'javascriptreact': ['typescript-language-server', '--stdio'],
 \   'typescript': ['typescript-language-server', '--stdio'],
