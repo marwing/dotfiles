@@ -7,7 +7,7 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
     silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
 endif
 
-" Vim-Plug Setup
+" Vim-Plug Setup {{{
 call plug#begin('~/.config/nvim/plugged')
     "" Async
     " Plug 'skywind3000/asyncrun.vim'
@@ -76,8 +76,9 @@ call plug#begin('~/.config/nvim/plugged')
      Plug 'tmux-plugins/vim-tmux-focus-events' " makes automatic reloading of changed files work (in tmux)
      " Plug 'edkolev/tmuxline.vim'
 call plug#end()
+" }}}
 
-"" Deoplete Setup
+" Deoplete Setup {{{
 let g:deoplete#enable_at_startup = 1 " don't start automatically (300ms)
 call deoplete#custom#option({
 \   'smart_case': v:true,
@@ -98,24 +99,28 @@ set completeopt+=menuone   " show the popup menu even when there is only 1 match
 set completeopt-=longest   " don't insert the longest common text
 set completeopt+=preview
 autocmd CompleteDone * if !pumvisible() | pclose | endif
+" }}}
 
-"" Lightline Setup
+" Lightline Setup {{{
 " let g:lightline = {
 " \   'colorscheme': 'gruvbox'
 " \}
+" }}}
 
-"" Airline Setup
+" Airline Setup {{{
 let g:airline_extensions = ["branch", "fugitiveline", "hunks", "languageclient", "obsession", "tabline", "tagbar", "vimcmake", "vimtex", "whitespace", "wordcount"]
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#vimtex#wordcount = 1
+" }}}
 
-" " Tmuxline Setup
+" Tmuxline Setup {{{
 " let g:tmuxline_preset = 'full'
 " let g:tmuxline_preset = 'powerline'
+" }}}
 
-" LanguageClient Setup
+" LanguageClient Setup {{{
 let g:LanguageClient_serverCommands = {
 \   'c': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim'],
 \   'cpp': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim'],
@@ -155,8 +160,9 @@ nnoremap <silent> <F12> :call LanguageClient#textDocument_switchSourceHeader()<C
 " nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
 " nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
 " nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+" }}}
 
-" Treesitter Setup
+" Treesitter Setup {{{
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -183,13 +189,15 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+" }}}
 
-" Echodoc Setup
+" Echodoc Setup {{{
 let g:echodoc#enable_at_startup = 1
 " let g:echodoc#type = 'signature'
 let g:echodoc#type = 'floating'
+" }}}
 
-" Neosnippets Setup
+" Neosnippets Setup {{{
 let g:neosnippet#enable_complete_done = 1
 let g:neosnippet#enable_completed_snippet = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
@@ -197,8 +205,9 @@ let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+" }}}
 
-"" vim-cmake Setup
+" vim-cmake Setup {{{
 let g:cmake_build_dir_location = "build"
 let g:cmake_link_compile_commands = 1
 let g:cmake_generate_options = ["-GNinja"]
@@ -206,11 +215,13 @@ nmap cb <Plug>(CMakeBuild)
 nmap <silent>cr :CMakeSwitch Release<CR>
 nmap <silent>cd :CMakeSwitch Debug<CR>
 nmap cq <Plug>(CMakeClose)
+" }}}
 
-"" vim-gitgutter Setup
+" vim-gitgutter Setup {{{
 let g:gitgutter_signs = 0
+" }}}
 
-"" vimtex setup
+" vimtex setup {{{
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_quickfix_mode = 0
@@ -219,15 +230,18 @@ let g:vimtex_compiler_latexmk = {
   \ 'build_dir' : 'dist',
   \}
 autocmd FileType tex set textwidth=80
+" }}}
 
-"" vim-commentary Setup
+" vim-commentary Setup {{{
 " I rarely use folds and vim-commentary doesn't do multiline anyway
 autocmd FileType c,cpp setlocal commentstring=//\ %s
+" }}}
 
-" EditorConfig Setup
+" EditorConfig Setup {{{
 " let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
+" }}}
 
-" Startify Setup
+" Startify Setup {{{
 " let g:startify_files_number = 5
 
 let g:startify_commands = [
@@ -238,8 +252,9 @@ let g:startify_bookmarks = [
 \   { 'c': '~/.config/nvim/init.vim' },
 \   { 'g': '~/.config/git/ignore' },
 \ ]
+" }}}
 
-" NERDTree Setup
+" NERDTree Setup {{{
 let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
 let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
 let g:NERDTreeLimitedSyntax = 1
@@ -253,6 +268,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 nmap <silent> <F7> :NERDTreeToggleVCS<CR>
 imap <silent> <F7> <C-o><F7>
+" }}}
 " }}}
 
 " ================ Persistent Undo ================== {{{
@@ -268,7 +284,6 @@ endif
 " }}}
 
 " ======================= VIM ======================= {{{
-
 " use Unicode file encoding by default
 set encoding=utf-8
 
