@@ -1,6 +1,6 @@
-"
-" ======================= PLUGINS =======================
-"
+" vim:foldmethod=marker
+
+" ======================= PLUGINS ======================= {{{
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
     echo "Downloading junegunn/vim-plug to manage plugins..."
     silent !mkdir -p ~/.config/nvim/autoload/
@@ -253,9 +253,9 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 nmap <silent> <F7> :NERDTreeToggleVCS<CR>
 imap <silent> <F7> <C-o><F7>
+" }}}
 
-
-" ================ Persistent Undo ==================
+" ================ Persistent Undo ================== {{{
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
 if has('persistent_undo')
@@ -265,8 +265,9 @@ if has('persistent_undo')
   set undodir=~/.local/share/nvim/undo
   set undofile
 endif
+" }}}
 
-" ======================= VIM =======================
+" ======================= VIM ======================= {{{
 
 " use Unicode file encoding by default
 set encoding=utf-8
@@ -327,8 +328,9 @@ colorscheme gruvbox
 " Highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+" }}}
 
-" ====================== KEYBINDINGS ======================
+" ====================== KEYBINDINGS ====================== {{{
 let mapleader = ","
 
 " Shortcutting split navigation, saving a keypress:
@@ -354,3 +356,4 @@ imap <C-s> <c-o><C-s>
 
 " format JSON using jq
 autocmd FileType json map <silent> <A-S-f> :silent %!jq .<CR>
+" }}}
