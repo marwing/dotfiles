@@ -73,8 +73,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'honza/vim-snippets'
 
     " TMUX integration
-     Plug 'tmux-plugins/vim-tmux-focus-events' " makes automatic reloading of changed files work (in tmux)
-     " Plug 'edkolev/tmuxline.vim'
+    " Plug 'edkolev/tmuxline.vim'
 call plug#end()
 " }}}
 
