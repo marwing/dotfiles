@@ -19,6 +19,7 @@ window#waybar {
   background: #1a1a1a;
 }
 
+#custom-system-upgrades,
 #idle_inhibitor,
 #workspaces,
 #mode,
@@ -81,6 +82,7 @@ window#waybar {
   color: #b58900;
 }
 
+#custom-system-upgrades,
 #mode,
 #window,
 #clock,

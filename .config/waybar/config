@@ -20,6 +20,9 @@
   ],
   "modules-right": [
     "custom/left-arrow-dark",
+    "custom/system-upgrades",
+    "custom/left-arrow-light",
+    "custom/left-arrow-dark",
     "backlight",
     "custom/left-arrow-light",
     "custom/left-arrow-dark",
@@ -155,5 +158,11 @@
       "activated": "",
       "deactivated": ""
     }
-  }
+  },
+  "custom/system-upgrades": {
+    "exec": "~/.config/waybar/scripts/updates.sh",
+    "format": "Updates: {}",
+    "interval": 3600,
+    "return-type": "json"
+  },
 }
