@@ -144,6 +144,9 @@ let g:LanguageClient_serverCommands = {
 \   'cmake': ['cmake-language-server']
 \ }
 
+let g:LanguageClient_loggingFile = expand('~/.cache/LanguageClient.log')
+let g:LanguageClient_serverStderr = expand('~/.cache/LanguageClient.stderr')
+
 nmap <F5> <Plug>(lcn-menu)
 nmap <silent>KK <Plug>(lcn-hover)
 nmap <silent> Kk <Plug>(lcn-code-action)
