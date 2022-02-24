@@ -68,6 +68,9 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'deoplete-plugins/deoplete-jedi'
     " LaTeX
     Plug 'lervag/vimtex'
+    " Markdown
+    Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+    Plug 'dhruvasagar/vim-table-mode'
 
     " Snippets
     Plug 'Shougo/neosnippet-snippets'
