@@ -121,8 +121,8 @@ let g:airline#extensions#vimtex#wordcount = 1
 
 " LanguageClient Setup {{{
 let g:LanguageClient_serverCommands = {
-\   'c': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim'],
-\   'cpp': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-background-index', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim'],
+\   'c': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim', '--enable-config', '--use-dirty-headers'],
+\   'cpp': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim', '--enable-config', '--use-dirty-headers'],
 \   'rust': ['rls'],
 \   'go': ['gopls'],
 \   'java': ['jdtls.sh'],
