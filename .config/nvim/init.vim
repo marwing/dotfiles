@@ -22,6 +22,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'MaxMEllon/vim-jsx-pretty'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'folke/twilight.nvim'
 
     " Statusline
     Plug 'vim-airline/vim-airline'
@@ -51,6 +52,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'wsdjeg/FlyGrep.vim'
     Plug 'tpope/vim-obsession'
     Plug 'cdelledonne/vim-cmake'
+    Plug 'folke/zen-mode.nvim'
 
     " Autocompletition
     " Plug 'Shougo/denite.nvim'
@@ -187,6 +189,22 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+EOF
+" }}}
+
+" Zen Mode Setup {{{
+lua << EOF
+  require("zen-mode").setup {
+    plugins = {
+      tmux = { enabled = true },
+    },
+  }
+EOF
+" }}}
+
+" Twilight Setup {{{
+lua << EOF
+  require("twilight").setup {}
 EOF
 " }}}
 
