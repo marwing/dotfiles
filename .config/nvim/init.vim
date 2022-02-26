@@ -55,54 +55,74 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'folke/zen-mode.nvim'
 
     " Autocompletition
-    " Plug 'Shougo/denite.nvim'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/echodoc.vim'
+
+    Plug 'vim-denops/denops.vim'
+    Plug 'Shougo/ddc.vim'
+
+    Plug 'Shougo/ddc-matcher_head'
+    Plug 'Shougo/ddc-sorter_rank'
+
+    Plug 'Shougo/ddc-around'
+    Plug 'delphinus/ddc-treesitter'
+    Plug 'LumaKernel/ddc-file'
+    Plug 'Shougo/neco-vim'
+
+    " Snippets
+    Plug 'Shougo/neosnippet.vim'
+    Plug 'Shougo/neosnippet-snippets'
+    Plug 'honza/vim-snippets'
 
     " Universal
     Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-    " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' } " Doesn't work on my non-avx laptop
-    " Vim
-    Plug 'Shougo/neco-vim'
-    " Python
-    " Plug 'deoplete-plugins/deoplete-jedi'
     " LaTeX
     Plug 'lervag/vimtex'
     " Markdown
     Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
     Plug 'dhruvasagar/vim-table-mode'
 
-    " Snippets
-    Plug 'Shougo/neosnippet-snippets'
-    Plug 'Shougo/neosnippet.vim'
-    Plug 'honza/vim-snippets'
-
     " TMUX integration
     " Plug 'edkolev/tmuxline.vim'
 call plug#end()
 " }}}
 
-" Deoplete Setup {{{
-let g:deoplete#enable_at_startup = 1 " don't start automatically (300ms)
-call deoplete#custom#option({
-\   'smart_case': v:true,
+" ddc configuration {{{
+call ddc#custom#patch_global({
+\   'sources': ['neosnippet', 'file', 'treesitter', 'around'],
+\   'smartCsae': v:true,
+\
+\   'sourceOptions': {
+\     '_': {
+\       'matchers': ['matcher_head'],
+\       'sorters': ['sorter_rank'],
+\     },
+\     'around': {
+\       'mark': 'A',
+\     },
+\     'treesitter': {
+\       'mark': 'TS',
+\     },
+\     'file': {
+\       'mark': 'F',
+\       'isVolatile': v:true,
+\       'forceCompletionPattern': '\S/\S*',
+\     },
+\     'necovim': {
+\       'mark': 'vim',
+\     },
+\     'neosnippet': {
+\       'mark': 'NS',
+\       'dup': v:true,
+\     },
+\   },
+\   'sourceParams': {
+\     'around': {'maxSize': 500},
+\   },
 \ })
-call deoplete#custom#option('sources', {
-\   '_': ['LanguageClient', 'neosnippet', 'around', 'file'],
-\   'vim': ['vim', 'neosnippet'],
-\ })
-" \   'python': ['jedi', 'neosnippet'],
-" \   '_': ['tabnine', 'neosnippet', 'around', 'file'],
-call deoplete#custom#source(
-    \ '_',
-    \ 'disabled_syntaxes', ['Comment', 'String']
-\ )
 
-set completeopt+=menuone   " show the popup menu even when there is only 1 match
-" set completeopt+=noinsert  " don't insert any text until user chooses a match
-set completeopt-=longest   " don't insert the longest common text
-set completeopt+=preview
-autocmd CompleteDone * if !pumvisible() | pclose | endif
+call ddc#custom#patch_filetype(['vim'], 'sources', ['necovim', 'neosnippet', 'file', 'treesitter', 'around'])
+
+call ddc#enable()
 " }}}
 
 " Lightline Setup {{{
