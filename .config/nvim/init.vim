@@ -55,8 +55,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'folke/zen-mode.nvim'
 
     " Autocompletition
-    Plug 'Shougo/echodoc.vim'
-
     Plug 'vim-denops/denops.vim'
     Plug 'Shougo/ddc.vim'
 
@@ -66,6 +64,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Shougo/ddc-around'
     Plug 'delphinus/ddc-treesitter'
     Plug 'LumaKernel/ddc-file'
+    Plug 'Shougo/ddc-nvim-lsp'
     Plug 'Shougo/neco-vim'
 
     " Snippets
@@ -74,7 +73,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'honza/vim-snippets'
 
     " Universal
-    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'ray-x/lsp_signature.nvim'
     " LaTeX
     Plug 'lervag/vimtex'
     " Markdown
@@ -88,7 +88,7 @@ call plug#end()
 
 " ddc configuration {{{
 call ddc#custom#patch_global({
-\   'sources': ['neosnippet', 'file', 'treesitter', 'around'],
+\   'sources': ['nvim-lsp', 'neosnippet', 'file', 'treesitter', 'around'],
 \   'smartCsae': v:true,
 \
 \   'sourceOptions': {
@@ -106,6 +106,10 @@ call ddc#custom#patch_global({
 \       'mark': 'F',
 \       'isVolatile': v:true,
 \       'forceCompletionPattern': '\S/\S*',
+\     },
+\     'nvim-lsp': {
+\       'mark': 'lsp',
+\       'forceCompletionPattern': '\.\w*|:\w*|->\w*',
 \     },
 \     'necovim': {
 \       'mark': 'vim',
@@ -125,6 +129,70 @@ call ddc#custom#patch_filetype(['vim'], 'sources', ['necovim', 'neosnippet', 'fi
 call ddc#enable()
 " }}}
 
+" LSP Client Setup {{{
+lua <<EOF
+-- Mappings {{{
+local opts = { noremap=true, silent=true }
+vim.api.nvim_set_keymap('n', 'dD', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'dq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+local on_attach = function(client, bufnr)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'KK', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<A-S-f>', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'Kk', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+
+  if client.name == "clangd" then
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<F12>', '<cmd>ClangdSwitchSourceHeader<CR>', opts)
+  end
+end
+-- }}}
+
+-- nvim-lspconfig {{{
+local lspconfig = require'lspconfig'
+
+lspconfig.clangd.setup{
+  cmd = { "clangd", "-header-insertion=iwyu", "-header-insertion-decorators", "-query-driver=/usr/**/arm-none-eabi*", "--completion-style=detailed", "--malloc-trim", "--enable-config", "--use-dirty-headers" },
+  on_attach = on_attach
+}
+
+local servers = { "cmake", "pylsp", "pyright", "texlab", "tsserver" }
+for _, server in ipairs(servers) do
+  lspconfig[server].setup{
+    on_attach = on_attach
+  }
+end
+-- }}}
+
+-- diagnostic {{{
+vim.diagnostic.config({
+  update_in_insert = true,
+  severity_sort = true,
+  virtual_text = { source = "always" },
+  float = { source = "always" },
+})
+-- }}}
+
+-- lsp_signature {{{
+require'lsp_signature'.setup{}
+-- }}}
+EOF
+" }}}
+
 " Lightline Setup {{{
 " let g:lightline = {
 " \   'colorscheme': 'gruvbox'
@@ -132,7 +200,7 @@ call ddc#enable()
 " }}}
 
 " Airline Setup {{{
-let g:airline_extensions = ["branch", "fugitiveline", "hunks", "languageclient", "obsession", "tabline", "tagbar", "vimcmake", "vimtex", "whitespace", "wordcount"]
+let g:airline_extensions = ["branch", "fugitiveline", "hunks", "nvimlsp", "obsession", "tabline", "tagbar", "vimcmake", "vimtex", "whitespace", "wordcount"]
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#hunks#non_zero_only = 1
@@ -142,51 +210,6 @@ let g:airline#extensions#vimtex#wordcount = 1
 " Tmuxline Setup {{{
 " let g:tmuxline_preset = 'full'
 " let g:tmuxline_preset = 'powerline'
-" }}}
-
-" LanguageClient Setup {{{
-let g:LanguageClient_serverCommands = {
-\   'c': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim', '--enable-config', '--use-dirty-headers'],
-\   'cpp': ['clangd', '-header-insertion=iwyu', '-header-insertion-decorators', '-query-driver=/usr/**/arm-none-eabi*', '--completion-style=detailed', '--malloc-trim', '--enable-config', '--use-dirty-headers'],
-\   'rust': ['rls'],
-\   'go': ['gopls'],
-\   'java': ['jdtls.sh'],
-\   'python': ['pylsp'],
-\   'javascript': ['typescript-language-server', '--stdio'],
-\   'javascriptreact': ['typescript-language-server', '--stdio'],
-\   'typescript': ['typescript-language-server', '--stdio'],
-\   'typescriptreact': ['typescript-language-server', '--stdio'],
-\   'css': ['css-languageserver', '--stdio'],
-\   'sass': ['css-languageserver', '--stdio'],
-\   'scss': ['css-languageserver', '--stdio'],
-\   'tex': ['texlab'],
-\   'sh': ['bash-language-server', 'start'],
-\   'cmake': ['cmake-language-server']
-\ }
-
-let g:LanguageClient_loggingFile = expand('~/.cache/LanguageClient.log')
-let g:LanguageClient_serverStderr = expand('~/.cache/LanguageClient.stderr')
-
-nmap <F5> <Plug>(lcn-menu)
-nmap <silent>KK <Plug>(lcn-hover)
-nmap <silent> Kk <Plug>(lcn-code-action)
- " Use direct call for now as it is the only possibility to give split argument
-nnoremap <silent> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'tabnew'})<CR>
-" nmap <silent> gd <Plug>(lcn-definition)
-nmap <silent> <F2> <Plug>(lcn-rename)
-nmap <silent> <A-S-f> <Plug>(lcn-format)
-nnoremap <silent> <F12> :call LanguageClient#textDocument_switchSourceHeader()<CR>
-
-" nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-" nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-" nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-" nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-" nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
-" nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
-" nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-" nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 " }}}
 
 " Treesitter Setup {{{
@@ -232,12 +255,6 @@ EOF
 lua << EOF
   require("twilight").setup {}
 EOF
-" }}}
-
-" Echodoc Setup {{{
-let g:echodoc#enable_at_startup = 1
-" let g:echodoc#type = 'signature'
-let g:echodoc#type = 'floating'
 " }}}
 
 " Neosnippets Setup {{{
