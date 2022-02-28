@@ -3,12 +3,12 @@
 " ======================= PLUGINS ======================= {{{
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
     echo "Downloading junegunn/vim-plug to manage plugins..."
-    silent !mkdir -p ~/.config/nvim/autoload/
+    silent call mkdir(expand("~/.config/nvim/autoload/"), "p")
     silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
 endif
 
 " Vim-Plug Setup {{{
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin(stdpath("cache") . '/plugged')
     "" Async
     " Plug 'skywind3000/asyncrun.vim'
 
@@ -261,7 +261,7 @@ EOF
 let g:neosnippet#enable_complete_done = 1
 let g:neosnippet#enable_completed_snippet = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
+let g:neosnippet#snippets_directory=stdpath("cache") . '/plugged/vim-snippets/snippets'
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -334,10 +334,8 @@ imap <silent> <F7> <C-o><F7>
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
 if has('persistent_undo')
-  if !isdirectory(expand('~').'/.local/share/nvim/undo')
-    silent !mkdir -p ~/.local/share/nvim/undo > /dev/null 2>&1
-  endif
-  set undodir=~/.local/share/nvim/undo
+  " neovim automatically creates last (in this case only) path in undodir
+  let &undodir=stdpath("data") . "/undo"
   set undofile
 endif
 " }}}
