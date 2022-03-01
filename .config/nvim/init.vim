@@ -1,7 +1,7 @@
 " vim:foldmethod=marker
 
 " ======================= PLUGINS ======================= {{{
-if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+if !filereadable(expand('~/.config/nvim/autoload/plug.vim'))
     echo "Downloading junegunn/vim-plug to manage plugins..."
     silent call mkdir(expand("~/.config/nvim/autoload/"), "p")
     silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
@@ -9,25 +9,18 @@ endif
 
 " Vim-Plug Setup {{{
 call plug#begin(stdpath("cache") . '/plugged')
-    "" Async
-    " Plug 'skywind3000/asyncrun.vim'
-
     " Themes
     Plug 'morhetz/gruvbox'
 
     " Syntax
     Plug 'chrisbra/Colorizer'
     Plug 'terminalnode/sway-vim-syntax'
-    " Plug 'sheerun/vim-polyglot' " 80ms
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'MaxMEllon/vim-jsx-pretty'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'folke/twilight.nvim'
 
     " Statusline
     Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    " Plug 'itchyny/lightline.vim'
 
     " Startup Screen
     Plug 'mhinz/vim-startify'
@@ -48,11 +41,10 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'shumphrey/fugitive-gitlab.vim'
     Plug 'tpope/vim-sleuth'
     Plug 'tpope/vim-surround'
-    Plug 'wsdjeg/vim-todo'
-    Plug 'wsdjeg/FlyGrep.vim'
     Plug 'tpope/vim-obsession'
     Plug 'cdelledonne/vim-cmake'
     Plug 'folke/zen-mode.nvim'
+    Plug 'folke/twilight.nvim'
 
     " Autocompletition
     Plug 'vim-denops/denops.vim'
@@ -72,9 +64,10 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'Shougo/neosnippet-snippets'
     Plug 'honza/vim-snippets'
 
-    " Universal
+    " nvim-lsp
     Plug 'neovim/nvim-lspconfig'
     Plug 'ray-x/lsp_signature.nvim'
+
     " LaTeX
     Plug 'lervag/vimtex'
     " Markdown
@@ -193,14 +186,8 @@ require'lsp_signature'.setup{}
 EOF
 " }}}
 
-" Lightline Setup {{{
-" let g:lightline = {
-" \   'colorscheme': 'gruvbox'
-" \}
-" }}}
-
 " Airline Setup {{{
-let g:airline_extensions = ["branch", "fugitiveline", "hunks", "nvimlsp", "obsession", "tabline", "tagbar", "vimcmake", "vimtex", "whitespace", "wordcount"]
+let g:airline_extensions = ["branch", "fugitiveline", "hunks", "nvimlsp", "obsession", "quickfix", "searchcount", "tabline", "tagbar", "term", "vimcmake", "vimtex", "whitespace", "wordcount"]
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#hunks#non_zero_only = 1
@@ -297,12 +284,10 @@ autocmd FileType c,cpp setlocal commentstring=//\ %s
 " }}}
 
 " EditorConfig Setup {{{
-" let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
+let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
 " }}}
 
 " Startify Setup {{{
-" let g:startify_files_number = 5
-
 let g:startify_commands = [
 \   { 'up': ['Update Plugins', ':PlugUpdate'] },
 \ ]
@@ -358,9 +343,6 @@ set autoindent
 " set relative line numbers
 set number relativenumber
 
-" enforce dark color scheme
-" set background=light
-
 " spell checking default language
 set spelllang=de_20
 
@@ -385,7 +367,7 @@ set colorcolumn=80
 set scrolloff=5
 
 " enable truecolor support if terminal claims to support it
-if $COLORTERM == "truecolor"
+if has("termguicolors") && $COLORTERM == "truecolor"
     set termguicolors
 endif
 
@@ -394,8 +376,6 @@ set updatetime=300
 
 " Colorscheme
 colorscheme gruvbox
-" Transparent background
-" autocmd BufEnter * :highlight Normal ctermbg=None
 
 " Highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -422,9 +402,6 @@ nmap <silent> <C-p> :FZF<CR>
 
 map <silent> <C-s> :Commentary<CR>
 imap <C-s> <c-o><C-s>
-
-"" autoxrdb
-" autocmd BufWritePost *.Xresources,*.Xdefaults :silent !xrdb -merge %
 
 " format JSON using jq
 autocmd FileType json map <silent> <A-S-f> :silent %!jq .<CR>
