@@ -29,6 +29,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'editorconfig/editorconfig-vim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
     Plug 'majutsushi/tagbar'
     Plug 'ryanoasis/vim-devicons'
     Plug 'scrooloose/nerdtree'
@@ -66,6 +67,8 @@ call plug#begin(stdpath("cache") . '/plugged')
 
     " nvim-lsp
     Plug 'neovim/nvim-lspconfig'
+    Plug 'stevearc/dressing.nvim'
+    Plug 'ojroques/nvim-lspfuzzy'
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'p00f/clangd_extensions.nvim'
 
@@ -188,6 +191,10 @@ vim.diagnostic.config({
 
 -- lsp_signature {{{
 require'lsp_signature'.setup{}
+-- }}}
+
+-- nvim-lspfuzzy {{{
+require('lspfuzzy').setup{}
 -- }}}
 EOF
 " }}}
