@@ -67,6 +67,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     " nvim-lsp
     Plug 'neovim/nvim-lspconfig'
     Plug 'ray-x/lsp_signature.nvim'
+    Plug 'p00f/clangd_extensions.nvim'
 
     " LaTeX
     Plug 'lervag/vimtex'
@@ -158,9 +159,14 @@ end
 -- nvim-lspconfig {{{
 local lspconfig = require'lspconfig'
 
-lspconfig.clangd.setup{
-  cmd = { "clangd", "-header-insertion=iwyu", "-header-insertion-decorators", "-query-driver=/usr/**/arm-none-eabi*", "--completion-style=detailed", "--malloc-trim", "--enable-config", "--use-dirty-headers" },
-  on_attach = on_attach
+require("clangd_extensions").setup {
+    server = {
+        cmd = { "clangd", "-query-driver=/usr/**/arm-none-eabi*", "--completion-style=detailed", "--malloc-trim", "--enable-config", "--use-dirty-headers" },
+        on_attach = on_attach
+    },
+    extensions = {
+        autoSetHints = false,
+    }
 }
 
 local servers = { "cmake", "pylsp", "pyright", "texlab", "tsserver" }
