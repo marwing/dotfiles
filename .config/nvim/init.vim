@@ -68,7 +68,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     " nvim-lsp
     Plug 'neovim/nvim-lspconfig'
     Plug 'stevearc/dressing.nvim'
-    Plug 'ojroques/nvim-lspfuzzy'
+    Plug 'gfanto/fzf-lsp.nvim'
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'p00f/clangd_extensions.nvim'
 
@@ -193,8 +193,8 @@ vim.diagnostic.config({
 require'lsp_signature'.setup{}
 -- }}}
 
--- nvim-lspfuzzy {{{
-require('lspfuzzy').setup{}
+-- fzf_lsp {{{
+require'fzf_lsp'.setup()
 -- }}}
 EOF
 " }}}
