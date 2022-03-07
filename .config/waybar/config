@@ -1,4 +1,4 @@
-// vim: ft=json
+// vim:ft=jsonc
 
 {
   "layer": "top",
@@ -59,6 +59,10 @@
   "custom/right-arrow-light": {
     "format": "",
     "tooltip": false
+  },
+
+  "sway/window": {
+    "icon": false
   },
 
   "sway/workspaces": {
