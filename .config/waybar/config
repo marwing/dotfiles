@@ -5,7 +5,6 @@
   "position": "top",
 
   "modules-left": [
-    "idle_inhibitor",
     "sway/workspaces",
     "sway/mode",
     "custom/right-arrow-dark",
@@ -41,7 +40,8 @@
     "disk#zfs",
     "custom/left-arrow-light",
     "custom/left-arrow-dark",
-    "tray"
+    "tray",
+    "idle_inhibitor"
   ],
 
   "custom/left-arrow-dark": {
