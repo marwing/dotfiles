@@ -3,6 +3,11 @@ if (( $+commands[yarn] )) && [ -d "$(yarn --offline global bin)" ] ; then
     PATH="$(yarn --offline global bin):$PATH"
 fi
 
+# set PATH so it includes .cargo/bin folder if it exists
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 # set PATH so it includes .local/bin folder if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
@@ -42,6 +47,11 @@ if (( $+commands[ccache] )); then
         export CMAKE_${lang}_COMPILER_LAUNCHER="ccache"
         export ${lang}FLAGS="${${(P)lang}FLAGS} -fdiagnostics-color=always"
     done
+fi
+
+# use ninja for cmake builds if available
+if (( $+commands[ninja] )); then
+    export CMAKE_GENERATOR="Ninja"
 fi
 
 # If running from tty1 start sway

@@ -30,3 +30,6 @@ mode "open" {
     bindsym Return mode "default"
 }
 bindsym $mod+o mode "open"
+
+# Global shortcuts for applications
+bindsym Ctrl+Shift+space exec 1password --quick-access

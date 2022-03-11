@@ -57,6 +57,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'Shougo/ddc-around'
     Plug 'delphinus/ddc-treesitter'
     Plug 'LumaKernel/ddc-file'
+    Plug 'gamoutatsumi/ddc-emoji'
     Plug 'Shougo/ddc-nvim-lsp'
     Plug 'Shougo/neco-vim'
 
@@ -85,8 +86,9 @@ call plug#end()
 
 " ddc configuration {{{
 call ddc#custom#patch_global({
-\   'sources': ['nvim-lsp', 'neosnippet', 'file', 'treesitter', 'around'],
-\   'smartCsae': v:true,
+\   'sources': ['nvim-lsp', 'neosnippet', 'emoji', 'file', 'treesitter', 'around'],
+\   'smartCase': v:true,
+\   'keywordPattern': '[a-zA-Z_:]\w*',
 \
 \   'sourceOptions': {
 \     '_': {
@@ -103,6 +105,11 @@ call ddc#custom#patch_global({
 \       'mark': 'F',
 \       'isVolatile': v:true,
 \       'forceCompletionPattern': '\S/\S*',
+\     },
+\     'emoji': {
+\       'mark': 'emoji',
+\       'matchers': ['emoji'],
+\       'sorters': [],
 \     },
 \     'nvim-lsp': {
 \       'mark': 'lsp',
@@ -172,7 +179,7 @@ require("clangd_extensions").setup {
     }
 }
 
-local servers = { "cmake", "pylsp", "pyright", "texlab", "tsserver" }
+local servers = { "cmake", "pylsp", "pyright", "rust_analyzer", "texlab", "tsserver" }
 for _, server in ipairs(servers) do
   lspconfig[server].setup{
     on_attach = on_attach
@@ -258,8 +265,8 @@ EOF
 " }}}
 
 " Neosnippets Setup {{{
-let g:neosnippet#enable_complete_done = 1
-let g:neosnippet#enable_completed_snippet = 1
+" let g:neosnippet#enable_complete_done = 1
+" let g:neosnippet#enable_completed_snippet = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory=stdpath("cache") . '/plugged/vim-snippets/snippets'
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -375,7 +382,7 @@ set signcolumn=yes
 set cursorline
 
 set autoread
-set colorcolumn=80
+set colorcolumn=+0
 
 set scrolloff=5
 

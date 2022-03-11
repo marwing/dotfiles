@@ -18,13 +18,13 @@ get_updates_count_pacman() {
   if command_exists checkupdates; then
     checkupdates | wc -l
   elif command_exists pacman; then
-    pacman -Qu | grep -v "[ignored]" | wc -l
+    pacman -Qu | grep -v "\[ignored\]" | wc -l
   fi
 }
 
 get_updates_count_aur() {
   if command_exists paru; then
-    paru -Qua | grep -v "[ignored]" | wc -l
+    paru -Qua | grep -v "\[ignored\]" | wc -l
   fi
 }
 
