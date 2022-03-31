@@ -60,6 +60,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'gamoutatsumi/ddc-emoji'
     Plug 'Shougo/ddc-nvim-lsp'
     Plug 'Shougo/neco-vim'
+    Plug 'matsui54/ddc-dictionary'
 
     " Snippets
     Plug 'Shougo/neosnippet.vim'
@@ -86,7 +87,7 @@ call plug#end()
 
 " ddc configuration {{{
 call ddc#custom#patch_global({
-\   'sources': ['nvim-lsp', 'neosnippet', 'emoji', 'file', 'treesitter', 'around'],
+\   'sources': ['nvim-lsp', 'neosnippet', 'emoji', 'file', 'treesitter', 'around', 'dictionary'],
 \   'smartCase': v:true,
 \   'keywordPattern': '[a-zA-Z_:]\w*',
 \
@@ -122,13 +123,17 @@ call ddc#custom#patch_global({
 \       'mark': 'NS',
 \       'dup': v:true,
 \     },
+\     'dictionary': {
+\       'mark': 'D',
+\     },
 \   },
 \   'sourceParams': {
 \     'around': {'maxSize': 500},
+\     'dictionary': {'dictPaths': ['/usr/share/dict/german']},
 \   },
 \ })
 
-call ddc#custom#patch_filetype(['vim'], 'sources', ['necovim', 'neosnippet', 'file', 'treesitter', 'around'])
+call ddc#custom#patch_filetype(['vim'], 'sources', ['necovim', 'neosnippet', 'file', 'treesitter', 'around', 'dictionary'])
 
 call ddc#enable()
 " }}}
