@@ -9,6 +9,11 @@ endif
 
 " Vim-Plug Setup {{{
 call plug#begin(stdpath("cache") . '/plugged')
+    " Dependencies
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'stevearc/dressing.nvim'
+    Plug 'vim-denops/denops.vim'
+
     " Themes
     Plug 'morhetz/gruvbox'
 
@@ -31,7 +36,6 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'majutsushi/tagbar'
-    Plug 'ryanoasis/vim-devicons'
     Plug 'scrooloose/nerdtree'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'airblade/vim-gitgutter'
@@ -48,7 +52,6 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'folke/twilight.nvim'
 
     " Autocompletition
-    Plug 'vim-denops/denops.vim'
     Plug 'Shougo/ddc.vim'
 
     Plug 'Shougo/ddc-matcher_head'
@@ -69,7 +72,6 @@ call plug#begin(stdpath("cache") . '/plugged')
 
     " nvim-lsp
     Plug 'neovim/nvim-lspconfig'
-    Plug 'stevearc/dressing.nvim'
     Plug 'gfanto/fzf-lsp.nvim'
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'p00f/clangd_extensions.nvim'
