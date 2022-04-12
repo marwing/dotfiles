@@ -11,7 +11,10 @@ endif
 call plug#begin(stdpath("cache") . '/plugged')
     " Dependencies
     Plug 'ryanoasis/vim-devicons'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'nvim-lua/plenary.nvim'
     Plug 'stevearc/dressing.nvim'
+    Plug 'MunifTanjim/nui.nvim'
     Plug 'vim-denops/denops.vim'
 
     " Themes
@@ -36,8 +39,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'majutsushi/tagbar'
-    Plug 'scrooloose/nerdtree'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'nvim-neo-tree/neo-tree.nvim'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-commentary'
 
@@ -325,20 +327,22 @@ let g:startify_bookmarks = [
 \ ]
 " }}}
 
-" NERDTree Setup {{{
-let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
-let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
-let g:NERDTreeLimitedSyntax = 1
+" Neo-tree Setup {{{
+lua <<EOF
+require("neo-tree").setup({
+  close_if_last_window = true,
+  filesystem = {
+    filtered_items = {
+      visible = true,
+    },
+    use_libuv_file_watcher = true,
+  },
+})
+EOF
 
-" Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-" Close the tab if NERDTree is the only window remaining in it.
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-nmap <silent> <F7> :NERDTreeToggleVCS<CR>
-imap <silent> <F7> <C-o><F7>
+nnoremap <silent> <F7> :Neotree toggle filesystem show<CR>
+nnoremap <silent> \s :Neotree float git_status<cr>
+nnoremap <silent> \b :Neotree toggle show buffers right<cr>
 " }}}
 " }}}
 
