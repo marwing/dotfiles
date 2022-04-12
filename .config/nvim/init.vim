@@ -28,7 +28,8 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
     " Statusline
-    Plug 'vim-airline/vim-airline'
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'arkav/lualine-lsp-progress'
 
     " Startup Screen
     Plug 'mhinz/vim-startify'
@@ -247,12 +248,20 @@ require'fzf_lsp'.setup()
 EOF
 " }}}
 
-" Airline Setup {{{
-let g:airline_extensions = ["branch", "fugitiveline", "hunks", "nvimlsp", "obsession", "quickfix", "searchcount", "tabline", "tagbar", "term", "vimcmake", "vimtex", "whitespace", "wordcount"]
-let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
-let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#vimtex#wordcount = 1
+" Lualine Setup {{{
+lua <<EOF
+require'lualine'.setup {
+  sections = {
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch', 'diff', 'diagnostics' },
+    lualine_c = { { 'filename', path = 1 }, 'lsp_progress' },
+    lualine_x = { 'filetype' },
+    lualine_y = { 'encoding_fileformat', 'searchcount' },
+    lualine_z = { 'obsession', 'fileprogress' }
+  },
+  extensions = { 'fugitive', 'neo-tree', 'quickfix', 'vimcmake' },
+}
+EOF
 " }}}
 
 " Tmuxline Setup {{{
