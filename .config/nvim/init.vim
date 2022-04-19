@@ -257,7 +257,7 @@ require'lualine'.setup {
     lualine_c = { { 'filename', path = 1 }, 'lsp_progress' },
     lualine_x = { 'filetype' },
     lualine_y = { 'encoding_fileformat', 'searchcount' },
-    lualine_z = { 'obsession', 'fileprogress' }
+    lualine_z = { 'obsession', 'wordcount', 'fileprogress' }
   },
   extensions = { 'fugitive', 'neo-tree', 'quickfix', 'vimcmake' },
 }
