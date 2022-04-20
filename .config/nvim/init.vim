@@ -431,6 +431,7 @@ nmap <silent> <F8> :TagbarToggle<CR>
 imap <silent> <F8> <C-o><F8>
 
 nmap <silent> <C-p> :Files<CR>
+nmap <silent> <C-A-p> :Buffers<CR>
 
 map <silent> <C-s> :Commentary<CR>
 imap <C-s> <c-o><C-s>
