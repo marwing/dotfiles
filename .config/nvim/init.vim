@@ -1,13 +1,13 @@
 " vim:foldmethod=marker
 
-" ======================= PLUGINS ======================= {{{
+" ======================= PLUGINS ======================= {{{1
 if !filereadable(expand('~/.config/nvim/autoload/plug.vim'))
     echo "Downloading junegunn/vim-plug to manage plugins..."
     silent call mkdir(expand("~/.config/nvim/autoload/"), "p")
     silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
 endif
 
-" Vim-Plug Setup {{{
+" Vim-Plug Setup {{{2
 call plug#begin(stdpath("cache") . '/plugged')
     " Dependencies
     Plug 'ryanoasis/vim-devicons'
@@ -88,9 +88,8 @@ call plug#begin(stdpath("cache") . '/plugged')
     " TMUX integration
     " Plug 'edkolev/tmuxline.vim'
 call plug#end()
-" }}}
 
-" ddc configuration {{{
+" ddc configuration {{{2
 call ddc#custom#patch_global({
 \   'sources': ['nvim-lsp', 'neosnippet', 'emoji', 'file', 'treesitter', 'around', 'dictionary'],
 \   'smartCase': v:true,
@@ -141,11 +140,10 @@ call ddc#custom#patch_global({
 call ddc#custom#patch_filetype(['vim'], 'sources', ['necovim', 'neosnippet', 'file', 'treesitter', 'around', 'dictionary'])
 
 call ddc#enable()
-" }}}
 
-" LSP Client Setup {{{
+" LSP Client Setup {{{2
 lua <<EOF
--- Mappings {{{
+-- Mappings {{{3
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', 'dD', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -174,9 +172,8 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<F12>', '<cmd>ClangdSwitchSourceHeader<CR>', opts)
   end
 end
--- }}}
 
--- nvim-lspconfig {{{
+-- nvim-lspconfig {{{3
 local lspconfig = require'lspconfig'
 
 require("clangd_extensions").setup {
@@ -196,7 +193,7 @@ for _, server in ipairs(servers) do
   }
 end
 
--- sumneko_lua {{{
+-- sumneko_lua {{{4
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -226,29 +223,24 @@ require'lspconfig'.sumneko_lua.setup {
     },
   },
 }
--- }}}
--- }}}
 
--- diagnostic {{{
+-- diagnostic {{{3
 vim.diagnostic.config({
   update_in_insert = true,
   severity_sort = true,
   virtual_text = { source = "always" },
   float = { source = "always" },
 })
--- }}}
 
--- lsp_signature {{{
+-- lsp_signature {{{3
 require'lsp_signature'.setup{}
--- }}}
 
--- fzf_lsp {{{
+-- fzf_lsp {{{3
 require'fzf_lsp'.setup()
--- }}}
+-- 3}}}
 EOF
-" }}}
 
-" Lualine Setup {{{
+" Lualine Setup {{{2
 lua <<EOF
 require'lualine'.setup {
   sections = {
@@ -262,14 +254,12 @@ require'lualine'.setup {
   extensions = { 'fugitive', 'neo-tree', 'quickfix', 'vimcmake' },
 }
 EOF
-" }}}
 
-" Tmuxline Setup {{{
+" Tmuxline Setup {{{2
 " let g:tmuxline_preset = 'full'
 " let g:tmuxline_preset = 'powerline'
-" }}}
 
-" Treesitter Setup {{{
+" Treesitter Setup {{{2
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
@@ -280,9 +270,8 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-" }}}
 
-" Zen Mode Setup {{{
+" Zen Mode Setup {{{2
 lua << EOF
   require("zen-mode").setup {
     plugins = {
@@ -290,15 +279,13 @@ lua << EOF
     },
   }
 EOF
-" }}}
 
-" Twilight Setup {{{
+" Twilight Setup {{{2
 lua << EOF
   require("twilight").setup {}
 EOF
-" }}}
 
-" Neosnippets Setup {{{
+" Neosnippets Setup {{{2
 " let g:neosnippet#enable_complete_done = 1
 " let g:neosnippet#enable_completed_snippet = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
@@ -306,9 +293,8 @@ let g:neosnippet#snippets_directory=stdpath("cache") . '/plugged/vim-snippets/sn
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-" }}}
 
-" vim-cmake Setup {{{
+" vim-cmake Setup {{{2
 let g:cmake_build_dir_location = "build"
 let g:cmake_link_compile_commands = 1
 let g:cmake_generate_options = ["-GNinja"]
@@ -316,13 +302,11 @@ nmap cb <Plug>(CMakeBuild)
 nmap <silent>cr :CMakeSwitch Release<CR>
 nmap <silent>cd :CMakeSwitch Debug<CR>
 nmap cq <Plug>(CMakeClose)
-" }}}
 
-" vim-gitgutter Setup {{{
+" vim-gitgutter Setup {{{2
 let g:gitgutter_signs = 0
-" }}}
 
-" vimtex setup {{{
+" vimtex setup {{{2
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_quickfix_mode = 0
@@ -330,18 +314,15 @@ let g:vimtex_compiler_latexmk = {
   \ 'build_dir' : 'dist',
   \}
 autocmd FileType tex set textwidth=80
-" }}}
 
-" vim-commentary Setup {{{
+" vim-commentary Setup {{{2
 " I rarely use folds and vim-commentary doesn't do multiline anyway
 autocmd FileType c,cpp setlocal commentstring=//\ %s
-" }}}
 
-" EditorConfig Setup {{{
+" EditorConfig Setup {{{2
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
-" }}}
 
-" Startify Setup {{{
+" Startify Setup {{{2
 let g:startify_commands = [
 \   { 'up': ['Update Plugins', ':PlugUpdate'] },
 \ ]
@@ -350,9 +331,8 @@ let g:startify_bookmarks = [
 \   { 'c': '~/.config/nvim/init.vim' },
 \   { 'g': '~/.config/git/ignore' },
 \ ]
-" }}}
 
-" Neo-tree Setup {{{
+" Neo-tree Setup {{{2
 lua <<EOF
 require("neo-tree").setup({
   close_if_last_window = true,
@@ -368,10 +348,8 @@ EOF
 nnoremap <silent> <F7> :Neotree toggle filesystem show reveal<CR>
 nnoremap <silent> \s :Neotree float git_status<cr>
 nnoremap <silent> \b :Neotree toggle show buffers right<cr>
-" }}}
-" }}}
 
-" ================ Persistent Undo ================== {{{
+" ================ Persistent Undo ================== {{{1
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
 if has('persistent_undo')
@@ -379,9 +357,8 @@ if has('persistent_undo')
   let &undodir=stdpath("data") . "/undo"
   set undofile
 endif
-" }}}
 
-" ======================= VIM ======================= {{{
+" ======================= VIM ======================= {{{1
 " use Unicode file encoding by default
 set encoding=utf-8
 
@@ -436,9 +413,8 @@ colorscheme gruvbox
 " Highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-" }}}
 
-" ====================== KEYBINDINGS ====================== {{{
+" ====================== KEYBINDINGS ====================== {{{1
 let mapleader = ","
 
 " Shortcutting split navigation, saving a keypress:
@@ -463,4 +439,3 @@ imap <C-s> <c-o><C-s>
 autocmd FileType json map <silent> <A-S-f> :silent %!jq .<CR>
 
 autocmd FileType markdown set conceallevel=2
-" }}}
