@@ -365,7 +365,7 @@ require("neo-tree").setup({
 })
 EOF
 
-nnoremap <silent> <F7> :Neotree toggle filesystem show<CR>
+nnoremap <silent> <F7> :Neotree toggle filesystem show reveal<CR>
 nnoremap <silent> \s :Neotree float git_status<cr>
 nnoremap <silent> \b :Neotree toggle show buffers right<cr>
 " }}}
