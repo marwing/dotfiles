@@ -244,7 +244,7 @@ EOF
 lua <<EOF
 require'lualine'.setup {
   sections = {
-    lualine_a = { 'mode' },
+    lualine_a = { 'mode', 'spell' },
     lualine_b = { 'branch', 'diff', 'diagnostics' },
     lualine_c = { { 'filename', path = 1 }, 'lsp_progress' },
     lualine_x = { 'filetype' },
