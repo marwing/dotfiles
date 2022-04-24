@@ -41,7 +41,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'majutsushi/tagbar'
     Plug 'nvim-neo-tree/neo-tree.nvim'
-    Plug 'airblade/vim-gitgutter'
+    Plug 'lewis6991/gitsigns.nvim'
     Plug 'tpope/vim-commentary'
 
     Plug 'tpope/vim-fugitive'
@@ -242,10 +242,21 @@ EOF
 
 " Lualine Setup {{{2
 lua <<EOF
+local function gitsigns_diff_source()
+  local gitsigns = vim.b.gitsigns_status_dict
+  if gitsigns then
+    return {
+      added = gitsigns.added,
+      modified = gitsigns.changed,
+      removed = gitsigns.removed
+    }
+  end
+end
+
 require'lualine'.setup {
   sections = {
     lualine_a = { 'mode', 'spell' },
-    lualine_b = { 'branch', 'diff', 'diagnostics' },
+    lualine_b = { 'branch', {'diff', source = gitsigns_diff_source}, 'diagnostics' },
     lualine_c = { { 'filename', path = 1 }, 'lsp_progress' },
     lualine_x = { 'filetype' },
     lualine_y = { 'vimtex', 'encoding_fileformat', 'searchcount' },
@@ -303,8 +314,10 @@ nmap <silent>cr :CMakeSwitch Release<CR>
 nmap <silent>cd :CMakeSwitch Debug<CR>
 nmap cq <Plug>(CMakeClose)
 
-" vim-gitgutter Setup {{{2
-let g:gitgutter_signs = 0
+" gitsigns.nvim Setup {{{2
+lua <<EOF
+require('gitsigns').setup()
+EOF
 
 " vimtex setup {{{2
 let g:tex_flavor = 'latex'
