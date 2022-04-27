@@ -42,7 +42,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'majutsushi/tagbar'
     Plug 'nvim-neo-tree/neo-tree.nvim'
     Plug 'lewis6991/gitsigns.nvim'
-    Plug 'tpope/vim-commentary'
+    Plug 'numToStr/Comment.nvim'
 
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
@@ -328,9 +328,10 @@ let g:vimtex_compiler_latexmk = {
   \}
 autocmd FileType tex set textwidth=80
 
-" vim-commentary Setup {{{2
-" I rarely use folds and vim-commentary doesn't do multiline anyway
-autocmd FileType c,cpp setlocal commentstring=//\ %s
+" Comment.nvim Setup {{{2
+lua <<EOF
+require'Comment'.setup {ignore = '^$'}
+EOF
 
 " EditorConfig Setup {{{2
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
@@ -445,9 +446,6 @@ imap <silent> <F8> <C-o><F8>
 
 nmap <silent> <C-p> :Files<CR>
 nmap <silent> <C-A-p> :Buffers<CR>
-
-map <silent> <C-s> :Commentary<CR>
-imap <C-s> <c-o><C-s>
 
 " format JSON using jq
 autocmd FileType json map <silent> <A-S-f> :silent %!jq .<CR>
