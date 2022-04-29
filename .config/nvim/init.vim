@@ -69,8 +69,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'matsui54/ddc-dictionary'
 
     " Snippets
-    Plug 'Shougo/neosnippet.vim'
-    Plug 'Shougo/neosnippet-snippets'
+    Plug 'L3MON4D3/LuaSnip'
     Plug 'honza/vim-snippets'
 
     " nvim-lsp
@@ -140,6 +139,37 @@ call ddc#custom#patch_global({
 call ddc#custom#patch_filetype(['vim'], 'sources', ['necovim', 'neosnippet', 'file', 'treesitter', 'around', 'dictionary'])
 
 call ddc#enable()
+
+" LuaSnip Setup {{{2
+lua <<EOF
+local ls = require'luasnip'
+
+ls.config.set_config {
+  history = true,
+  updateevents = "TextChanged,TextChangedI",
+  enable_autosnippets = true,
+}
+require("luasnip.loaders.from_snipmate").load()
+ls.filetype_extend("all", { "_" })
+
+vim.keymap.set({ "i", "s" }, "<c-k>", function()
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end, {silent = true})
+
+vim.keymap.set({ "i", "s" }, "<c-j>", function()
+  if ls.jumpable(-1) then
+    ls.jump(-1)
+  end
+end, {silent = true})
+
+vim.keymap.set({ "i", "s" }, "<c-l>", function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end, {silent = true})
+EOF
 
 " LSP Client Setup {{{2
 lua <<EOF
@@ -295,15 +325,6 @@ EOF
 lua << EOF
   require("twilight").setup {}
 EOF
-
-" Neosnippets Setup {{{2
-" let g:neosnippet#enable_complete_done = 1
-" let g:neosnippet#enable_completed_snippet = 1
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory=stdpath("cache") . '/plugged/vim-snippets/snippets'
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " vim-cmake Setup {{{2
 let g:cmake_build_dir_location = "build"
