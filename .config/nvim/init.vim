@@ -16,6 +16,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'stevearc/dressing.nvim'
     Plug 'MunifTanjim/nui.nvim'
     Plug 'vim-denops/denops.vim'
+    Plug 'onsails/lspkind.nvim'
 
     " Themes
     Plug 'morhetz/gruvbox'
@@ -55,18 +56,15 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'folke/twilight.nvim'
 
     " Autocompletition
-    Plug 'Shougo/ddc.vim'
-
-    Plug 'Shougo/ddc-matcher_head'
-    Plug 'Shougo/ddc-sorter_rank'
-
-    Plug 'Shougo/ddc-around'
-    Plug 'delphinus/ddc-treesitter'
-    Plug 'LumaKernel/ddc-file'
-    Plug 'gamoutatsumi/ddc-emoji'
-    Plug 'Shougo/ddc-nvim-lsp'
-    Plug 'Shougo/neco-vim'
-    Plug 'matsui54/ddc-dictionary'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'hrsh7th/cmp-nvim-lua'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'ray-x/cmp-treesitter'
+    Plug 'hrsh7th/cmp-buffer'
+    " Plug 'uga-rosa/cmp-dictionary'
+    Plug 'hrsh7th/cmp-emoji'
 
     " Snippets
     Plug 'L3MON4D3/LuaSnip'
@@ -88,57 +86,61 @@ call plug#begin(stdpath("cache") . '/plugged')
     " Plug 'edkolev/tmuxline.vim'
 call plug#end()
 
-" ddc configuration {{{2
-call ddc#custom#patch_global({
-\   'sources': ['nvim-lsp', 'neosnippet', 'emoji', 'file', 'treesitter', 'around', 'dictionary'],
-\   'smartCase': v:true,
-\   'keywordPattern': '[a-zA-Z_:]\w*',
-\
-\   'sourceOptions': {
-\     '_': {
-\       'matchers': ['matcher_head'],
-\       'sorters': ['sorter_rank'],
-\     },
-\     'around': {
-\       'mark': 'A',
-\     },
-\     'treesitter': {
-\       'mark': 'TS',
-\     },
-\     'file': {
-\       'mark': 'F',
-\       'isVolatile': v:true,
-\       'forceCompletionPattern': '\S/\S*',
-\     },
-\     'emoji': {
-\       'mark': 'emoji',
-\       'matchers': ['emoji'],
-\       'sorters': [],
-\     },
-\     'nvim-lsp': {
-\       'mark': 'lsp',
-\       'forceCompletionPattern': '\.\w*|:\w*|->\w*',
-\     },
-\     'necovim': {
-\       'mark': 'vim',
-\     },
-\     'neosnippet': {
-\       'mark': 'NS',
-\       'dup': v:true,
-\     },
-\     'dictionary': {
-\       'mark': 'D',
-\     },
-\   },
-\   'sourceParams': {
-\     'around': {'maxSize': 500},
-\     'dictionary': {'dictPaths': ['/usr/share/dict/german']},
-\   },
-\ })
+" nvim-cmp {{{2
+lua <<EOF
+local cmp = require'cmp'
 
-call ddc#custom#patch_filetype(['vim'], 'sources', ['necovim', 'neosnippet', 'file', 'treesitter', 'around', 'dictionary'])
+vim.opt.completeopt = {"menu", "menuone", "noselect"}
 
-call ddc#enable()
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      require'luasnip'.lsp_expand(args.body)
+    end
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  }),
+  sources = {
+    { name = 'luasnip' },
+    { name = 'nvim_lua' },
+    { name = 'nvim_lsp' },
+    { name = 'path' },
+    { name = 'treesitter' },
+    { name = 'buffer' },
+    -- { name = 'dictionary' },
+    { name = 'emoji' },
+  },
+  experimental = {
+    ghost_text = true,
+  },
+  formatting = {
+    format = require('lspkind').cmp_format({
+      mode = "symbol_text",
+      menu = ({
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        nvim_lsp = "[LSP]",
+        path = "[Path]",
+        treesitter = "[TS]",
+        buffer = "[Buffer]",
+        dictionary = "[Dict]",
+        emoji = "[Emoji]",
+      })
+    }),
+  },
+}
+
+-- require'cmp_dictionary'.setup {
+--   dic = {
+--     ["*"] = { "/usr/share/dict/german", "/usr/share/dict/words" }
+--   }
+-- }
+EOF
 
 " LuaSnip Setup {{{2
 lua <<EOF
@@ -206,10 +208,13 @@ end
 -- nvim-lspconfig {{{3
 local lspconfig = require'lspconfig'
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 require("clangd_extensions").setup {
     server = {
         cmd = { "clangd", "-query-driver=/usr/**/arm-none-eabi*", "--completion-style=detailed", "--malloc-trim", "--enable-config", "--use-dirty-headers" },
-        on_attach = on_attach
+        on_attach = on_attach,
+        capabilities = capabilities,
     },
     extensions = {
         autoSetHints = false,
@@ -219,7 +224,8 @@ require("clangd_extensions").setup {
 local servers = { "cmake", "pylsp", "pyright", "rust_analyzer", "texlab", "tsserver" }
 for _, server in ipairs(servers) do
   lspconfig[server].setup{
-    on_attach = on_attach
+    on_attach = on_attach,
+    capabilities = capabilities,
   }
 end
 
