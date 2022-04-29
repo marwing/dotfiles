@@ -30,7 +30,6 @@ call plug#begin(stdpath("cache") . '/plugged')
 
     " Statusline
     Plug 'nvim-lualine/lualine.nvim'
-    Plug 'arkav/lualine-lsp-progress'
 
     " Startup Screen
     Plug 'mhinz/vim-startify'
@@ -75,6 +74,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'gfanto/fzf-lsp.nvim'
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'p00f/clangd_extensions.nvim'
+    Plug 'j-hui/fidget.nvim'
 
     " LaTeX
     Plug 'lervag/vimtex'
@@ -273,6 +273,13 @@ require'lsp_signature'.setup{}
 
 -- fzf_lsp {{{3
 require'fzf_lsp'.setup()
+
+-- fidget.nvim {{{3
+require"fidget".setup {
+  text = {
+    spinner = "dots"
+    }
+  }
 -- 3}}}
 EOF
 
@@ -293,7 +300,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = { 'mode', 'spell' },
     lualine_b = { 'branch', {'diff', source = gitsigns_diff_source}, 'diagnostics' },
-    lualine_c = { { 'filename', path = 1 }, 'lsp_progress' },
+    lualine_c = { { 'filename', path = 1 } },
     lualine_x = { 'filetype' },
     lualine_y = { 'vimtex', 'encoding_fileformat', 'searchcount' },
     lualine_z = { 'obsession', 'wordcount', 'fileprogress' }
