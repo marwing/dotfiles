@@ -15,7 +15,6 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'stevearc/dressing.nvim'
     Plug 'MunifTanjim/nui.nvim'
-    Plug 'vim-denops/denops.vim'
     Plug 'onsails/lspkind.nvim'
 
     " Themes
