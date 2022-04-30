@@ -5,7 +5,7 @@ ls.config.set_config {
   updateevents = "TextChanged,TextChangedI",
   enable_autosnippets = true,
 }
-require("luasnip.loaders.from_snipmate").load()
+require("luasnip.loaders.from_snipmate").lazy_load()
 ls.filetype_extend("all", { "_" })
 
 vim.keymap.set({ "i", "s" }, "<c-k>", function()
