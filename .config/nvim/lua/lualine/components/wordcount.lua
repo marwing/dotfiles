@@ -1,8 +1,8 @@
 local M = require('lualine.component'):extend()
 
 local default_options = {
-  visual = true,
-  integrations = {
+  sources = {
+    vim = { enabled = true, filetypes = 'all' },
     visual = { enabled = true, filetypes = 'all' },
     vimtex = { enabled = true, filetypes = { 'tex', 'latex', 'plaintex' } },
   },
@@ -27,32 +27,54 @@ local function inVisual()
   return intable(vim.fn.mode(), { "v", "V", "" })
 end
 
-local function integrationEnabled(integration)
-  return integration == true
-      or (integration.enabled == true and intable(vim.opt.filetype:get(), integration.filetypes))
+-- vimtex
+M.vimtex = {}
+function M.vimtex.setup(self)
+  if self.options.sources.vimtex.enabled == true then
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
+      group = self.augroup,
+      desc = 'Update wordcount for TeX files',
+      pattern = { '*.tex' },
+      callback = function()
+        self.wordcount = tostring(self.vimtex.wordcount())
+      end,
+    })
+    return true
+  end
+  return false
 end
 
--- retrieving wordcount
-local function wordcount_vimtex()
+function M.vimtex.wordcount(--[[ self ]]_, --[[ visual ]]_)
   -- TODO: figure out how to do ranges
   return vim.fn['vimtex#misc#wordcount']()
 end
 
-local function wordcount_vim(visual)
+-- vim
+M.vim = {}
+function M.vim.setup(--[[ self ]])
+end
+
+function M.vim.wordcount(--[[ self ]]_, visual)
   local data = vim.fn.wordcount()
   return visual and data.visual_words or data.words
 end
 
+-- visual
+M.visual = {}
+function M.visual.setup(--[[ self ]])
+end
+
+function M.visual.wordcount(self, visual)
+  return self.vim.wordcount(self, visual)
+end
+
 function M:get_wordcount(visual)
-  if integrationEnabled(self.options.integrations.vimtex)
-      and vim.fn.exists("b:vimtex")
-      -- vimtex wordcount makes visual selection extremely laggy
-      -- for now just use vim's wordcount
-      and not visual
-  then
-    return wordcount_vimtex()
-  else
-    return wordcount_vim(visual)
+  return self.vim.wordcount(self, visual)
+end
+
+function M:update_wordcount()
+  if not intable(vim.opt.filetype:get(), self.options.sources.vimtex.filetypes) then
+    self.wordcount = tostring(self:get_wordcount(false)) .. ' words'
   end
 end
 
@@ -63,6 +85,12 @@ function M:init(options)
 
   self.wordcount = ""
   self.changedtick = -1
+
+  self.augroup = vim.api.nvim_create_augroup('lualine-wordcount', { clear = true })
+
+  self.vim.setup(self)
+  self.vimtex.setup(self)
+  self.visual.setup(self)
 end
 
 function M:update_status()
@@ -70,10 +98,10 @@ function M:update_status()
     return ''
   end
 
-  if inVisual() and integrationEnabled(self.options.integrations.visual) then
-    return tostring(self:get_wordcount(true))
+  if inVisual() and self.options.sources.visual.enabled == true then
+    return tostring(self.visual.wordcount(self, true))
   elseif self.changedtick ~= vim.b.changedtick then
-    self.wordcount = tostring(self:get_wordcount(false)) .. ' words'
+    self:update_wordcount()
     self.changedtick = vim.b.changedtick
   end
 
