@@ -89,6 +89,7 @@ call plug#end()
 " lua plugins {{{2
 lua <<EOF
 require('user.setup.lsp')
+require('user.setup.diagnostic')
 require('user.setup.nvim-cmp')
 require('user.setup.luasnip')
 require('user.setup.lualine')
