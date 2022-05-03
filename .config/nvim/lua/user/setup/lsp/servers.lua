@@ -3,7 +3,7 @@ local lspconfig = require('lspconfig')
 local on_attach = require('user.setup.lsp.mappings')
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { "cmake", "pylsp", "pyright", "rust_analyzer", "texlab", "tsserver" }
+local servers = { "cmake", "pylsp", "pyright", "texlab", "tsserver" }
 for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = on_attach,
@@ -21,6 +21,17 @@ require("clangd_extensions").setup {
   extensions = {
     autoSetHints = false,
   }
+}
+
+-- rust-tools
+require('rust-tools').setup {
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  },
+  tools = {
+    hover_with_actions = false,
+  },
 }
 
 -- sumneko_lua

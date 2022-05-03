@@ -74,6 +74,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'p00f/clangd_extensions.nvim'
     Plug 'j-hui/fidget.nvim'
+    Plug 'simrat39/rust-tools.nvim'
 
     " LaTeX
     Plug 'lervag/vimtex'
