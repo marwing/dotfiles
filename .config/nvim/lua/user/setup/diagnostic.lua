@@ -2,7 +2,15 @@ vim.diagnostic.config {
   update_in_insert = true,
   severity_sort = true,
   virtual_text = { source = "always" },
-  float = { source = "always" },
+  float = {
+    source = "always",
+    format = function(diagnostic)
+      if diagnostic.code then
+        return diagnostic.message .. " [" .. diagnostic.code .. "]"
+      end
+      return diagnostic.message
+    end,
+  },
 }
 
 vim.keymap.set('n', 'dD', vim.diagnostic.open_float)
