@@ -36,8 +36,6 @@ call plug#begin(stdpath("cache") . '/plugged')
     " IDE?
     Plug 'editorconfig/editorconfig-vim'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'junegunn/fzf'
-    Plug 'junegunn/fzf.vim'
     Plug 'majutsushi/tagbar'
     Plug 'nvim-neo-tree/neo-tree.nvim'
     Plug 'lewis6991/gitsigns.nvim'
@@ -70,11 +68,16 @@ call plug#begin(stdpath("cache") . '/plugged')
 
     " nvim-lsp
     Plug 'neovim/nvim-lspconfig'
-    Plug 'gfanto/fzf-lsp.nvim'
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'p00f/clangd_extensions.nvim'
     Plug 'j-hui/fidget.nvim'
     Plug 'simrat39/rust-tools.nvim'
+
+    " Telescope
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    Plug 'nvim-telescope/telescope-ui-select.nvim'
+    Plug 'gbrlsnchs/telescope-lsp-handlers.nvim'
 
     " LaTeX
     Plug 'lervag/vimtex'
@@ -92,6 +95,8 @@ require('user.setup.lsp')
 require('user.setup.diagnostic')
 require('user.setup.nvim-cmp')
 require('user.setup.luasnip')
+require('user.setup.telescope')
+require('user.setup.dressing')
 require('user.setup.lualine')
 require('user.setup.nvim-treesitter')
 require('user.setup.zen-mode')
@@ -216,9 +221,6 @@ map <leader>m <ESC>:tabnext<CR>
 
 nmap <silent> <F8> :TagbarToggle<CR>
 imap <silent> <F8> <C-o><F8>
-
-nmap <silent> <C-p> :Files<CR>
-nmap <silent> <C-A-p> :Buffers<CR>
 
 " format JSON using jq
 autocmd FileType json map <silent> <A-S-f> :silent %!jq .<CR>
