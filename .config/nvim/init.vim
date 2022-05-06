@@ -18,7 +18,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'onsails/lspkind.nvim'
 
     " Themes
-    Plug 'morhetz/gruvbox'
+    Plug 'gruvbox-community/gruvbox'
 
     " Syntax
     Plug 'chrisbra/Colorizer'
@@ -200,6 +200,7 @@ endif
 set updatetime=300
 
 " Colorscheme
+let g:gruvbox_italic = v:true
 colorscheme gruvbox
 
 " Highlight trailing whitespace
