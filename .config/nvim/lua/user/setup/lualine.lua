@@ -1,3 +1,8 @@
+local ok, lualine = pcall(require, "lualine")
+if not ok then
+  return
+end
+
 local function gitsigns_diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
   if gitsigns then
@@ -9,7 +14,7 @@ local function gitsigns_diff_source()
   end
 end
 
-require('lualine').setup {
+lualine.setup {
   sections = {
     lualine_a = { 'mode', 'spell' },
     lualine_b = { 'branch', { 'diff', source = gitsigns_diff_source }, 'diagnostics' },

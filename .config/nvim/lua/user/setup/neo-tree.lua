@@ -1,4 +1,9 @@
-require('neo-tree').setup {
+local ok, neotree = pcall(require, "neo-tree")
+if not ok then
+  return
+end
+
+neotree.setup {
   close_if_last_window = true,
   filesystem = {
     filtered_items = {

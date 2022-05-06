@@ -1,4 +1,9 @@
-local cmp = require('cmp')
+local ok, cmp = pcall(require, "cmp")
+if not ok or
+    not pcall(require, "luasnip") or
+    not pcall(require, "lspkind") then
+  return
+end
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 

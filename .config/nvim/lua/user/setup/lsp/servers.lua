@@ -1,7 +1,13 @@
-local lspconfig = require('lspconfig')
+local ok, lspconfig = pcall(require, "lspconfig")
+if not ok then
+  return
+end
 
 local on_attach = require('user.setup.lsp.mappings')
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+if pcall(require, "cmp_nvim_lsp") then
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+end
 
 local servers = { "cmake", "pylsp", "pyright", "texlab", "tsserver" }
 for _, server in ipairs(servers) do
@@ -12,27 +18,33 @@ for _, server in ipairs(servers) do
 end
 
 -- clangd_extensions
-require("clangd_extensions").setup {
-  server = {
-    cmd = { "clangd", "-query-driver=/usr/**/arm-none-eabi*", "--completion-style=detailed", "--malloc-trim", "--enable-config", "--use-dirty-headers" },
-    on_attach = on_attach,
-    capabilities = capabilities,
-  },
-  extensions = {
-    autoSetHints = false,
+local has_clangd_extensions, clangd_extensions = pcall(require, "clangd_extensions")
+if has_clangd_extensions then
+  clangd_extensions.setup {
+    server = {
+      cmd = { "clangd", "-query-driver=/usr/**/arm-none-eabi*", "--completion-style=detailed", "--malloc-trim", "--enable-config", "--use-dirty-headers" },
+      on_attach = on_attach,
+      capabilities = capabilities,
+    },
+    extensions = {
+      autoSetHints = false,
+    }
   }
-}
+end
 
 -- rust-tools
-require('rust-tools').setup {
-  server = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  },
-  tools = {
-    hover_with_actions = false,
-  },
-}
+local has_rust_tools, rust_tools = pcall(require, "rust-tools")
+if has_rust_tools then
+  rust_tools.setup {
+    server = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    },
+    tools = {
+      hover_with_actions = false,
+    },
+  }
+end
 
 -- sumneko_lua
 local runtime_path = vim.split(package.path, ';')

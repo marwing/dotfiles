@@ -201,7 +201,7 @@ set updatetime=300
 
 " Colorscheme
 let g:gruvbox_italic = v:true
-colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " Highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
