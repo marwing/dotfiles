@@ -23,5 +23,5 @@ lualine.setup {
     lualine_y = { 'vimtex', 'encoding_fileformat', 'searchcount' },
     lualine_z = { 'obsession', 'wordcount', 'fileprogress' }
   },
-  extensions = { 'fugitive', 'neo-tree', 'quickfix', 'vimcmake' },
+  extensions = { 'fugitive', 'my-neo-tree', 'quickfix', 'vimcmake' },
 }
