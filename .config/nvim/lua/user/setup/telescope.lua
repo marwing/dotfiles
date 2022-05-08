@@ -18,4 +18,4 @@ telescope.load_extension('lsp_handlers')
 
 vim.keymap.set('n', '<C-A-t>', builtin.builtin)
 vim.keymap.set('n', '<C-p>', builtin.find_files)
-vim.keymap.set('n', '<C-A-p>', builtin.buffers)
+vim.keymap.set('n', '<C-A-p>', function() builtin.buffers({ sort_lastused = true }) end)
