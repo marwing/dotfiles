@@ -9,6 +9,8 @@ endif
 
 " Vim-Plug Setup {{{2
 call plug#begin(stdpath("cache") . '/plugged')
+    Plug 'lewis6991/impatient.nvim'
+
     " Dependencies
     Plug 'ryanoasis/vim-devicons'
     Plug 'kyazdani42/nvim-web-devicons'
@@ -88,6 +90,9 @@ call plug#begin(stdpath("cache") . '/plugged')
     " TMUX integration
     " Plug 'edkolev/tmuxline.vim'
 call plug#end()
+
+" load impatient before every other lua plugin
+lua pcall(require, "impatient")
 
 " lua plugins {{{2
 lua <<EOF
