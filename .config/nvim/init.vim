@@ -85,7 +85,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     " LaTeX
     Plug 'lervag/vimtex'
     " Markdown
-    Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown'}
     Plug 'dhruvasagar/vim-table-mode'
 
     " TMUX integration
@@ -147,6 +147,9 @@ let g:startify_bookmarks = [
 \   { 'c': '~/.config/nvim/init.vim' },
 \   { 'g': '~/.config/git/ignore' },
 \ ]
+
+" markdown-preview setup {{{2
+let g:mkdp_page_title = '${name}'
 
 " ================ Persistent Undo ================== {{{1
 " Keep undo history across sessions, by storing in file.
