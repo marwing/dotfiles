@@ -17,6 +17,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'stevearc/dressing.nvim'
     Plug 'MunifTanjim/nui.nvim'
+    Plug 'rcarriga/nvim-notify'
     Plug 'onsails/lspkind.nvim'
 
     " Themes
@@ -101,6 +102,7 @@ require('user.setup.diagnostic')
 require('user.setup.nvim-cmp')
 require('user.setup.luasnip')
 require('user.setup.telescope')
+require('user.setup.notify')
 require('user.setup.dressing')
 require('user.setup.lualine')
 require('user.setup.nvim-treesitter')
