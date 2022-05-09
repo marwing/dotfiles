@@ -201,6 +201,9 @@ if has("termguicolors") && $COLORTERM == "truecolor"
     set termguicolors
 endif
 
+set shada+=r/mnt
+set shada+=r/run/media
+
 " How fast some features update (some airline plugins, tagbar, ...)
 set updatetime=300
 
