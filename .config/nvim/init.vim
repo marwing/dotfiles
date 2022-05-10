@@ -48,6 +48,7 @@ call plug#begin(stdpath("cache") . '/plugged')
     Plug 'tpope/vim-rhubarb'
     Plug 'shumphrey/fugitive-gitlab.vim'
     Plug 'rhysd/committia.vim'
+    Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-sleuth'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-obsession'
