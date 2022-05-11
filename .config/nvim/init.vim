@@ -1,104 +1,12 @@
 " vim:foldmethod=marker
 
-" ======================= PLUGINS ======================= {{{1
-if !filereadable(expand('~/.config/nvim/autoload/plug.vim'))
-    echo "Downloading junegunn/vim-plug to manage plugins..."
-    silent call mkdir(expand("~/.config/nvim/autoload/"), "p")
-    silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
-endif
-
-" Vim-Plug Setup {{{2
-call plug#begin(stdpath("cache") . '/plugged')
-    Plug 'lewis6991/impatient.nvim'
-
-    " Dependencies
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'stevearc/dressing.nvim'
-    Plug 'MunifTanjim/nui.nvim'
-    Plug 'rcarriga/nvim-notify'
-    Plug 'onsails/lspkind.nvim'
-
-    " Themes
-    Plug 'gruvbox-community/gruvbox'
-
-    " Syntax
-    Plug 'chrisbra/Colorizer'
-    Plug 'terminalnode/sway-vim-syntax'
-    Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'MaxMEllon/vim-jsx-pretty'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-    " Statusline
-    Plug 'nvim-lualine/lualine.nvim'
-
-    " Startup Screen
-    Plug 'mhinz/vim-startify'
-
-    " IDE?
-    Plug 'editorconfig/editorconfig-vim'
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'majutsushi/tagbar'
-    Plug 'nvim-neo-tree/neo-tree.nvim'
-    Plug 'lewis6991/gitsigns.nvim'
-    Plug 'numToStr/Comment.nvim'
-
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-rhubarb'
-    Plug 'shumphrey/fugitive-gitlab.vim'
-    Plug 'rhysd/committia.vim'
-    Plug 'tpope/vim-repeat'
-    Plug 'tpope/vim-sleuth'
-    Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-obsession'
-    Plug 'cdelledonne/vim-cmake'
-    Plug 'folke/zen-mode.nvim'
-    Plug 'folke/twilight.nvim'
-
-    " Autocompletition
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'saadparwaiz1/cmp_luasnip'
-    Plug 'hrsh7th/cmp-nvim-lua'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hrsh7th/cmp-path'
-    Plug 'ray-x/cmp-treesitter'
-    Plug 'hrsh7th/cmp-buffer'
-    " Plug 'uga-rosa/cmp-dictionary'
-    Plug 'hrsh7th/cmp-emoji'
-
-    " Snippets
-    Plug 'L3MON4D3/LuaSnip'
-    Plug 'honza/vim-snippets'
-
-    " nvim-lsp
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'ray-x/lsp_signature.nvim'
-    Plug 'p00f/clangd_extensions.nvim'
-    Plug 'j-hui/fidget.nvim'
-    Plug 'simrat39/rust-tools.nvim'
-
-    " Telescope
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-    Plug 'nvim-telescope/telescope-ui-select.nvim'
-    Plug 'gbrlsnchs/telescope-lsp-handlers.nvim'
-
-    " LaTeX
-    Plug 'lervag/vimtex'
-    " Markdown
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown'}
-    Plug 'dhruvasagar/vim-table-mode'
-
-    " TMUX integration
-    " Plug 'edkolev/tmuxline.vim'
-call plug#end()
-
+" Plugins {{{1
 " load impatient before every other lua plugin
 lua pcall(require, "impatient")
 
 " lua plugins {{{2
 lua <<EOF
+require('user.plugins')
 require('user.setup.lsp')
 require('user.setup.diagnostic')
 require('user.setup.nvim-cmp')
@@ -142,7 +50,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
 
 " Startify Setup {{{2
 let g:startify_commands = [
-\   { 'up': ['Update Plugins', ':PlugUpdate'] },
+\   { 'up': ['Update Plugins', ':PackerSync'] },
 \ ]
 
 let g:startify_bookmarks = [
