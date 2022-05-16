@@ -19,36 +19,11 @@ require('user.setup.gitsigns')
 require('user.setup.Comment')
 require('user.setup.neo-tree')
 
--- vim-cmake
-vim.g.cmake_build_dir_location = 'build'
-vim.g.cmake_link_compile_commands = 1
-vim.g.cmake_generate_options = { '-GNinja' }
-vim.g.cmake_statusline = 0
-
--- vimtex setup
-vim.g.tex_flavor = 'latex'
-vim.g.vimtex_view_method = 'zathura'
-vim.g.vimtex_quickfix_mode = 0
-vim.g.vimtex_compiler_latexmk = {
-  build_dir = 'dist',
-}
-vim.cmd [[autocmd FileType tex set textwidth=80]]
-
--- EditorConfig
-vim.g.EditorConfig_exclude_patterns = { 'fugitive://.\\*' }
-
--- Startify
-vim.g.startify_commands = {
-  { up = { 'Update Plugins', 'PackerSync' } }
-}
-
-vim.g.startify_bookmarks = {
-  { c = '~/.config/nvim/init.lua' },
-  { g = '~/.config/git/ignore' },
-}
-
--- markdown-preview
-vim.g.mkdp_page_title = '${name}'
+require('user.setup.vim-cmake')
+require('user.setup.vimtex')
+require('user.setup.editorconfig')
+require('user.setup.startify')
+require('user.setup.markdown-preview')
 
 -- colorscheme
 vim.g.gruvbox_italic = true
