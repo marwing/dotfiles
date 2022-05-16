@@ -13,9 +13,3 @@ vim.keymap.set('n', '<leader>m', '<cmd>tabnext<cr>')
 ---------------- Plugins ----------------
 -- tagbar
 vim.keymap.set({ 'n', 'i' }, '<F8>', '<cmd>TagbarToggle<CR>')
-
--- vim-cmake
-vim.keymap.set('n', 'cb', '<Plug>(CMakeBuild)')
-vim.keymap.set('n', 'cr', '<cmd>CMakeSwitch Release<CR>')
-vim.keymap.set('n', 'cd', '<cmd>CMakeSwitch Debug<CR>')
-vim.keymap.set('n', 'cq', '<Plug>(CMakeClose)')

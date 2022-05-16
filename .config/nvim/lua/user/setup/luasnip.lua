@@ -1,29 +1,27 @@
-local ok, ls = pcall(require, "luasnip")
-if not ok then
-  return
-end
+local ls = require('luasnip')
 
 ls.config.set_config {
   history = true,
-  updateevents = "TextChanged,TextChangedI",
+  updateevents = 'TextChanged,TextChangedI',
   enable_autosnippets = true,
 }
-require("luasnip.loaders.from_snipmate").lazy_load()
-ls.filetype_extend("all", { "_" })
 
-vim.keymap.set({ "i", "s" }, "<c-k>", function()
+require('luasnip.loaders.from_snipmate').lazy_load()
+ls.filetype_extend('all', { '_' })
+
+vim.keymap.set({ 'i', 's' }, '<C-k>', function()
   if ls.expand_or_jumpable() then
     ls.expand_or_jump()
   end
 end)
 
-vim.keymap.set({ "i", "s" }, "<c-j>", function()
+vim.keymap.set({ 'i', 's' }, '<C-j>', function()
   if ls.jumpable(-1) then
     ls.jump(-1)
   end
 end)
 
-vim.keymap.set({ "i", "s" }, "<c-l>", function()
+vim.keymap.set({ 'i', 's' }, '<C-l>', function()
   if ls.choice_active() then
     ls.change_choice(1)
   end

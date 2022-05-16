@@ -1,12 +1,12 @@
 vim.diagnostic.config {
   update_in_insert = true,
   severity_sort = true,
-  virtual_text = { source = "always" },
+  virtual_text = { source = 'always' },
   float = {
-    source = "always",
+    source = 'always',
     format = function(diagnostic)
       if diagnostic.code then
-        return diagnostic.message .. " [" .. diagnostic.code .. "]"
+        return diagnostic.message .. ' [' .. diagnostic.code .. ']'
       end
       return diagnostic.message
     end,

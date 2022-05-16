@@ -1,9 +1,4 @@
-local ok, cmp = pcall(require, "cmp")
-if not ok or
-    not pcall(require, "luasnip") or
-    not pcall(require, "lspkind") then
-  return
-end
+local cmp = require('cmp')
 
 cmp.setup {
   snippet = {
@@ -24,13 +19,12 @@ cmp.setup {
     },
   },
   sources = {
+    { name = 'calc' },
     { name = 'luasnip' },
-    { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'treesitter' },
     { name = 'buffer' },
-    -- { name = 'dictionary' },
     { name = 'emoji' },
   },
   experimental = {
@@ -38,23 +32,17 @@ cmp.setup {
   },
   formatting = {
     format = require('lspkind').cmp_format({
-      mode = "symbol_text",
+      mode = 'symbol_text',
       menu = ({
-        luasnip = "[LuaSnip]",
-        nvim_lua = "[Lua]",
-        nvim_lsp = "[LSP]",
-        path = "[Path]",
-        treesitter = "[TS]",
-        buffer = "[Buffer]",
-        dictionary = "[Dict]",
-        emoji = "[Emoji]",
+        calc = '[Calc]',
+        luasnip = '[LuaSnip]',
+        nvim_lsp = '[LSP]',
+        path = '[Path]',
+        treesitter = '[TS]',
+        buffer = '[Buffer]',
+        dictionary = '[Dict]',
+        emoji = '[Emoji]',
       })
     }),
   },
 }
-
--- require'cmp_dictionary'.setup {
---   dic = {
---     ["*"] = { "/usr/share/dict/german", "/usr/share/dict/words" }
---   }
--- }

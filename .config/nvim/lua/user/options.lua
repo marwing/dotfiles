@@ -37,10 +37,10 @@ vim.opt.scrolloff = 5
 vim.opt.list = true
 
 -- enable truecolor support if terminal claims to support it
-vim.opt.termguicolors = vim.env.COLORTERM == "truecolor"
+vim.opt.termguicolors = vim.env.COLORTERM == 'truecolor'
 
-vim.opt.shada:append('r/mnt')
-vim.opt.shada:append('r/run/media')
+-- keep some paths out of shada file
+vim.opt.shada:append({ 'r/mnt', 'r/run/media', 'r/run/user', 'r/tmp' })
 
 -- How fast some features update (some airline plugins, tagbar, ...)
 vim.opt.updatetime = 300

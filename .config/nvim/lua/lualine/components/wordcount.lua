@@ -24,7 +24,7 @@ local function intable(value, table)
 end
 
 local function inVisual()
-  return intable(vim.fn.mode(), { "v", "V", "" })
+  return intable(vim.fn.mode(), { 'v', 'V', '' })
 end
 
 -- vimtex
@@ -83,7 +83,7 @@ function M:init(options)
   M.super.init(self, options)
   self.options = vim.tbl_deep_extend('keep', self.options or {}, default_options)
 
-  self.wordcount = ""
+  self.wordcount = ''
   self.changedtick = -1
 
   self.augroup = vim.api.nvim_create_augroup('lualine-wordcount', { clear = true })

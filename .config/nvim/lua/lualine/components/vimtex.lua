@@ -5,12 +5,12 @@ local M = require('lualine.component'):extend()
 
 local default_options = {
   symbols = {
-    main = "",
-    sub_local = "l",
-    sub_main = "m",
-    viewer = "v",
-    continuous = "c",
-    compiled = "c:",
+    main = '',
+    sub_local = 'l',
+    sub_main = 'm',
+    viewer = 'v',
+    continuous = 'c',
+    compiled = 'c:',
   }
 }
 
@@ -40,7 +40,7 @@ local function build_status(symbols)
     end
 
     if vimtex.compiler then
-      if vimtex.compiler.is_running and vim.api.nvim_eval("b:vimtex.compiler.is_running()") then
+      if vimtex.compiler.is_running and vim.api.nvim_eval('b:vimtex.compiler.is_running()') then
         if vimtex.compiler.continuous == 1 then
           status = status .. symbols.continuous
         else

@@ -27,14 +27,15 @@ require('packer').startup({
     -- statusline
     use {
       'nvim-lualine/lualine.nvim',
-      requires = {
-        'kyazdani42/nvim-web-devicons',
-        'ryanoasis/vim-devicons', -- only used for custom encoding_fileformat component
-      },
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = function() require('user.setup.lualine') end,
     }
 
     -- git integration
-    use 'lewis6991/gitsigns.nvim'
+    use {
+      'lewis6991/gitsigns.nvim',
+      config = function() require('user.setup.gitsigns') end,
+    }
     use {
       'tpope/vim-fugitive',
       requires = {
@@ -48,34 +49,59 @@ require('packer').startup({
     use {
       'L3MON4D3/LuaSnip',
       requires = 'honza/vim-snippets',
+      config = function() require('user.setup.luasnip') end,
     }
 
     use {
       'hrsh7th/nvim-cmp',
       requires = {
         'onsails/lspkind.nvim',
+        'hrsh7th/cmp-calc',
         'saadparwaiz1/cmp_luasnip',
-        'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-path',
         'ray-x/cmp-treesitter',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-emoji',
       },
+      config = function() require('user.setup.nvim-cmp') end,
     }
 
     -- treesitter
     use {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
+      config = function() require('user.setup.nvim-treesitter') end,
     }
 
     -- lsp
-    use 'neovim/nvim-lspconfig'
-    use 'p00f/clangd_extensions.nvim'
-    use 'simrat39/rust-tools.nvim'
-    use 'ray-x/lsp_signature.nvim'
-    use 'j-hui/fidget.nvim'
+    use {
+      'neovim/nvim-lspconfig',
+      config = function() require('user.setup.lsp.lspconfig') end,
+    }
+    use {
+      'folke/lua-dev.nvim',
+      requires = 'neovim/nvim-lspconfig',
+      config = function() require('user.setup.lsp.lua-dev') end,
+    }
+    use {
+      'p00f/clangd_extensions.nvim',
+      requires = 'neovim/nvim-lspconfig',
+      config = function() require('user.setup.lsp.clangd_extensions') end,
+    }
+    use {
+      'simrat39/rust-tools.nvim',
+      requires = 'neovim/nvim-lspconfig',
+      config = function() require('user.setup.lsp.rust-tools') end,
+    }
+    use {
+      'ray-x/lsp_signature.nvim',
+      config = function() require('user.setup.lsp_signature') end,
+    }
+    use {
+      'j-hui/fidget.nvim',
+      config = function() require('user.setup.fidget') end,
+    }
 
     -- telescope
     use {
@@ -89,49 +115,95 @@ require('packer').startup({
         'nvim-telescope/telescope-ui-select.nvim',
         'gbrlsnchs/telescope-lsp-handlers.nvim',
       },
+      config = function() require('user.setup.telescope').config() end,
+      setup = function() require('user.setup.telescope').setup() end,
+      -- Figure out how to lazy load telescope and still use it for ui.select
+      -- cmd = 'Telescope',
+      -- module = 'telescope',
     }
 
     -- misc
     use 'lewis6991/impatient.nvim' -- improve startup time for neovim
     use 'tpope/vim-repeat' -- repeatable plugin actions
     use 'tpope/vim-obsession' -- easier session management
-    use 'mhinz/vim-startify' -- startup screen
+    use { -- startup screen
+      'mhinz/vim-startify',
+      requires = 'ryanoasis/vim-devicons',
+      setup = function() require('user.setup.startify') end,
+    }
     use 'editorconfig/editorconfig-vim' -- support for editorconfig files
     use 'tpope/vim-sleuth' -- heuristically set buffer options
     use 'tpope/vim-surround' -- surrounding text
     use 'jiangmiao/auto-pairs' -- auto close pairs of parens, quotes, etc
     use 'chrisbra/Colorizer' -- color hex codes and color names
-    use 'preservim/tagbar' -- display file tags in sidebar
+    use { -- display file tags in sidebar
+      'preservim/tagbar',
+      cmd = 'TagbarToggle',
+    }
     use {
       'folke/zen-mode.nvim',
-      requires = 'folke/twilight.nvim',
+      requires = {
+        {
+          'folke/twilight.nvim',
+          config = function() require('user.setup.twilight') end,
+          opt = true,
+        },
+      },
+      wants = 'twilight.nvim',
+      config = function() require('user.setup.zen-mode') end,
+      cmd = 'ZenMode',
     }
     use {
-      "nvim-neo-tree/neo-tree.nvim",
+      'nvim-neo-tree/neo-tree.nvim',
       requires = {
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        "kyazdani42/nvim-web-devicons",
+        'nvim-lua/plenary.nvim',
+        'MunifTanjim/nui.nvim',
+        'kyazdani42/nvim-web-devicons',
       },
+      config = function() require('user.setup.neo-tree').config() end,
+      setup = function() require('user.setup.neo-tree').setup() end,
+      cmd = 'Neotree',
     }
-    use 'numToStr/Comment.nvim' -- smart commenting
+    use { -- smart commenting
+      'numToStr/Comment.nvim',
+      config = function() require('user.setup.Comment') end,
+    }
     use { -- nicer ui for vim.ui.input
       'stevearc/dressing.nvim',
-      requires = "MunifTanjim/nui.nvim",
+      requires = 'MunifTanjim/nui.nvim',
+      config = function() require('user.setup.dressing') end,
     }
-    use 'rcarriga/nvim-notify' -- nicer ui for vim.notify
-    use 'cdelledonne/vim-cmake'
+    use { -- nicer ui for vim.notify
+      'rcarriga/nvim-notify',
+      config = function() require('user.setup.notify') end,
+    }
+    use {
+      'cdelledonne/vim-cmake',
+      setup = function() require('user.setup.vim-cmake') end,
+      cmd = 'CMakeSwitch',
+      keys = {
+        '<Plug>(CMakeBuild)',
+        '<Plug>(CMakeClose)',
+      }
+    }
 
     -- LaTeX
-    use 'lervag/vimtex'
+    use {
+      'lervag/vimtex',
+      setup = function() require('user.setup.vimtex') end,
+    }
 
     -- Markdown
     use {
       'iamcco/markdown-preview.nvim',
       run = 'cd app && yarn install',
+      setup = function() require('user.setup.markdown-preview') end,
       ft = 'markdown',
     }
-    use 'dhruvasagar/vim-table-mode'
+    use {
+      'dhruvasagar/vim-table-mode',
+      cmd = 'TableModeToggle',
+    }
 
     if packer_bootstrap then
       require('packer').sync()
@@ -146,9 +218,9 @@ require('packer').startup({
   },
 })
 
-local group = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePost", {
+local group = vim.api.nvim_create_augroup('packer_user_config', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
   group = group,
   pattern = 'plugins.lua',
-  command = "source <afile> | PackerCompile"
+  command = 'source <afile> | PackerCompile'
 })
