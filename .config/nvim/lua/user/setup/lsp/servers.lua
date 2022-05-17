@@ -9,7 +9,7 @@ if pcall(require, "cmp_nvim_lsp") then
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 end
 
-local servers = { "cmake", "pylsp", "pyright", "texlab", "tsserver" }
+local servers = { "cmake", "jsonls", "pylsp", "pyright", "texlab", "tsserver" }
 for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = on_attach,

@@ -30,8 +30,5 @@ vim.g.gruvbox_italic = true
 vim.cmd [[colorscheme gruvbox]]
 
 vim.cmd [[
-" format JSON using jq
-autocmd FileType json map <silent> <A-S-f> :silent %!jq .<CR>
-
 autocmd FileType markdown set conceallevel=2
 ]]
