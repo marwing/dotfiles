@@ -28,7 +28,6 @@ vim.opt.showmode = false
 vim.opt.clipboard = 'unnamedplus'
 
 vim.opt.signcolumn = 'yes'
-vim.opt.cursorline = true
 
 vim.opt.colorcolumn = '+0'
 
