@@ -130,7 +130,7 @@ require('packer').startup({
     use 'tpope/vim-obsession' -- easier session management
     use { -- startup screen
       'mhinz/vim-startify',
-      requires = 'ryanoasis/vim-devicons',
+      requires = 'kyazdani42/nvim-web-devicons',
       setup = function() require('user.setup.startify') end,
     }
     use 'editorconfig/editorconfig-vim' -- support for editorconfig files
