@@ -6,8 +6,9 @@ ls.config.set_config {
   enable_autosnippets = true,
 }
 
-require('luasnip.loaders.from_snipmate').lazy_load()
 ls.filetype_extend('all', { '_' })
+require('luasnip.loaders.from_snipmate').lazy_load()
+require('luasnip.loaders').load_lazy_loaded { '', 'all' }
 
 vim.keymap.set({ 'i', 's' }, '<C-k>', function()
   if ls.expand_or_jumpable() then

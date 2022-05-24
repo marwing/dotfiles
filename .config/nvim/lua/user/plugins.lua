@@ -50,6 +50,7 @@ require('packer').startup({
       'L3MON4D3/LuaSnip',
       requires = 'honza/vim-snippets',
       config = function() require('user.setup.luasnip') end,
+      after = 'nvim-cmp',
     }
 
     use {
