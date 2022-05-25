@@ -120,7 +120,7 @@ require('packer').startup({
       },
       config = function() require('user.setup.telescope').config() end,
       setup = function() require('user.setup.telescope').setup() end,
-      -- Figure out how to lazy load telescope and still use it for ui.select
+      -- Figure out how to lazy load telescope and still use lsp_handlers
       -- cmd = 'Telescope',
       -- module = 'telescope',
     }
@@ -166,6 +166,7 @@ require('packer').startup({
       config = function() require('user.setup.neo-tree').config() end,
       setup = function() require('user.setup.neo-tree').setup() end,
       cmd = 'Neotree',
+      ft = 'netrw',
     }
     use { -- smart commenting
       'numToStr/Comment.nvim',

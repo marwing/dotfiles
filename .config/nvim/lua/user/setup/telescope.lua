@@ -11,11 +11,16 @@ return {
     }
 
     telescope.load_extension('fzf')
-    telescope.load_extension('ui-select')
     telescope.load_extension('lsp_handlers')
     telescope.load_extension('notify')
   end,
   setup = function()
+    -- lazy-load support for telescope-ui-select
+    vim.ui.select = function(...)
+      require('telescope').load_extension('ui-select')
+      vim.ui.select(...)
+    end
+
     vim.keymap.set('n', '<C-A-t>', function() require('telescope.builtin').builtin() end)
     vim.keymap.set('n', '<C-A-r>', function() require('telescope.builtin').resume() end)
     vim.keymap.set('n', '<C-p>', function() require('telescope.builtin').find_files() end)

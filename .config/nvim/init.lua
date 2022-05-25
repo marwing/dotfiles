@@ -2,6 +2,9 @@
 -- may not be installed yet though
 pcall(require, 'impatient')
 
+-- disable jobcontrol (suspend) of neovim on <C-z>
+vim.keymap.set({ 'n', 'v' }, '<C-z>', '<nop>')
+
 require('user.mappings')
 require('user.options')
 require('user.plugins')
@@ -20,5 +23,5 @@ highlight! link LspReferenceRead CursorLine
 ]]
 
 vim.cmd [[
-autocmd FileType markdown set conceallevel=2
+autocmd FileType markdown set conceallevel=2 concealcursor=n
 ]]
