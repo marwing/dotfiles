@@ -18,7 +18,12 @@ require('packer').startup {
     use { 'wbthomason/packer.nvim' }
 
     -- theme
-    use { 'gruvbox-community/gruvbox' }
+    use {
+      'gruvbox-community/gruvbox',
+      config = function()
+        require('user.setup.gruvbox')
+      end,
+    }
 
     -- syntax
     use { 'HerringtonDarkholme/yats.vim' }
