@@ -8,11 +8,11 @@ vim.g.startify_bookmarks = {
 }
 
 function StartifyEntryFormat(path)
-  return require('nvim-web-devicons').get_icon(path, nil, { default = true }) .. " " .. path
+  return require('nvim-web-devicons').get_icon(path, nil, { default = true }) .. ' ' .. path
 end
 
-vim.cmd [[
+vim.cmd([[
 function! StartifyEntryFormat()
   return 'luaeval("StartifyEntryFormat(_A)", entry_path)'
 endfunction
-]]
+]])

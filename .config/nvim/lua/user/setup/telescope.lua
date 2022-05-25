@@ -5,9 +5,9 @@ return {
     telescope.setup {
       extensions = {
         ['ui-select'] = {
-          require('telescope.themes').get_dropdown {}
-        }
-      }
+          require('telescope.themes').get_dropdown {},
+        },
+      },
     }
 
     telescope.load_extension('fzf')
@@ -21,9 +21,17 @@ return {
       vim.ui.select(...)
     end
 
-    vim.keymap.set('n', '<C-A-t>', function() require('telescope.builtin').builtin() end)
-    vim.keymap.set('n', '<C-A-r>', function() require('telescope.builtin').resume() end)
-    vim.keymap.set('n', '<C-p>', function() require('telescope.builtin').find_files() end)
-    vim.keymap.set('n', '<C-A-p>', function() require('telescope.builtin').buffers({ sort_lastused = true }) end)
+    vim.keymap.set('n', '<C-A-t>', function()
+      require('telescope.builtin').builtin()
+    end)
+    vim.keymap.set('n', '<C-A-r>', function()
+      require('telescope.builtin').resume()
+    end)
+    vim.keymap.set('n', '<C-p>', function()
+      require('telescope.builtin').find_files()
+    end)
+    vim.keymap.set('n', '<C-A-p>', function()
+      require('telescope.builtin').buffers { sort_lastused = true }
+    end)
   end,
 }

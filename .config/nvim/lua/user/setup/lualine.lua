@@ -4,7 +4,7 @@ local function gitsigns_diff_source()
     return {
       added = gitsigns.added,
       modified = gitsigns.changed,
-      removed = gitsigns.removed
+      removed = gitsigns.removed,
     }
   end
 end
@@ -16,7 +16,7 @@ require('lualine').setup {
     lualine_c = { { 'filename', path = 1 } },
     lualine_x = { 'lspclients', 'filetype' },
     lualine_y = { 'vimtex', 'encoding', 'fileformat', 'searchcount' },
-    lualine_z = { 'obsession', 'wordcount', 'fileprogress' }
+    lualine_z = { 'obsession', 'wordcount', 'fileprogress' },
   },
   extensions = { 'fugitive', 'my-neo-tree', 'quickfix', 'vimcmake' },
 }

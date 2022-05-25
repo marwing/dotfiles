@@ -10,7 +10,13 @@ function M:init(options)
 end
 
 function M:update_status()
-  return '%p%% ' .. self.options.symbols.linenr .. ':%l/%L' .. self.options.symbols.linecnt .. ' ' .. self.options.symbols.charnr .. ':%v'
+  return '%p%% '
+    .. self.options.symbols.linenr
+    .. ':%l/%L'
+    .. self.options.symbols.linecnt
+    .. ' '
+    .. self.options.symbols.charnr
+    .. ':%v'
 end
 
 return M

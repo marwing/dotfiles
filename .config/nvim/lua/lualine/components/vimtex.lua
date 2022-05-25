@@ -11,7 +11,7 @@ local default_options = {
     viewer = 'v',
     continuous = 'c',
     compiled = 'c:',
-  }
+  },
 }
 
 function M:init(options)

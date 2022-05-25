@@ -13,15 +13,15 @@ require('user.setup.diagnostic')
 
 -- colorscheme
 vim.g.gruvbox_italic = true
-vim.cmd [[
+vim.cmd([[
 colorscheme gruvbox
 
 " overrides for vim.lsp.buf.document_highlight()
 highlight! link LspReferenceText CursorLine
 highlight! link LspReferenceWrite CursorLine
 highlight! link LspReferenceRead CursorLine
-]]
+]])
 
-vim.cmd [[
+vim.cmd([[
 autocmd FileType markdown set conceallevel=2 concealcursor=n
-]]
+]])

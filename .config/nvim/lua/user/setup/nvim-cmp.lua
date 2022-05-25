@@ -4,7 +4,7 @@ cmp.setup {
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
-    end
+    end,
   },
   mapping = {
     ['<C-n>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
@@ -31,9 +31,9 @@ cmp.setup {
     ghost_text = true,
   },
   formatting = {
-    format = require('lspkind').cmp_format({
+    format = require('lspkind').cmp_format {
       mode = 'symbol_text',
-      menu = ({
+      menu = {
         calc = '[Calc]',
         luasnip = '[LuaSnip]',
         nvim_lsp = '[LSP]',
@@ -42,7 +42,7 @@ cmp.setup {
         buffer = '[Buffer]',
         dictionary = '[Dict]',
         emoji = '[Emoji]',
-      })
-    }),
+      },
+    },
   },
 }
