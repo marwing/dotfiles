@@ -74,6 +74,10 @@ require('packer').startup({
     use {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
+      requires = {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        'windwp/nvim-ts-autotag',
+      },
       config = function() require('user.setup.nvim-treesitter') end,
     }
 
