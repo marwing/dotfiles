@@ -109,6 +109,10 @@ require('packer').startup({
       'j-hui/fidget.nvim',
       config = function() require('user.setup.fidget') end,
     }
+    use {
+      'jose-elias-alvarez/null-ls.nvim',
+      config = function () require('user.setup.lsp.null-ls') end,
+    }
 
     -- telescope
     use {
