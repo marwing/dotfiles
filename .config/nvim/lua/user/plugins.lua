@@ -62,7 +62,8 @@ require('packer').startup {
       config = function()
         require('user.setup.luasnip')
       end,
-      after = 'nvim-cmp',
+      ft = 'snippets',
+      event = 'InsertEnter',
     }
 
     use {
@@ -77,11 +78,13 @@ require('packer').startup {
         { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
         { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
         { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' },
+        { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
+        { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
       },
       config = function()
         require('user.setup.nvim-cmp')
       end,
-      event = 'InsertEnter',
+      event = { 'InsertEnter', 'CmdlineEnter' },
     }
 
     -- treesitter
