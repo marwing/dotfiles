@@ -157,7 +157,6 @@ require('packer').startup {
           'nvim-telescope/telescope-fzf-native.nvim',
           run = 'make',
         },
-        'nvim-telescope/telescope-ui-select.nvim',
         'gbrlsnchs/telescope-lsp-handlers.nvim',
       },
       config = function()
@@ -230,12 +229,9 @@ require('packer').startup {
         require('user.setup.Comment')
       end,
     }
-    use { -- nicer ui for vim.ui.input
+    use { -- nicer ui for vim.ui.input and vim.ui.select
       'stevearc/dressing.nvim',
       requires = 'MunifTanjim/nui.nvim',
-      config = function()
-        require('user.setup.dressing')
-      end,
     }
     use { -- nicer ui for vim.notify
       'rcarriga/nvim-notify',
