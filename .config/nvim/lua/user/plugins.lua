@@ -1,5 +1,6 @@
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 local packer_bootstrap
+---@diagnostic disable-next-line: missing-parameter
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   -- stylua: ignore
   packer_bootstrap = vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
@@ -188,7 +189,15 @@ require('packer').startup {
     use { 'tpope/vim-sleuth' } -- heuristically set buffer options
     use { 'tpope/vim-surround' } -- surrounding text
     use { 'jiangmiao/auto-pairs' } -- auto close pairs of parens, quotes, etc
-    use { 'chrisbra/Colorizer' } -- color hex codes and color names
+    use {
+      'norcalli/nvim-colorizer.lua',
+      config = function()
+        require('colorizer').setup({}, {
+          css = true,
+        })
+      end,
+      cmd = { 'ColorizerToggle', 'ColorizerAttachToBuffer' },
+    }
     use { -- display file tags in sidebar
       'preservim/tagbar',
       cmd = 'TagbarToggle',
