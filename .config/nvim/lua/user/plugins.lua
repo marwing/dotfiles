@@ -27,6 +27,7 @@ require('packer').startup {
 
     -- statusline
     use {
+      cond = false,
       'nvim-lualine/lualine.nvim',
       requires = 'kyazdani42/nvim-web-devicons',
       config = function()
@@ -38,6 +39,23 @@ require('packer').startup {
       requires = 'kyazdani42/nvim-web-devicons',
       config = function()
         require('user.setup.bufferline')
+      end,
+    }
+    use {
+      'rebelot/heirline.nvim',
+      requires = {
+        'kyazdani42/nvim-web-devicons',
+        {
+          'SmiteshP/nvim-gps',
+          requires = 'nvim-treesitter/nvim-treesitter',
+          config = function()
+            require('nvim-gps').setup()
+          end,
+        },
+      },
+      after = 'gruvbox', -- loads colors from hlgroups that might not be defined yet
+      config = function()
+        require('user.setup.heirline')
       end,
     }
 
