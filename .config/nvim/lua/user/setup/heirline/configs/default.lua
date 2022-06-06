@@ -1,6 +1,7 @@
 local utils = require('heirline.utils')
 local conditions = require('heirline.conditions')
 
+local colors = require('user.setup.heirline.colors')
 local icons = require('user.setup.heirline.icons')
 
 local meta = require('user.setup.heirline.components.meta')
@@ -15,17 +16,18 @@ local gps = require('user.setup.heirline.components.gps')
 local statusline = {
   -- default highlighs
   hl = function()
-    local hlg = conditions.is_active() and 'StatusLine' or 'StatusLineNC'
+    -- return colors.default[conditions.is_active()]
+    local color = colors.default[conditions.is_active()]
     -- manually reverse colors to not set reverse for all components
-    if hlg.reverse then
+    if color.reverse then
       return {
-        fg = utils.get_highlight(hlg).bg,
-        bg = utils.get_highlight(hlg).fg,
+        fg = color.bg,
+        bg = color.fg,
       }
     end
     return {
-      fg = utils.get_highlight(hlg).fg,
-      bg = utils.get_highlight(hlg).bg,
+      fg = color.fg,
+      bg = color.bg,
     }
   end,
   utils.insert(mode, spell),

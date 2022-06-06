@@ -1,11 +1,14 @@
 local function debug(msg)
-  vim.notify(msg, vim.log.levels.ERROR, { title = 'Config -- Heirline' })
+  vim.notify(msg, vim.log.levels.ERROR, { title = 'Config - Heirline' })
 end
 
 local function setup(args)
   args = args or {}
 
-  local configs = { {}, {} }
+  local configs = {
+    { init = require('heirline.utils').pick_child_on_condition },
+    { init = require('heirline.utils').pick_child_on_condition },
+  }
 
   for _, config in ipairs(args) do
     local ok, module = pcall(require, 'user.setup.heirline.configs.' .. config)
@@ -28,6 +31,8 @@ local function setup(args)
 end
 
 local config = setup {
+  -- 'help',
+  -- 'neo-tree',
   'default',
 }
 

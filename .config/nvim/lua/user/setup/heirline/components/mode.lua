@@ -64,6 +64,13 @@ local mode = {
   init = function(self)
     self.mode = vim.api.nvim_get_mode().mode
     self.mode_string = self.mode_names[self.mode]
+
+    -- execute this only once, this is required if you want the ViMode
+    -- component to be updated on operator pending mode
+    if not self.once then
+      vim.api.nvim_create_autocmd('ModeChanged', { command = 'redrawstatus' })
+      self.once = true
+    end
   end,
 
   provider = function(self)
@@ -78,7 +85,7 @@ local mode = {
     }
   end,
 
-  -- update = 'ModeChanged', -- FIX: breaks display command mode until char // may be caused by cmp-cmdline
+  update = 'ModeChanged', -- FIX: breaks display command mode until char // may be caused by cmp-cmdline
 }
 
 return mode
