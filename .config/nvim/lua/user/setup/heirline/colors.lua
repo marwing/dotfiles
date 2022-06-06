@@ -17,17 +17,7 @@ local base = { -- gruvbox dark
 local colors = {
   default = {
     [true] = utils.get_highlight('StatusLine'),
-    -- { -- is_active
-    --   fg = utils.get_highlight('StatusLine').fg, -- fg = '#ebdbb2',
-    --   bg = utils.get_highlight('StatusLine').bg, -- bg = '#504945',
-    --   reverse = utils.get_highlight('StatusLine').reverse,
-    -- },
     [false] = utils.get_highlight('StatusLineNC'),
-    -- { -- is_active
-    --   fg = utils.get_highlight('StatusLineNC').fg, -- fg = '#a89984',
-    --   bg = utils.get_highlight('StatusLineNC').bg, -- bg = '#3c3836',
-    --   reverse = utils.get_highlight('StatusLineNC').reverse,
-    -- },
   },
   diag = {
     error = utils.get_highlight('DiagnosticError').fg,

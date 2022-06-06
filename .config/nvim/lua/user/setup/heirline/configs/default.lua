@@ -40,8 +40,10 @@ local statusline = {
 
   meta.align,
 
-  lsp,
-  meta.space,
+  utils.insert(lsp, meta.space),
+  utils.insert(file.file_type, meta.space),
+  utils.insert(file.file_format, meta.space),
+  utils.insert(file.file_enc, meta.space),
   file.position,
 }
 
