@@ -15,12 +15,7 @@ local function intable(value, table)
     return true
   end
 
-  for _, elem in ipairs(table) do
-    if elem == value then
-      return true
-    end
-  end
-  return false
+  return vim.tbl_contains(table, value)
 end
 
 local function inVisual()
@@ -44,15 +39,14 @@ function M.vimtex.setup(self)
   return false
 end
 
-function M.vimtex.wordcount(--[[ self ]]_, --[[ visual ]]_)
+function M.vimtex.wordcount()
   -- TODO: figure out how to do ranges
   return vim.fn['vimtex#misc#wordcount']()
 end
 
 -- vim
 M.vim = {}
-function M.vim.setup(--[[ self ]])
-end
+function M.vim.setup(--[[ self ]]) end
 
 function M.vim.wordcount(--[[ self ]]_, visual)
   local data = vim.fn.wordcount()
@@ -61,8 +55,7 @@ end
 
 -- visual
 M.visual = {}
-function M.visual.setup(--[[ self ]])
-end
+function M.visual.setup(--[[ self ]]) end
 
 function M.visual.wordcount(self, visual)
   return self.vim.wordcount(self, visual)
