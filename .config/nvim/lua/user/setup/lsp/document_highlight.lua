@@ -1,19 +1,46 @@
-return function(client)
-  if client.resolved_capabilities.document_highlight then
-    local group = vim.api.nvim_create_augroup("lsp_highlight_document", { clear = true })
+local M = {
+  -- keep track of supported clients attached to buffer
+  -- this makes it easier to check if any supported clients are available in detach logic
+  -- without having to go through all active clients and filtering them by buffer and supports_method
+  bufs = setmetatable({}, {
+    __index = function(table, key)
+      table[key] = {}
+      return table[key]
+    end,
+  }),
+}
+
+function M:on_attach(client, bufnr)
+  if client.supports_method('textDocument/documentHighlight') then
+    table.insert(self.bufs[bufnr], client.id)
+    local group = vim.api.nvim_create_augroup('lsp_highlight_document_b_' .. tostring(bufnr), { clear = true })
+
+    -- highlight
     vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
       group = group,
-      buffer = 0,
-      callback = function()
-        vim.lsp.buf.clear_references()
-      end,
+      buffer = bufnr,
+      callback = vim.lsp.buf.clear_references,
     })
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
       group = group,
-      buffer = 0,
-      callback = function()
-        vim.lsp.buf.document_highlight()
+      buffer = bufnr,
+      callback = vim.lsp.buf.document_highlight,
+    })
+
+    -- clean up
+    vim.api.nvim_create_autocmd('LspDetach', {
+      group = group,
+      buffer = bufnr,
+      callback = function(args)
+        table.remove(self.bufs[args.buf], args.data.client_id)
+        if #self.bufs[args.buf] < 1 then
+          -- make sure there are no stale highlights sitting in the buffer that would otherwise never be removed
+          vim.lsp.buf.clear_references()
+          vim.api.nvim_del_augroup_by_id(group)
+        end
       end,
     })
   end
 end
+
+return M

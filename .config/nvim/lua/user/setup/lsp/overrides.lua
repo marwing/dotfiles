@@ -22,7 +22,7 @@ return {
       vim.keymap.set('n', '<F12>', '<cmd>ClangdSwitchSourceHeader<CR>', opts)
     end
 
-    require('user.setup.lsp.document_highlight')(client)
+    require('user.setup.lsp.document_highlight'):on_attach(client, bufnr)
   end,
   capabilities = (function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
