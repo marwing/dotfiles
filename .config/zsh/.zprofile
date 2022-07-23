@@ -28,6 +28,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export BROWSER="firefox"
 export PAGER="less"
+export MANPAGER="nvim +Man! '+set signcolumn=no'"
 export TERMINAL="alacritty"
 
 # enable wayland
