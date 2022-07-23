@@ -1,7 +1,5 @@
 Diagnostics:
   UnusedIncludes: Strict
-Hover:
-  ShowAKA: Yes
 ---
 If:
   PathMatch: /home/marwin/Workspace/03_thirdparty/llvm-project/.*
