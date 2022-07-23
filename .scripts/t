@@ -1,25 +1,16 @@
 #!/bin/bash
 
-if [[ -z $TERM || $TERM == dumb ]]; then
-  $TERMINAL -e $0 &
-  exit
-fi
+# sway doesn't set TERM so use this to know when to launch terminal emulator
+[ -z "$TERM" ] && exec "$TERMINAL" -e "$0"
 
-# pgrep --uid $UID tmux >/dev/null || (tmux start-server ; sleep 5)
-
-SESSION="$1"
-if [ -z "$1" ]; then
-  # if [ -n "$( tmux ls )" ]; then
-  SESSION=$(tmux ls | sed 's/:.*//g' | fzf --height 25% --layout=reverse --preview 'tmux ls | grep {}:' --preview-window up:1 --print-query | \tail -n1)
-  # fi
-fi
+SESSION="${1:-$(tmux ls | sed 's/:.*//g' | fzf --height 25% --layout=reverse --preview 'tmux ls | grep {}:' --preview-window up:1 --print-query | \tail -n1)}"
 
 if [ -n "$SESSION" ]; then
   if [ -z "$TMUX" ];then
     tmux start # useless when exit-empty is on (default)
     exec tmux new-session -A -s "$SESSION" ranger
   else
-    exec tmux switch-client -t "$SESSION" 2>/dev/null || tmux new-session -d -s "$SESSION" ranger && tmux switch-client -t "$SESSION"
+    tmux new-session -d -s "$SESSION" ranger 2>/dev/null
+    tmux switch-client -t "$SESSION"
   fi
-  # tmux attach -t "$SESSION" || tmux new-session -s "$SESSION" ranger
 fi
