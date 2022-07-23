@@ -23,7 +23,7 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
@@ -67,7 +67,7 @@
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  #opacity: 1.0
+  opacity: 0.9
 
   # Startup Mode (changes require restart)
   #
@@ -876,9 +876,9 @@ colors:
     # hard contrast background - '#1d2021'
     background:        &gruvbox_dark_bg '#282828'
     # soft contrast background - '#32302f'
-    foreground:        '#fbf1c7'
-    bright_foreground: '#f9f5d7'
-    dim_foreground:    '#f2e5bc'
+    foreground:        '#ebdbb2'
+    bright_foreground: '#fbf1c7'
+    dim_foreground:    '#a89984'
   cursor:
     text:   CellBackground
     cursor: CellForeground
