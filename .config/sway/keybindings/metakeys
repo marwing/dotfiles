@@ -1,7 +1,10 @@
 include variables
 
 bindsym {
-  Print exec mkdir -p "$(xdg-user-dir PICTURES)/grims" && grim "$(xdg-user-dir PICTURES)/grims/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
+  Print exec mkdir -p "$(xdg-user-dir PICTURES)/grims" && /usr/share/sway/scripts/grimshot --notify save output "$(xdg-user-dir PICTURES)/grims/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
+  Shift+Print exec mkdir -p "$(xdg-user-dir PICTURES)/grims" && /usr/share/sway/scripts/grimshot --notify save area "$(xdg-user-dir PICTURES)/grims/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
+  Ctrl+Print exec mkdir -p "$(xdg-user-dir PICTURES)/grims" && /usr/share/sway/scripts/grimshot --notify save window "$(xdg-user-dir PICTURES)/grims/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
+  Ctrl+Shift+Print exec mkdir -p "$(xdg-user-dir PICTURES)/grims" && /usr/share/sway/scripts/grimshot --notify save screen "$(xdg-user-dir PICTURES)/grims/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
 }
 
 # Audio

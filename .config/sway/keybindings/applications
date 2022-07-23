@@ -10,8 +10,8 @@ bindsym $mod+Shift+Return exec $TERMINAL -e t
 bindsym {
   $mod+d exec $menu
   # $mod+d exec wofi -G --show=run
-  $mod+Shift+d exec wofi -G --show=drun
-  Menu exec wofi -G --show=drun
+  $mod+Shift+d exec nwg-drawer -nofs -term $TERMINAL
+  Menu exec nwg-drawer -nofs -term $TERMINAL
   XF86Search exec wofi -G --show=drun
 }
 
