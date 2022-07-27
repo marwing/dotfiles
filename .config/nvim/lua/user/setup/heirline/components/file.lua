@@ -3,7 +3,6 @@ local utils = require('heirline.utils')
 local devicons = require('nvim-web-devicons')
 
 local colors = require('user.setup.heirline.colors')
-
 local meta = require('user.setup.heirline.components.meta')
 
 local M = {}
@@ -15,7 +14,6 @@ M.file_base = {
 }
 
 M.file_icon = { -- FileIcon
-  -- TODO: disable with condition when no icon available
   init = function(self)
     local extension = vim.fn.fnamemodify(self.filename, ':e')
     self.icon, self.icon_color = devicons.get_icon_color(self.filename, extension, { default = true })

@@ -1,12 +1,19 @@
-local icons = require('user.setup.heirline.icons')
+local meta = require('user.setup.heirline.components.meta')
 
 local spell = {
   condition = function()
     return vim.wo.spell
   end,
-  provider = function()
-    return icons.seperators.vert .. ' ' .. vim.bo.spelllang .. ' '
-  end,
+  hl = {
+    bold = true,
+  },
+  meta.space,
+  {
+    provider = function()
+      return vim.bo.spelllang
+    end,
+  },
+  meta.space,
 }
 
 return spell

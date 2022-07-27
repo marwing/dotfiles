@@ -2,7 +2,9 @@ local conditions = require('heirline.conditions')
 local icons = require('user.setup.heirline.icons')
 local colors = require('user.setup.heirline.colors')
 
-local function git_component(s)
+local meta = require('user.setup.heirline.components.meta')
+
+local function git_diff_component(s)
   return {
     condition = function(self)
       return self.status_dict[s] ~= nil and self.status_dict[s] > 0
@@ -23,20 +25,21 @@ local git = {
       or self.status_dict.changed ~= 0 --
       or self.status_dict.removed ~= 0
   end,
+  hl = { bg = colors.git.bg },
+
+  meta.space,
   { -- branch
     provider = function(self)
-      return ' ' .. icons.git.branch .. ' ' .. self.status_dict.head
+      return icons.git.branch .. ' ' .. self.status_dict.head
     end,
+    hl = {
+      bold = true,
+    },
   },
-  -- {
-  --   condition = function(self)
-  --     return self.has_changes
-  --   end,
-  --   provider = ' ' .. icons.seperators.right,
-  -- },
-  git_component('added'),
-  git_component('changed'),
-  git_component('removed'),
+  git_diff_component('added'),
+  git_diff_component('changed'),
+  git_diff_component('removed'),
+  meta.space,
 }
 
 return git

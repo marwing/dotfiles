@@ -21,15 +21,16 @@ local TerminalName = {
 
 local statusline = {
   condition = condition,
+  meta.space,
   mode,
   meta.align,
   -- file.position,
 }
 local winbar = {
   condition = condition,
-  file.file_type,
   meta.align,
   TerminalName,
+  meta.align,
 }
 
 return {

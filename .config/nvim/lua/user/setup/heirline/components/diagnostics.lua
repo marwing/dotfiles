@@ -23,7 +23,6 @@ local diagnostics = {
     self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
   end,
   update = { 'DiagnosticChanged', 'BufEnter' },
-  -- provider = icons.seperators.right,
   diagnostics_component('error'),
   diagnostics_component('warning'),
   diagnostics_component('info'),
