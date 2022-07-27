@@ -250,11 +250,6 @@ require('packer').startup {
       setup = function()
         require('user.setup.vim-cmake')
       end,
-      cmd = 'CMakeSwitch',
-      keys = {
-        '<Plug>(CMakeBuild)',
-        '<Plug>(CMakeClose)',
-      },
     }
 
     -- LaTeX
