@@ -4,13 +4,7 @@ local packer_bootstrap
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   -- stylua: ignore
   packer_bootstrap = vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-
-  -- hacky workaround
-  -- see https://github.com/wbthomason/packer.nvim/issues/750
-  local rtp_addition = vim.fn.stdpath('data') .. '/site/pack/*/start/*'
-  if not string.find(vim.o.runtimepath, rtp_addition) then
-    vim.o.runtimepath = rtp_addition .. ',' .. vim.o.runtimepath
-  end
+  vim.cmd('packadd packer.nvim')
 end
 
 require('packer').startup {
