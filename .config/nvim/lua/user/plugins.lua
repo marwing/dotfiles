@@ -238,6 +238,9 @@ require('packer').startup {
     use { -- nicer ui for vim.ui.input and vim.ui.select
       'stevearc/dressing.nvim',
       requires = 'MunifTanjim/nui.nvim',
+      config = function()
+        require('user.setup.dressing')
+      end,
     }
     use { -- nicer ui for vim.notify
       'rcarriga/nvim-notify',

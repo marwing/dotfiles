@@ -46,9 +46,8 @@ vim.opt.updatetime = 300
 
 -- don't insert comments around comments with o/O
 -- the autocmd is necessary because some ftplugins override this
-local group = vim.api.nvim_create_augroup('user_fo_update', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
-  group = group,
+  group = vim.api.nvim_create_augroup('user_fo_update', { clear = true }),
   pattern = '*',
   callback = function()
     vim.opt_local.formatoptions:remove('o')
