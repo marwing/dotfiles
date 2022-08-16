@@ -1,1 +1,8 @@
-require('gitsigns').setup {}
+require('gitsigns').setup {
+  worktrees = {
+    {
+      toplevel = vim.env.HOME,
+      gitdir = vim.env.HOME .. '/.dotfiles',
+    },
+  },
+}
