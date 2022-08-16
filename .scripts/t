@@ -5,12 +5,18 @@
 
 SESSION="${1:-$(tmux ls | sed 's/:.*//g' | fzf --height 25% --layout=reverse --preview 'tmux ls | grep {}:' --preview-window up:1 --print-query | \tail -n1)}"
 
-if [ -n "$SESSION" ]; then
-  if [ -z "$TMUX" ];then
-    tmux start # useless when exit-empty is on (default)
-    exec tmux new-session -A -s "$SESSION" ranger
-  else
-    tmux new-session -d -s "$SESSION" ranger 2>/dev/null
-    tmux switch-client -t "$SESSION"
-  fi
+if [ -z "$SESSION" ]; then
+  exit 1
+fi
+
+if [ "${SESSION: -1}" = "+" ]; then
+  SESSION="${SESSION::-1}"
+fi
+
+if [ -z "$TMUX" ];then
+  tmux start # useless when exit-empty is on (default)
+  exec tmux new-session -A -s "$SESSION" ranger
+else
+  tmux new-session -d -s "$SESSION" ranger 2>/dev/null
+  tmux switch-client -t "$SESSION"
 fi
