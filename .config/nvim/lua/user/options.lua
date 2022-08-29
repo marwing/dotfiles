@@ -24,6 +24,7 @@ vim.opt.splitright = true
 vim.opt.wrap = true
 vim.opt.linebreak = true
 
+vim.opt.cmdheight = 0
 vim.opt.showmode = false
 vim.opt.clipboard = 'unnamedplus'
 

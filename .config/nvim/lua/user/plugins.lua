@@ -182,7 +182,12 @@ require('packer').startup {
     use { 'editorconfig/editorconfig-vim' } -- support for editorconfig files
     use { 'tpope/vim-sleuth' } -- heuristically set buffer options
     use { 'tpope/vim-surround' } -- surrounding text
-    use { 'jiangmiao/auto-pairs' } -- auto close pairs of parens, quotes, etc
+    use {
+      'windwp/nvim-autopairs',
+      config = function()
+        require('user.setup.autopairs')
+      end,
+    }
     use {
       'norcalli/nvim-colorizer.lua',
       config = function()
