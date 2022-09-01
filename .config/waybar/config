@@ -41,6 +41,7 @@
     "custom/left-arrow-light",
     "custom/left-arrow-dark",
     "tray",
+    "custom/notification",
     "idle_inhibitor"
   ],
 
@@ -176,5 +177,21 @@
     "return-type": "json",
     "signal": 8,
     "on-click": "pkill -SIGRTMIN+8 waybar"
+  },
+  "custom/notification": {
+    "tooltip": true,
+    "format": "{icon} ",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
   }
 }

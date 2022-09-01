@@ -19,6 +19,7 @@ window#waybar {
   background: #1a1a1a;
 }
 
+#custom-notification,
 #custom-system-upgrades,
 #idle_inhibitor,
 #workspaces,
@@ -95,6 +96,7 @@ window#waybar {
   padding: 0 10px;
 }
 
+#custom-notification,
 #tray {
   padding: 0 5px;
 }
