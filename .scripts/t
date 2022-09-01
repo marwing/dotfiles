@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # sway doesn't set TERM so use this to know when to launch terminal emulator
 [ -z "$TERM" ] && exec "$TERMINAL" -e "$0"
