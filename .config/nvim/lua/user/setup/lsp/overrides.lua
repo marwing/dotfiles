@@ -40,6 +40,9 @@ local overrides = {
 
     -- plugin hooks
     require('user.setup.lsp.document_highlight'):on_attach(client, bufnr)
+    if client.supports_method('textDocument/documentSymbol') then
+      require('nvim-navic').attach(client, bufnr)
+    end
   end,
   capabilities = (function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()

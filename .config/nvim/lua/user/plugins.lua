@@ -46,6 +46,10 @@ require('packer').startup {
       requires = {
         'kyazdani42/nvim-web-devicons',
         {
+          'SmiteshP/nvim-navic',
+          requires = 'neovim/nvim-lspconfig',
+        },
+        {
           'SmiteshP/nvim-gps',
           requires = 'nvim-treesitter/nvim-treesitter',
           config = function()
