@@ -4,9 +4,11 @@ local spell = {
   condition = function()
     return vim.wo.spell
   end,
+
   hl = {
     bold = true,
   },
+
   meta.space,
   {
     provider = function()

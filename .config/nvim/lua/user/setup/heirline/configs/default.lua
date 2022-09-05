@@ -14,34 +14,34 @@ local lsp = require('user.setup.heirline.components.lsp')
 local gps = require('user.setup.heirline.components.gps')
 
 local statusline = {
-  -- default highlighs
+  -- default highlights
   hl = function()
     return colors.default[conditions.is_active()]
   end,
+
   mode,
-  spell,
   search,
+  utils.insert(spell, meta.sep),
+  meta.space,
+  file.short_file,
+  meta.space,
   git,
   diagnostics,
 
   meta.align,
 
-  file.file,
-
-  meta.align,
-
   utils.insert(lsp, meta.space),
-  utils.insert(file.file_type, meta.space),
-  utils.insert(file.file_format, meta.space),
-  utils.insert(file.file_enc, meta.space),
+  utils.insert(file.type, meta.space),
+  utils.insert(file.format, meta.space),
+  utils.insert(file.enc, meta.space),
   utils.insert(file.position, meta.space),
-  mode,
 }
 
 local winbar = {
   hl = { fg = colors.gray },
 
-  file.file,
+  meta.space,
+  file.short_file,
   gps,
 }
 

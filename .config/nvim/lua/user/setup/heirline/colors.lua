@@ -1,17 +1,26 @@
 local utils = require('heirline.utils')
+local h = utils.get_highlight
 
-local base = { -- gruvbox dark
-  black = '#282828',
-  white = '#ebdbb2',
-  red = '#fb4934',
-  green = '#b8bb26',
-  aqua = '#8ec07c',
-  blue = '#83a598',
-  yellow = '#fe8019',
-  gray = '#a89984',
-  darkgray = '#3c3836',
-  lightgray = '#504945',
-  inactivegray = '#7c6f64',
+local base = {
+  bg0 = h('GruvboxBg0').fg, -- black
+  bg1 = h('GruvboxBg1').fg, -- darkgray
+  bg2 = h('GruvboxBg2').fg, -- lightgray
+  bg3 = h('GruvboxBg3').fg,
+  bg4 = h('GruvboxBg4').fg, -- inactivegray
+  fg0 = h('GruvboxFg0').fg,
+  fg1 = h('GruvboxFg1').fg, -- white
+  fg2 = h('GruvboxFg2').fg,
+  fg3 = h('GruvboxFg3').fg,
+  fg4 = h('GruvboxFg4').fg, -- gray
+
+  aqua = h('GruvboxAqua').fg,
+  blue = h('GruvboxBlue').fg,
+  gray = h('GruvboxGray').fg,
+  green = h('GruvboxGreen').fg,
+  orange = h('GruvboxOrange').fg,
+  purple = h('GruvboxPurple').fg,
+  red = h('GruvboxRed').fg,
+  yellow = h('GruvboxYellow').fg,
 }
 
 local colors = {
@@ -20,26 +29,27 @@ local colors = {
   default = {
     -- conditions.is_active
     [true] = {
-      fg = utils.get_highlight('StatusLine').bg,
-      bg = utils.get_highlight('StatusLine').fg,
+      fg = h('StatusLine').bg,
+      bg = h('StatusLine').fg,
     },
     [false] = {
-      fg = utils.get_highlight('StatusLineNC').bg,
-      bg = utils.get_highlight('StatusLineNC').fg,
+      fg = h('StatusLineNC').bg,
+      bg = h('StatusLineNC').fg,
     },
   },
   diag = {
-    error = utils.get_highlight('DiagnosticError').fg,
-    warning = utils.get_highlight('DiagnosticWarn').fg,
-    info = utils.get_highlight('DiagnosticInfo').fg,
-    hint = utils.get_highlight('DiagnosticHint').fg,
+    error = h('DiagnosticError').fg,
+    warning = h('DiagnosticWarn').fg,
+    info = h('DiagnosticInfo').fg,
+    hint = h('DiagnosticHint').fg,
   },
   git = {
-    bg = base.black,
-    added = utils.get_highlight('GitsignsAdd').fg,
-    changed = utils.get_highlight('GitsignsChange').fg,
-    removed = utils.get_highlight('GitsignsDelete').fg,
+    bg = base.bg0,
+    added = h('GitsignsAdd').fg,
+    changed = h('GitsignsChange').fg,
+    removed = h('GitsignsDelete').fg,
   },
+  filetype = h('Type').fg,
 }
 
 return vim.tbl_extend('keep', colors, base)

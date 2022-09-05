@@ -1,5 +1,6 @@
 local conditions = require('heirline.conditions')
-local colors = require('user.setup.heirline.colors')
+local utils = require('heirline.utils')
+local devicons = require('nvim-web-devicons')
 
 local function condition()
   return conditions.buffer_matches {
@@ -11,26 +12,44 @@ local meta = require('user.setup.heirline.components.meta')
 local file = require('user.setup.heirline.components.file')
 local mode = require('user.setup.heirline.components.mode')
 
-local TerminalName = {
-  provider = function()
-    local tname, _ = vim.api.nvim_buf_get_name(0):gsub('.*:', '')
-    return ' ' .. tname
-  end,
-  hl = { fg = colors.blue, bold = true },
+local term = {
+  icon = {
+    init = function(self)
+      self.icon, self.icon_color = devicons.get_icon_color('terminal')
+    end,
+    provider = function(self)
+      return self.icon
+    end,
+    hl = function(self)
+      return { fg = self.icon_color }
+    end,
+  },
+
+  command = {
+    provider = function()
+      return vim.api.nvim_buf_get_name(0):gsub('.*:', '')
+    end,
+  },
 }
 
 local statusline = {
   condition = condition,
-  meta.space,
+
   mode,
   meta.align,
-  -- file.position,
+  term.full,
+  meta.align,
+  utils.insert(file.format, meta.space),
+  utils.insert(file.position, meta.space),
 }
+
 local winbar = {
   condition = condition,
-  meta.align,
-  TerminalName,
-  meta.align,
+
+  meta.space,
+  term.icon,
+  meta.space,
+  term.command,
 }
 
 return {

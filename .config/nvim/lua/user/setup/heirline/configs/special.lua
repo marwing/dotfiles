@@ -11,7 +11,6 @@ local function condition()
       'quickfix',
     },
     filetype = {
-      [[neo\-tree]],
       'startify',
       '^git.*',
       'fugitive',
@@ -21,12 +20,13 @@ end
 
 local statusline = {
   condition = condition,
-  file.file_type,
+  file.type,
 }
+
 local winbar = {
   condition = condition,
   init = function()
-    vim.opt_local.winbar = nil
+    vim.wo.winbar = nil
   end,
 }
 

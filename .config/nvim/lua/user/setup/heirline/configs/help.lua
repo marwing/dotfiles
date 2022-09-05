@@ -1,20 +1,20 @@
 local function condition()
-  return vim.bo.filetype == 'help'
+  return vim.bo.buftype == 'help'
 end
 
 local meta = require('user.setup.heirline.components.meta')
 local file = require('user.setup.heirline.components.file')
 
-local statusline = nil
--- {
---   condition = condition,
---   file.file,
--- }
+local statusline = {
+  condition = condition,
+  file.type,
+  file.short_file,
+}
 
 local winbar = {
   condition = condition,
   meta.align,
-  file.file,
+  file.short_file,
 }
 
 return {

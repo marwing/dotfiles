@@ -7,12 +7,6 @@ local meta = require('user.setup.heirline.components.meta')
 
 local M = {}
 
-M.file_base = {
-  init = function(self)
-    self.filename = vim.api.nvim_buf_get_name(0)
-  end,
-}
-
 M.file_icon = { -- FileIcon
   init = function(self)
     local extension = vim.fn.fnamemodify(self.filename, ':e')
@@ -43,49 +37,68 @@ M.file_name = {
   provider = '%f',
 }
 
-M.file_flags = { -- flags
+M.short_file_name = {
+  provider = '%t',
+}
+
+M.file_flags = {
   provider = '%m%r',
 }
 
-M.file = utils.insert(M.file_base, {
+M.file_base = {
+  init = function(self)
+    self.filename = vim.api.nvim_buf_get_name(0)
+  end,
   hl = function()
     if vim.bo.modified then
       return { fg = colors.blue }
+    elseif not vim.bo.modifiable or vim.bo.readonly then
+      return { fg = colors.gray }
     end
     return nil
   end,
-  meta.space,
+}
+
+M.file = utils.insert(M.file_base, {
   utils.insert(M.file_icon, meta.space),
   M.file_name,
   M.file_flags,
 })
 
-M.file_enc = {
-  condition = function()
-    return vim.bo.fileencoding ~= ''
-  end,
+M.short_file = utils.insert(M.file_base, {
+  utils.insert(M.file_icon, meta.space),
+  M.short_file_name,
+})
+
+M.enc = {
+  -- condition = function()
+  --   return vim.bo.fileencoding ~= ''
+  -- end,
   provider = function()
     return vim.bo.fileencoding
   end,
 }
 
-M.file_format = {
-  condition = function()
-    return vim.bo.fileformat ~= ''
-  end,
+M.format = {
+  -- condition = function()
+  --   return vim.bo.fileformat ~= ''
+  -- end,
   provider = function()
     return vim.bo.fileformat
   end,
 }
 
-M.file_type = {
-  condition = function()
-    return vim.bo.filetype ~= ''
-  end,
+M.type = {
+  -- condition = function()
+  --   return vim.bo.filetype ~= ''
+  -- end,
   provider = function()
     return vim.bo.filetype
   end,
-  hl = { fg = utils.get_highlight('Type').fg, bold = true },
+  hl = {
+    fg = colors.filetype,
+    bold = true,
+  },
 }
 
 M.position = {

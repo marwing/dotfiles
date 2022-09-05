@@ -61,9 +61,9 @@ local mode = {
     mode_colors = {
       normal = colors.gray,
       op = colors.green,
-      visual = colors.yellow,
-      visual_line = colors.yellow,
-      visual_block = colors.yellow,
+      visual = colors.orange,
+      visual_line = colors.orange,
+      visual_block = colors.orange,
       select = colors.orange,
       select_line = colors.orange,
       select_block = colors.orange,
@@ -91,8 +91,9 @@ local mode = {
 
   hl = function(self)
     return {
-      fg = colors.darkgray,
-      bg = self.mode_colors[self.mode],
+      fg = self.mode_colors[self.mode],
+      bg = colors.bg1,
+      reverse = true,
       bold = true,
     }
   end,

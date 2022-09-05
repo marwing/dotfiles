@@ -1,27 +1,29 @@
-local function debug(msg)
-  vim.notify(msg, vim.log.levels.ERROR, { title = 'Config - Heirline' })
-end
+local notify = require('user.utils').notify('Heirline Config')
 
 local function setup(args)
   args = args or {}
 
   local configs = {
-    { init = require('heirline.utils').pick_child_on_condition },
-    { init = require('heirline.utils').pick_child_on_condition },
+    statusline = { fallthrough = false },
+    winbar = { fallthrough = false },
+    -- tabline = { fallthrough = false },
   }
 
   for _, config in ipairs(args) do
     local ok, module = pcall(require, 'user.setup.heirline.configs.' .. config)
     if ok then
-      if module.statusline then
-        table.insert(configs[1], module.statusline)
+      if configs.statusline and module.statusline then
+        table.insert(configs.statusline, module.statusline)
       end
-      if module.winbar then
-        table.insert(configs[2], module.winbar)
+      if configs.winbar and module.winbar then
+        table.insert(configs.winbar, module.winbar)
+      end
+      if configs.tabline and module.tabline then
+        table.insert(configs.tabline, module.tabline)
       end
     else
       -- stylua: ignore
-      debug('Error loading configuration "' .. config .. '"\n' ..
+      notify('Error loading configuration "' .. config .. '"\n' ..
             'File missing or error in configuration:\n\n' ..
             module)
     end
@@ -32,16 +34,18 @@ end
 
 local config = setup {
   -- 'help',
-  -- 'neo-tree',
+  'neo-tree',
   'terminal',
   'special',
   'default',
 }
 
-require('heirline').setup(unpack(config))
+require('heirline').setup(config.statusline, config.winbar, config.tabline)
 vim.opt.laststatus = 3
 
-function ReloadHeirline()
-  require('plenary.reload').reload_module('user.setup.heirline')
-  require('user.setup.heirline')
-end
+return {
+  reload = function()
+    require('plenary.reload').reload_module('user.setup.heirline')
+    require('user.setup.heirline')
+  end,
+}
