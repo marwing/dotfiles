@@ -7,7 +7,7 @@ local meta = require('user.setup.heirline.components.meta')
 
 local M = {}
 
-M.file_icon = { -- FileIcon
+M.file_icon = {
   init = function(self)
     local extension = vim.fn.fnamemodify(self.filename, ':e')
     self.icon, self.icon_color = devicons.get_icon_color(self.filename, extension, { default = true })
@@ -59,7 +59,7 @@ M.file_base = {
   end,
 }
 
-M.file = utils.insert(M.file_base, {
+M.long_file = utils.insert(M.file_base, {
   utils.insert(M.file_icon, meta.space),
   M.file_name,
   M.file_flags,

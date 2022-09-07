@@ -1,5 +1,4 @@
-local utils = require('heirline.utils')
-local conditions = require('heirline.conditions')
+local he_utils = require('heirline.utils')
 
 local colors = require('user.setup.heirline.colors')
 
@@ -14,27 +13,23 @@ local lsp = require('user.setup.heirline.components.lsp')
 local gps = require('user.setup.heirline.components.gps')
 
 local statusline = {
-  -- default highlights
-  hl = function()
-    return colors.default[conditions.is_active()]
-  end,
+  hl = colors.default,
 
+  -- meta.slanted_right(mode),
   mode,
-  search,
-  utils.insert(spell, meta.sep),
-  meta.space,
-  file.short_file,
-  meta.space,
-  git,
+  meta.slanted(spell),
+  meta.slanted(search),
+  meta.slanted(file.short_file, colors.bg1),
+  meta.slanted(git),
   diagnostics,
 
   meta.align,
 
-  utils.insert(lsp, meta.space),
-  utils.insert(file.type, meta.space),
-  utils.insert(file.format, meta.space),
-  utils.insert(file.enc, meta.space),
-  utils.insert(file.position, meta.space),
+  he_utils.insert(lsp, meta.space),
+  he_utils.insert(file.type, meta.space),
+  he_utils.insert(file.format, meta.space),
+  he_utils.insert(file.enc, meta.space),
+  he_utils.insert(file.position, meta.space),
 }
 
 local winbar = {

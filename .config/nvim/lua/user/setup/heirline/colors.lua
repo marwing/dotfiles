@@ -27,15 +27,8 @@ local colors = {
   -- have to manually reverse colors for statusline
   -- for some reaseon gruvbox sets colors reversed and reverse ??
   default = {
-    -- conditions.is_active
-    [true] = {
-      fg = h('StatusLine').bg,
-      bg = h('StatusLine').fg,
-    },
-    [false] = {
-      fg = h('StatusLineNC').bg,
-      bg = h('StatusLineNC').fg,
-    },
+    fg = h('StatusLine').bg,
+    bg = h('StatusLine').fg,
   },
   diag = {
     error = h('DiagnosticError').fg,

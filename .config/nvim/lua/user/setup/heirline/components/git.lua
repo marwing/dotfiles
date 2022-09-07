@@ -1,8 +1,7 @@
 local conditions = require('heirline.conditions')
-local icons = require('user.setup.heirline.icons')
-local colors = require('user.setup.heirline.colors')
 
-local meta = require('user.setup.heirline.components.meta')
+local colors = require('user.setup.heirline.colors')
+local icons = require('user.setup.heirline.icons')
 
 local function git_diff_component(s)
   return {
@@ -21,9 +20,7 @@ local git = {
   init = function(self)
     self.status_dict = vim.b.gitsigns_status_dict
   end,
-  hl = { bg = colors.git.bg },
 
-  meta.space,
   { -- branch
     provider = function(self)
       return icons.git.branch .. ' ' .. self.status_dict.head
@@ -35,7 +32,6 @@ local git = {
   git_diff_component('added'),
   git_diff_component('changed'),
   git_diff_component('removed'),
-  meta.space,
 }
 
 return git

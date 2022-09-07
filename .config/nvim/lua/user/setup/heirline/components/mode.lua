@@ -1,6 +1,7 @@
 local colors = require('user.setup.heirline.colors')
+local icons = require('user.setup.heirline.icons')
 
-local mode = {
+return {
   static = {
     mode_map = {
       n = 'normal',
@@ -83,20 +84,26 @@ local mode = {
     self.mode = self.mode_map[vim.api.nvim_get_mode().mode]
   end,
 
-  provider = function(self)
-    return '  ' .. self.mode_label[self.mode] .. ' '
-  end,
-
-  update = 'ModeChanged',
-
   hl = function(self)
     return {
-      fg = self.mode_colors[self.mode],
-      bg = colors.bg1,
-      reverse = true,
+      fg = colors.bg1,
+      bg = self.mode_colors[self.mode],
       bold = true,
     }
   end,
-}
 
-return mode
+  provider = function(self)
+    return ' ' .. icons.mode .. ' ' .. self.mode_label[self.mode] .. ' '
+  end,
+
+  {
+    hl = {
+      fg = colors.default.bg,
+    },
+    provider = function()
+      return icons.seperators.slant_left
+    end,
+  },
+
+  update = 'ModeChanged',
+}

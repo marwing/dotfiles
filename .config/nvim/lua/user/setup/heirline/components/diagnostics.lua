@@ -8,7 +8,7 @@ local function diagnostics_component(comp)
       return self[comp] > 0
     end,
     provider = function(self)
-      return ' ' .. icons.diag[comp] .. self[comp]
+      return ' ' .. icons.diag[comp] .. ' ' .. self[comp]
     end,
     hl = { fg = colors.diag[comp] },
   }

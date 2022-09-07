@@ -1,21 +1,17 @@
-local meta = require('user.setup.heirline.components.meta')
+local colors = require('user.setup.heirline.colors')
 
-local spell = {
+return {
   condition = function()
     return vim.wo.spell
   end,
 
   hl = {
+    fg = colors.fg2,
+    bg = colors.bg4,
     bold = true,
   },
 
-  meta.space,
-  {
-    provider = function()
-      return vim.bo.spelllang
-    end,
-  },
-  meta.space,
+  provider = function()
+    return string.upper(vim.bo.spelllang)
+  end,
 }
-
-return spell

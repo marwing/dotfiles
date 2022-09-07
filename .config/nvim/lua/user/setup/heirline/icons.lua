@@ -1,4 +1,5 @@
 return {
+  mode = '',
   git = {
     branch = '',
     added = '+',
@@ -6,10 +7,10 @@ return {
     removed = '-',
   },
   diag = {
-    error = ' ', -- xf659
-    warning = ' ', -- xf529
-    info = ' ', -- xf7fc
-    hint = ' ', -- xf835
+    error = '',
+    warning = '',
+    info = '',
+    hint = '',
   },
   seperators = {
     vert = '│',
