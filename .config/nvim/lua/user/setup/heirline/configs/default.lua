@@ -15,8 +15,7 @@ local gps = require('user.setup.heirline.components.gps')
 local statusline = {
   hl = colors.default,
 
-  -- meta.slanted_right(mode),
-  mode,
+  meta.slanted_right(mode),
   meta.slanted(spell),
   meta.slanted(search),
   meta.slanted(file.short_file, colors.bg1),

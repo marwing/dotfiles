@@ -93,17 +93,8 @@ return {
   end,
 
   provider = function(self)
-    return ' ' .. icons.mode .. ' ' .. self.mode_label[self.mode] .. ' '
+    return icons.mode .. ' ' .. self.mode_label[self.mode]
   end,
-
-  {
-    hl = {
-      fg = colors.default.bg,
-    },
-    provider = function()
-      return icons.seperators.slant_left
-    end,
-  },
 
   update = 'ModeChanged',
 }
