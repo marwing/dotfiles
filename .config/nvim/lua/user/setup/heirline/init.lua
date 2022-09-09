@@ -1,24 +1,28 @@
 local notify = require('user.utils').notify('Heirline Config')
 
-local function setup(args)
+local function setup(args, opts)
   args = args or {}
+  opts = opts or {}
+
+  local default_opts = { statusline = true, winbar = true, tabline = false }
+  opts = vim.tbl_extend('force', default_opts, opts)
 
   local configs = {
-    statusline = { fallthrough = false },
-    winbar = { fallthrough = false },
-    -- tabline = { fallthrough = false },
+    statusline = opts.statusline and { fallthrough = false },
+    winbar = opts.winbar and { fallthrough = false },
+    tabline = opts.tabline and { fallthrough = false },
   }
 
   for _, config in ipairs(args) do
     local ok, module = pcall(require, 'user.setup.heirline.configs.' .. config)
     if ok then
-      if configs.statusline and module.statusline then
+      if opts.statusline and module.statusline then
         table.insert(configs.statusline, module.statusline)
       end
-      if configs.winbar and module.winbar then
+      if opts.winbar and module.winbar then
         table.insert(configs.winbar, module.winbar)
       end
-      if configs.tabline and module.tabline then
+      if opts.tabline and module.tabline then
         table.insert(configs.tabline, module.tabline)
       end
     else
