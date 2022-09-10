@@ -1,4 +1,4 @@
-local notify = require('user.utils').notify('Heirline Config')
+local notify = require('user.setup.heirline.utils').notify
 
 local function setup(args, opts)
   args = args or {}
