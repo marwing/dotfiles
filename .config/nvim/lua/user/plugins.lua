@@ -145,6 +145,7 @@ require('packer').startup {
         require('user.setup.lsp.null-ls')
       end,
     }
+    use { 'b0o/schemastore.nvim' }
 
     -- telescope
     use {
