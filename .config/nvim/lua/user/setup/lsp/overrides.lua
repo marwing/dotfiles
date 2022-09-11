@@ -1,12 +1,12 @@
 local overrides = {
   on_attach = function(client, bufnr)
-    local function set(key, action, method_or_client)
+    local function set(key, action, method_or_client, modes)
       if
         not method_or_client
         or (string.match(method_or_client, '%a/%a') and client.supports_method(method_or_client))
         or client.name == method_or_client
       then
-        vim.keymap.set('n', key, action, { buffer = bufnr })
+        vim.keymap.set(modes or 'n', key, action, { buffer = bufnr })
       end
     end
 
@@ -26,7 +26,7 @@ local overrides = {
           return client.name ~= 'sumneko_lua' -- null-ls stylua formats lua code
         end,
       }
-    end)
+    end, nil, { 'n', 'v' })
     set('Kk', vim.lsp.buf.code_action, 'textDocument/codeAction')
 
     set('<space>wa', vim.lsp.buf.add_workspace_folder)
