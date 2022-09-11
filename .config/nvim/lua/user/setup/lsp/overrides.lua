@@ -1,4 +1,4 @@
-return {
+local overrides = {
   on_attach = function(client, bufnr)
     local function set(key, action, method_or_client)
       if
@@ -54,3 +54,14 @@ return {
     return capabilities
   end)(),
 }
+
+overrides.default_params = setmetatable({
+  on_attach = overrides.on_attach,
+  capabilities = overrides.capabilities,
+}, {
+  __call = function(table, opts)
+    return vim.tbl_deep_extend('force', table, opts or {})
+  end,
+})
+
+return overrides

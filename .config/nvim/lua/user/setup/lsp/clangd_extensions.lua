@@ -1,5 +1,5 @@
 require('clangd_extensions').setup {
-  server = {
+  server = require('user.setup.lsp.overrides').default_params {
     cmd = {
       'clangd',
       '-query-driver=/usr/**/arm-none-eabi*',
@@ -8,8 +8,6 @@ require('clangd_extensions').setup {
       '--enable-config',
       '--use-dirty-headers',
     },
-    on_attach = require('user.setup.lsp.overrides').on_attach,
-    capabilities = require('user.setup.lsp.overrides').capabilities,
   },
   extensions = {
     autoSetHints = false,
