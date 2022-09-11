@@ -66,7 +66,7 @@ function M:get_wordcount(visual)
 end
 
 function M:update_wordcount()
-  if not intable(vim.opt.filetype:get(), self.options.sources.vimtex.filetypes) then
+  if not intable(vim.o.filetype, self.options.sources.vimtex.filetypes) then
     self.wordcount = tostring(self:get_wordcount(false)) .. ' words'
   end
 end
@@ -87,7 +87,7 @@ function M:init(options)
 end
 
 function M:update_status()
-  if not intable(vim.opt.filetype:get(), self.options.filetypes) then
+  if not intable(vim.o.filetype, self.options.filetypes) then
     return ''
   end
 
