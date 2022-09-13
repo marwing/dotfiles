@@ -4,7 +4,7 @@ local packer_bootstrap
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   -- stylua: ignore
   packer_bootstrap = vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-  vim.cmd('packadd packer.nvim')
+  vim.cmd.packadd('packer.nvim')
 end
 
 require('packer').startup {
@@ -288,7 +288,9 @@ require('packer').startup {
     end
   end,
   config = {
+    preview_updates = true,
     display = {
+      compact = true,
       open_fn = require('packer.util').float,
     },
     profile = {
