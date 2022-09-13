@@ -33,6 +33,13 @@ require('packer').startup {
         require('user.setup.lualine')
       end,
     }
+    use {
+      'akinsho/bufferline.nvim',
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = function()
+        require('user.setup.bufferline')
+      end,
+    }
 
     -- git integration
     use {
@@ -171,8 +178,20 @@ require('packer').startup {
 
     -- misc
     use { 'lewis6991/impatient.nvim' } -- improve startup time for neovim
+    use {
+      'dstein64/vim-startuptime',
+      cmd = 'StartupTime',
+    }
     use { 'tpope/vim-repeat' } -- repeatable plugin actions
     use { 'tpope/vim-obsession' } -- easier session management
+    use {
+      'antoinemadec/FixCursorHold.nvim',
+      config = function()
+        -- How fast some features update (some airline plugins, tagbar, ...)
+        vim.g.cursorhold_updatetime = 300
+      end,
+    }
+    use { 'famiu/bufdelete.nvim' }
     use { -- startup screen
       'mhinz/vim-startify',
       requires = 'kyazdani42/nvim-web-devicons',
@@ -197,6 +216,13 @@ require('packer').startup {
         })
       end,
       cmd = { 'ColorizerToggle', 'ColorizerAttachToBuffer' },
+    }
+    use {
+      'folke/todo-comments.nvim',
+      requires = 'nvim-lua/plenary.nvim',
+      config = function()
+        require('todo-comments').setup {}
+      end,
     }
     use { -- display file tags in sidebar
       'preservim/tagbar',
