@@ -281,7 +281,8 @@ require('packer').startup {
       end,
     }
     use {
-      'cdelledonne/vim-cmake',
+      -- 'cdelledonne/vim-cmake',
+      '~/Workspace/vim/vim-cmake',
       setup = function()
         require('user.setup.vim-cmake')
       end,

@@ -4,10 +4,10 @@ null_ls.setup {
   sources = {
     -- common
     null_ls.builtins.code_actions.gitsigns,
-    -- null_ls.builtins.completion.spell, -- speed?
+    null_ls.builtins.code_actions.gitrebase,
 
     -- C++
-    -- null_ls.builtins.diagnostics.cppcheck, -- benefit on top of clangd?
+    null_ls.builtins.diagnostics.cppcheck,
 
     -- shell
     null_ls.builtins.diagnostics.shellcheck,

@@ -27,8 +27,10 @@ vim.o.linebreak = true
 vim.o.cmdheight = 0
 vim.o.showmode = false
 vim.o.clipboard = 'unnamedplus'
+vim.o.mouse = ''
 
 vim.o.signcolumn = 'yes'
+vim.o.foldcolumn = 'auto'
 
 vim.o.colorcolumn = '+0'
 
