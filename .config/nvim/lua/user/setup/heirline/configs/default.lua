@@ -37,6 +37,11 @@ local winbar = {
   meta.space,
   file.short_file,
   gps,
+
+  meta.align,
+
+  diagnostics,
+  meta.space,
 }
 
 return {
