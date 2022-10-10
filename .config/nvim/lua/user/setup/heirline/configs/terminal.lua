@@ -2,15 +2,17 @@ local conditions = require('heirline.conditions')
 local utils = require('heirline.utils')
 local devicons = require('nvim-web-devicons')
 
+local colors = require('user.setup.heirline.colors')
+
+local meta = require('user.setup.heirline.components.meta')
+local file = require('user.setup.heirline.components.file')
+local mode = require('user.setup.heirline.components.mode')
+
 local function condition()
   return conditions.buffer_matches {
     buftype = { 'terminal' },
   }
 end
-
-local meta = require('user.setup.heirline.components.meta')
-local file = require('user.setup.heirline.components.file')
-local mode = require('user.setup.heirline.components.mode')
 
 local term = {
   icon = {
@@ -34,8 +36,9 @@ local term = {
 
 local statusline = {
   condition = condition,
+  hl = colors.default,
 
-  mode,
+  meta.slanted_right(mode),
   meta.align,
   term.full,
   meta.align,
