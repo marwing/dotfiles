@@ -13,7 +13,7 @@ return {
       return
     end
 
-    if query:find('@') then
+    if query:match('\\%%%d+l') then
       return
     end
 
