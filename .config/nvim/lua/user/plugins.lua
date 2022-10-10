@@ -135,6 +135,12 @@ require('packer').startup {
       end,
     }
     use {
+      'mfussenegger/nvim-jdtls',
+      config = function()
+        require('user.setup.lsp.nvim-jdtls')
+      end,
+    }
+    use {
       'ray-x/lsp_signature.nvim',
       config = function()
         require('user.setup.lsp_signature')
