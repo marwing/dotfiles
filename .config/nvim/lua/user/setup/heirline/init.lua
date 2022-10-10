@@ -40,7 +40,7 @@ local config = setup {
   -- 'help',
   'neo-tree',
   'terminal',
-  'special',
+  -- 'special',
   'default',
 }
 
