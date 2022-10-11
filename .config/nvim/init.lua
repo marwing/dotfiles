@@ -10,7 +10,3 @@ require('user.options')
 require('user.plugins')
 
 require('user.setup.diagnostic')
-
-vim.cmd([[
-autocmd FileType markdown set conceallevel=2 concealcursor=n
-]])

@@ -19,5 +19,8 @@ return {
     vim.keymap.set('n', '<leader>fl', function()
       require('telescope.builtin').buffers { sort_lastused = true }
     end, { desc = 'Telescope buffers' })
+    vim.keymap.set('n', '<leader>fg', function()
+      require('telescope.builtin').live_grep()
+    end, { desc = 'Telescope live_grep' })
   end,
 }
