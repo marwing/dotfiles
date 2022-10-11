@@ -14,7 +14,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 -- spell checking default language
-vim.o.spelllang = 'de_20'
+vim.opt.spelllang = { 'de_20', 'en' }
 
 -- more natural splits
 vim.o.splitbelow = true
