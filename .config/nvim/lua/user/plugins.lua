@@ -197,6 +197,12 @@ require('packer').startup {
         vim.g.cursorhold_updatetime = 300
       end,
     }
+    use {
+      'gaoDean/autolist.nvim',
+      config = function()
+        require('autolist').setup {}
+      end,
+    }
     use { 'famiu/bufdelete.nvim' }
     use { -- startup screen
       'mhinz/vim-startify',
