@@ -39,10 +39,10 @@ local function surroundf(component, sep)
   })
 end
 
----Correctly surround a component with seperators, lifting out necessary parts to not leave empty seperators
----@param component table
----@param sep {left: string|nil, right: string|nil}
----@param color? string|number
+--- Correctly surround a component with seperators, lifting out necessary parts to not leave empty seperators
+--- @param component table the component to surround
+--- @param sep {left: string|nil, right: string|nil} the seperators with wich to surround the component
+--- @param color? string|number
 function M.surround(component, sep, color)
   vim.validate {
     component = { component, 'table' },
@@ -64,8 +64,8 @@ function M.surround(component, sep, color)
   color = color or (component.hl and component.hl.bg) or colors.bg1
 
   -- lift condition out of component to apply to seperators as well
-  local condition = component.condition
-  component.condition = nil
+  local condition
+  condition, component.condition = component.condition, nil
 
   return {
     condition = condition,
@@ -82,6 +82,20 @@ function M.surround(component, sep, color)
       hl = { fg = color },
       provider = sep.right,
     },
+  }
+end
+
+function M.disable_winbar(cond)
+  return {
+    condition = cond,
+    init = function()
+      vim.wo.winbar = nil
+      -- Without redraw floating windows sometimes don't show up
+      -- (e.g. diagnostic float, lsp hover)
+      vim.defer_fn(function()
+        vim.cmd.redraw { bang = true }
+      end, 50)
+    end,
   }
 end
 

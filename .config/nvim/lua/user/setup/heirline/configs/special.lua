@@ -1,5 +1,7 @@
 local conditions = require('heirline.conditions')
 
+local utils = require('user.setup.heirline.utils')
+
 local file = require('user.setup.heirline.components.file')
 
 local function condition()
@@ -12,7 +14,6 @@ local function condition()
     },
     filetype = {
       'startify',
-      '^git.*',
       'fugitive',
     },
   }
@@ -23,14 +24,7 @@ local statusline = {
   file.type,
 }
 
-local winbar = {
-  condition = condition,
-  init = function()
-    vim.wo.winbar = nil
-  end,
-}
-
 return {
-  statusline = statusline,
-  winbar = winbar,
+  -- statusline = statusline,
+  winbar = utils.disable_winbar(condition),
 }
