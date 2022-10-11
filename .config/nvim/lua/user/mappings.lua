@@ -1,4 +1,4 @@
-vim.g.mapleader = ','
+vim.g.mapleader = ' '
 
 -- Shortcutting split navigation:
 vim.keymap.set({ 'n', 'v' }, '<A-h>', '<C-w>h')
@@ -15,4 +15,4 @@ vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]])
 
 ---------------- Plugins ----------------
 -- tagbar
-vim.keymap.set({ 'n', 'i' }, '<F8>', '<cmd>TagbarToggle<CR>')
+vim.keymap.set('n', '<leader>o', '<cmd>TagbarToggle<CR>')
