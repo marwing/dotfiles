@@ -16,9 +16,7 @@ local lspclients = {
 
   on_click = {
     callback = function()
-      vim.defer_fn(function()
-        vim.cmd.LspInfo()
-      end, 100)
+      vim.defer_fn(vim.cmd.LspInfo, 100)
     end,
     name = 'heirline_lsp',
   },
