@@ -12,6 +12,11 @@ return {
     info = '',
     hint = '',
   },
+  enc = {
+    unix = '',
+    dos = '',
+    mac = '',
+  },
   seperators = {
     vert = '│',
     left = '',

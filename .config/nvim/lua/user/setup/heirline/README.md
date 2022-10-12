@@ -6,10 +6,13 @@ This is a very WIP statusline config
 ### default statusline
 - Scrollbar
 - Proper position
-- 3 part filename (path to pwd, path from pwd, filename)
-- icon fileformat
+- 3 part filename? (path to pwd, path from pwd, filename)
+- icon fileformat?
 - colored language servers
 - hide/shrink some components when space is tight (make_flexible_component, width_percent_below)
+- missing with cmdheight=0
+  - amount visual lines selected
+  - macro recording
 
 ### other statuslines
 - special
