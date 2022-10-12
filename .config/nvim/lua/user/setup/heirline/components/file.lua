@@ -71,27 +71,27 @@ M.short_file = utils.insert(M.file_base, {
 })
 
 M.enc = {
-  -- condition = function()
-  --   return vim.bo.fileencoding ~= ''
-  -- end,
+  condition = function()
+    return vim.bo.fileencoding ~= ''
+  end,
   provider = function()
     return vim.bo.fileencoding
   end,
 }
 
 M.format = {
-  -- condition = function()
-  --   return vim.bo.fileformat ~= ''
-  -- end,
+  condition = function()
+    return vim.bo.fileformat ~= ''
+  end,
   provider = function()
     return vim.bo.fileformat
   end,
 }
 
 M.type = {
-  -- condition = function()
-  --   return vim.bo.filetype ~= ''
-  -- end,
+  condition = function()
+    return vim.bo.filetype ~= ''
+  end,
   provider = function()
     return vim.bo.filetype
   end,
