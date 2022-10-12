@@ -42,7 +42,7 @@ Components:
 - [x] filename
 - [x] lspclients
 - [x] filetype
-- [ ] vimtex
+- [x] vimtex
 - [x] encoding
 - [x] fileformat
 - [x] searchcount

@@ -21,6 +21,14 @@ return {
     active = '$',
     inactive = '',
   },
+  vimtex = {
+    main = '',
+    sub_local = 'l',
+    sub_main = 'm',
+    viewer = 'v',
+    continuous = 'c',
+    compiled = 'c:',
+  },
   seperators = {
     vert = '│',
     left = '',

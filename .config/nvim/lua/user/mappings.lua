@@ -1,4 +1,5 @@
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
 
 -- Shortcutting split navigation:
 vim.keymap.set({ 'n', 'v' }, '<A-h>', '<C-w>h')

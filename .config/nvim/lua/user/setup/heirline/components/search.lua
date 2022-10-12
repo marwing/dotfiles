@@ -7,7 +7,6 @@ return {
       return
     end
 
-    ---@diagnostic disable-next-line: missing-parameter
     local query = vim.fn.getreg('/')
     if query == '' then
       return
