@@ -17,6 +17,10 @@ return {
     dos = '',
     mac = '',
   },
+  obsession = {
+    active = '$',
+    inactive = '',
+  },
   seperators = {
     vert = '│',
     left = '',

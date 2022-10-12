@@ -41,12 +41,12 @@ Components:
 - [x] diagnostics
 - [x] filename
 - [x] lspclients
-- [ ] filetype
+- [x] filetype
 - [ ] vimtex
-- [ ] encoding
-- [ ] fileformat
+- [x] encoding
+- [x] fileformat
 - [x] searchcount
-- [ ] obsession
+- [x] obsession
 - [ ] wordcount
 - [ ] fileprogress
 

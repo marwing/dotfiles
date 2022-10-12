@@ -203,7 +203,12 @@ require('packer').startup {
       cmd = 'StartupTime',
     }
     use { 'tpope/vim-repeat' } -- repeatable plugin actions
-    use { 'tpope/vim-obsession' } -- easier session management
+    use { -- easier session management
+      'tpope/vim-obsession',
+      config = function()
+        vim.g.obsession_no_bufenter = true
+      end,
+    }
     use {
       'antoinemadec/FixCursorHold.nvim',
       config = function()

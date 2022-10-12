@@ -6,10 +6,11 @@ local meta = require('user.setup.heirline.components.meta')
 local mode = require('user.setup.heirline.components.mode')
 local spell = require('user.setup.heirline.components.spell')
 local search = require('user.setup.heirline.components.search')
+local file = require('user.setup.heirline.components.file')
 local git = require('user.setup.heirline.components.git')
 local diagnostics = require('user.setup.heirline.components.diagnostics')
-local file = require('user.setup.heirline.components.file')
 local lsp = require('user.setup.heirline.components.lsp')
+local obsession = require('user.setup.heirline.components.obsession')
 local gps = require('user.setup.heirline.components.gps')
 
 local statusline = {
@@ -25,6 +26,7 @@ local statusline = {
   meta.align,
 
   he_utils.insert(lsp, meta.space),
+  meta.blocked(obsession),
   meta.blocked(file.type),
   meta.blocked(file.format),
   meta.blocked(file.enc),
