@@ -17,6 +17,8 @@ return {
     left = '',
     right = '',
     block = '█',
+    half_block_left = '▌',
+    half_block_right = '▐',
     left_filled = '',
     right_filled = '',
     slant_left = '',

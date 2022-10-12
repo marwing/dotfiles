@@ -25,10 +25,10 @@ local statusline = {
   meta.align,
 
   he_utils.insert(lsp, meta.space),
-  he_utils.insert(file.type, meta.space),
-  he_utils.insert(file.format, meta.space),
-  he_utils.insert(file.enc, meta.space),
-  he_utils.insert(file.position, meta.space),
+  meta.blocked(file.type),
+  meta.blocked(file.format),
+  meta.blocked(file.enc),
+  meta.blocked(file.position),
 }
 
 local winbar = {

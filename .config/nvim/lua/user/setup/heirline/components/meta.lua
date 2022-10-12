@@ -22,6 +22,10 @@ local meta = {
     left = icons.seperators.slant_left .. icons.seperators.block,
     right = icons.seperators.block,
   },
+  block = {
+    left = icons.seperators.half_block_right .. icons.seperators.block,
+    right = icons.seperators.block .. icons.seperators.half_block_left,
+  },
 }
 
 meta.slanted = function(component, color)
@@ -34,6 +38,10 @@ end
 
 meta.slanted_left = function(component, color)
   return utils.surround(component, meta.slant_left, color)
+end
+
+meta.blocked = function(component, color)
+  return utils.surround(component, meta.block, color)
 end
 
 return meta
