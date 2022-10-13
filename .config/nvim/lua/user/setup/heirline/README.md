@@ -47,7 +47,7 @@ Components:
 - [x] fileformat
 - [x] searchcount
 - [x] obsession
-- [ ] wordcount
+- [x] wordcount
 - [x] fileprogress
 
 Extensions:
