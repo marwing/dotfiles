@@ -48,7 +48,7 @@ Components:
 - [x] searchcount
 - [x] obsession
 - [ ] wordcount
-- [ ] fileprogress
+- [x] fileprogress
 
 Extensions:
 - [ ] fugitive
