@@ -26,4 +26,6 @@ M.notify_once = function(title, default_level)
   end
 end
 
+M.defer = require'user.utils.defer'
+
 return M
