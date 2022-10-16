@@ -57,6 +57,7 @@ bindsym $mod+space focus mode_toggle
 
 # Move focus to the parent container
 bindsym $mod+a focus parent
+bindsym $mod+CTRL+c focus child
 
 bindsym $mod+c move position center
 
@@ -107,6 +108,5 @@ mode "music control" {
     # back to normal: Enter or Escape or $mod+m
     bindsym Escape mode "default"
     bindsym Return mode "default"
-    bindsym $mod+m mode "default"
 }
 bindsym $mod+m mode "music control"

@@ -25,4 +25,5 @@ set $ws10 10
 
 set $locker swaylock -Ffc 00000088
 
-set $primary eDP-1
+set $primary 'Dell Inc. DELL P2719H C1W8NS2'
+set $secondary eDP-1

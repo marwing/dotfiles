@@ -13,8 +13,8 @@ input type:touchpad {
 input type:keyboard {
   repeat_delay 250
   xkb_layout de
-  # xkb_capslock disabled # currently crashes firefox (see: https://bugzilla.mozilla.org/show_bug.cgi?id=1652820)
-  # xkb_numlock enabled
+  xkb_capslock disabled
+  xkb_numlock enabled
   xkb_options caps:escape
 }
 
