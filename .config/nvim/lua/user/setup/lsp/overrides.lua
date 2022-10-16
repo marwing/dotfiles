@@ -45,7 +45,7 @@ local overrides = {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
 
     if pcall(require, 'cmp_nvim_lsp') then
-      capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
     end
 
     -- TODO: remove this when neovim supports multiple different client offset encodings per buffer

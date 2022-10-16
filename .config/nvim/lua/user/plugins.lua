@@ -114,10 +114,10 @@ require('packer').startup {
       end,
     }
     use {
-      'folke/lua-dev.nvim',
+      'folke/neodev.nvim',
       requires = 'neovim/nvim-lspconfig',
       config = function()
-        require('user.setup.lsp.lua-dev')
+        require('user.setup.lsp.neodev')
       end,
     }
     use {
