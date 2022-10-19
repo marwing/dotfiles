@@ -16,8 +16,6 @@ local vimtex = require('user.setup.heirline.components.vimtex')
 local gps = require('user.setup.heirline.components.gps')
 
 local statusline = {
-  hl = colors.default,
-
   meta.slanted_right(mode),
   meta.slanted(spell),
   meta.slanted(search),
@@ -38,8 +36,6 @@ local statusline = {
 }
 
 local winbar = {
-  hl = { fg = colors.gray },
-
   meta.space,
   file.short_file,
   gps,

@@ -4,7 +4,7 @@ local function condition()
   return vim.bo.filetype == 'neo-tree'
 end
 
-local TreeType = {
+local tree_type = {
   static = {
     type_map = setmetatable({
       filesystem = 'File Explorer',
@@ -37,7 +37,7 @@ local winbar = {
   condition = condition,
 
   meta.align,
-  TreeType,
+  tree_type,
   meta.align,
 }
 

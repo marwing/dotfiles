@@ -1,7 +1,7 @@
 local M = {}
 
 M.notify = function(title, default_level)
-  title = title or 'notify_once helper'
+  title = title or 'notify helper'
   default_level = default_level or vim.log.levels.WARN
 
   return function(msg, level, opts)
