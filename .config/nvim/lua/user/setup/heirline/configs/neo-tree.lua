@@ -1,4 +1,5 @@
 local meta = require('user.setup.heirline.components.meta')
+local colors = require('user.setup.heirline.colors')
 
 local function condition()
   return vim.bo.filetype == 'neo-tree'
@@ -35,6 +36,10 @@ local tree_type = {
 
 local winbar = {
   condition = condition,
+  hl = {
+    fg = colors.fg2,
+    bold = true,
+  },
 
   meta.align,
   tree_type,

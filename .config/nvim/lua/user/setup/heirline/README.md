@@ -1,7 +1,5 @@
 # Heirline Config
 
-This is a very WIP statusline config
-
 ## TODOs
 ### default statusline
 - [ ] Scrollbar
