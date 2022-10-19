@@ -6,6 +6,7 @@ local meta = require('user.setup.heirline.components.meta')
 local mode = require('user.setup.heirline.components.mode')
 local spell = require('user.setup.heirline.components.spell')
 local search = require('user.setup.heirline.components.search')
+local macro = require('user.setup.heirline.components.macro')
 local file = require('user.setup.heirline.components.file')
 local git = require('user.setup.heirline.components.git')
 local diagnostics = require('user.setup.heirline.components.diagnostics')
@@ -19,6 +20,7 @@ local statusline = {
   meta.slanted_right(mode),
   meta.slanted(spell),
   meta.slanted(search),
+  meta.slanted(macro),
   meta.slanted(file.short_file, colors.bg1),
   meta.slanted(git),
   diagnostics,
