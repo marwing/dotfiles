@@ -42,6 +42,7 @@ local config = setup {
   -- 'help',
   'vimcmake',
   'neo-tree',
+  'tagbar',
   'terminal',
   'special',
   'default',

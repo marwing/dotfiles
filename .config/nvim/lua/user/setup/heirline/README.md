@@ -63,7 +63,7 @@ let g:airline_extensions = ["branch", "fugitiveline", "hunks", "nvimlsp", "obses
 ```
 - [ ] fugitiveline
 - [ ] tabline
-- [ ] tagbar
+- [x] tagbar
 - [ ] term
 - [x] vimcmake
 - [ ] whitespace
