@@ -54,7 +54,7 @@ Extensions:
 - [ ] fugitive
 - [ ] neo-tree
 - [ ] quickfix
-- [ ] vimcmake
+- [x] vimcmake
 
 ### airline
 Implement everything useful from airline that I didn't get to implement in lualine
@@ -65,5 +65,5 @@ let g:airline_extensions = ["branch", "fugitiveline", "hunks", "nvimlsp", "obses
 - [ ] tabline
 - [ ] tagbar
 - [ ] term
-- [ ] vimcmake
+- [x] vimcmake
 - [ ] whitespace

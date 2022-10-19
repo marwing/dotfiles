@@ -40,6 +40,7 @@ end
 
 local config = setup {
   -- 'help',
+  'vimcmake',
   'neo-tree',
   'terminal',
   'special',
