@@ -52,7 +52,7 @@ Components:
 
 Extensions:
 - [ ] fugitive
-- [ ] neo-tree
+- [x] neo-tree
 - [ ] quickfix
 - [x] vimcmake
 
