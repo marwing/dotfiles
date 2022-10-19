@@ -12,6 +12,7 @@ local git = require('user.setup.heirline.components.git')
 local diagnostics = require('user.setup.heirline.components.diagnostics')
 local lsp = require('user.setup.heirline.components.lsp')
 local wordcount = require('user.setup.heirline.components.wordcount')
+local visual_lines = require('user.setup.heirline.components.visual_lines')
 local obsession = require('user.setup.heirline.components.obsession')
 local vimtex = require('user.setup.heirline.components.vimtex')
 local gps = require('user.setup.heirline.components.gps')
@@ -29,6 +30,7 @@ local statusline = {
 
   he_utils.insert(lsp, meta.space),
   meta.blocked(wordcount),
+  meta.blocked(visual_lines),
   meta.blocked(obsession),
   meta.blocked(vimtex),
   meta.blocked(file.type),

@@ -10,8 +10,8 @@ This is a very WIP statusline config
 - [ ] icon fileformat?
 - [ ] colored language servers
 - [ ] hide/shrink some components when space is tight (make_flexible_component, width_percent_below)
-- [ ] missing with cmdheight=0
-  - [ ] amount visual lines selected
+- [x] missing with cmdheight=0
+  - [x] amount visual lines selected
   - [x] macro recording
 
 ### other statuslines
