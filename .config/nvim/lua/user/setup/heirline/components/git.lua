@@ -23,7 +23,11 @@ local git = {
 
   { -- branch
     provider = function(self)
-      return icons.git.branch .. ' ' .. self.status_dict.head
+      local ret = icons.git.branch
+      if self.status_dict.head ~= '' then
+        ret = ret .. ' ' .. self.status_dict.head
+      end
+      return ret
     end,
     hl = {
       bold = true,
