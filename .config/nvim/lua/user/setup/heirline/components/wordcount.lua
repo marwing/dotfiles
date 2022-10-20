@@ -27,20 +27,7 @@ local get_visual_range = function()
   end
 end
 
-local static, update = utils.defer('wordcount_vimtex', {
-  events = {
-    bypass = { 'BufEnter', 'BufWritePost' },
-    defer = { 'CursorMoved', 'ModeChanged' },
-  },
-  callback = function(callback, args)
-    if inVisual() or string.match(args.match, '[vV\22]:.*') then
-      callback()
-    end
-  end,
-})
-
 local wc_vimtex = {
-  static = static,
   condition = function()
     return vim.b.vimtex ~= nil
   end,
@@ -50,7 +37,17 @@ local wc_vimtex = {
   provider = function(self)
     return tostring(self.count)
   end,
-  update = update,
+  update = utils.defer('wordcount_vimtex', {
+    events = {
+      bypass = { 'BufEnter', 'BufWritePost' },
+      defer = { 'CursorMoved', 'ModeChanged' },
+    },
+    callback = function(callback, args)
+      if inVisual() or string.match(args.match, '[vV\22]:.*') then
+        callback()
+      end
+    end,
+  }),
 }
 
 local wordcount = {

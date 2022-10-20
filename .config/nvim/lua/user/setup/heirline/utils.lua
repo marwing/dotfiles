@@ -138,6 +138,11 @@ local function defer_internal(opts)
   return data
 end
 
+--- create the necessary autocmds to defer component updates
+---@param name string a unique string used to identify this component
+---@param opts table
+---@return table update a table to be passed to the update key of a component
+---@return table static the data table containing autocmd ids etc for this component
 function M.defer(name, opts)
   local methods = setmetatable({
     dl = 'debounce_leading',
@@ -168,7 +173,7 @@ function M.defer(name, opts)
 
   local data = defer_internal(opts)
 
-  return { user_heirline_defer_data = data }, { 'User', pattern = opts.names.user_pattern }
+  return { 'User', pattern = opts.names.user_pattern }, { user_heirline_defer_data = data }
 end
 
 function M.defer_helper(component, name, opts)
