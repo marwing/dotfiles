@@ -1,18 +1,16 @@
-local M = {
-  -- keep track of supported clients attached to buffer
-  -- this makes it easier to check if any supported clients are available in detach logic
-  -- without having to go through all active clients and filtering them by buffer and supports_method
-  bufs = setmetatable({}, {
-    __index = function(table, key)
-      table[key] = {}
-      return table[key]
-    end,
-  }),
-}
+-- keep track of supported clients attached to buffer
+-- this makes it easier to check if any supported clients are available in detach logic
+-- without having to go through all active clients and filtering them by buffer and supports_method
+local bufs = setmetatable({}, {
+  __index = function(table, key)
+    table[key] = {}
+    return table[key]
+  end,
+})
 
-function M:on_attach(client, bufnr)
+local function on_attach(client, bufnr)
   if client.supports_method('textDocument/documentHighlight') then
-    table.insert(self.bufs[bufnr], client.id)
+    table.insert(bufs[bufnr], client.id)
     local group = vim.api.nvim_create_augroup('lsp_highlight_document_b_' .. tostring(bufnr), { clear = true })
 
     -- highlight
@@ -32,8 +30,8 @@ function M:on_attach(client, bufnr)
       group = group,
       buffer = bufnr,
       callback = function(args)
-        table.remove(self.bufs[args.buf], args.data.client_id)
-        if #self.bufs[args.buf] < 1 then
+        table.remove(bufs[args.buf], args.data.client_id)
+        if #bufs[args.buf] < 1 then
           -- make sure there are no stale highlights sitting in the buffer that would otherwise never be removed
           vim.lsp.buf.clear_references()
           vim.api.nvim_del_augroup_by_id(group)
@@ -43,4 +41,6 @@ function M:on_attach(client, bufnr)
   end
 end
 
-return M
+return {
+  on_attach = on_attach,
+}
