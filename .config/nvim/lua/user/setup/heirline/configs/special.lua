@@ -2,7 +2,7 @@ local conditions = require('heirline.conditions')
 
 local utils = require('user.setup.heirline.utils')
 
-local file = require('user.setup.heirline.components.file')
+-- local file = require('user.setup.heirline.components.file')
 
 local function condition()
   return conditions.buffer_matches {
@@ -19,10 +19,10 @@ local function condition()
   }
 end
 
-local statusline = {
-  condition = condition,
-  file.type,
-}
+-- local statusline = {
+--   condition = condition,
+--   file.type,
+-- }
 
 return {
   -- statusline = statusline,

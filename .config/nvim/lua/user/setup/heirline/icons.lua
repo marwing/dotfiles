@@ -12,7 +12,7 @@ return {
     info = '',
     hint = '',
   },
-  enc = {
+  format = {
     unix = '',
     dos = '',
     mac = '',

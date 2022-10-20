@@ -1,7 +1,6 @@
 local utils = require('heirline.utils')
 
 local colors = require('user.setup.heirline.colors')
-local icons = require('user.setup.heirline.icons')
 
 local meta = require('user.setup.heirline.components.meta')
 
@@ -86,7 +85,6 @@ M.format = {
     return vim.bo.fileformat ~= ''
   end,
   provider = function()
-    -- return icons.enc[vim.bo.fileformat]
     return vim.bo.fileformat
   end,
 }
