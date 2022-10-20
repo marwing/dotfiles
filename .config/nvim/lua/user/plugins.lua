@@ -227,7 +227,7 @@ require('packer').startup {
       'mhinz/vim-startify',
       requires = 'kyazdani42/nvim-web-devicons',
       setup = function()
-        require('user.setup.startify')
+        require('user.setup.startify').setup()
       end,
     }
     use { 'editorconfig/editorconfig-vim' } -- support for editorconfig files
