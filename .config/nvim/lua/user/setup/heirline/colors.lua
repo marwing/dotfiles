@@ -1,5 +1,4 @@
-local utils = require('heirline.utils')
-local h = utils.get_highlight
+local h = require('heirline.utils').get_highlight
 
 local base = {
   bg0 = h('GruvboxBg0').fg, -- black

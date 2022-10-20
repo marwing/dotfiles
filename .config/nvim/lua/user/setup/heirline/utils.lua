@@ -1,4 +1,5 @@
 local he_utils = require('heirline.utils')
+
 local colors = require('user.setup.heirline.colors')
 
 local M = {}

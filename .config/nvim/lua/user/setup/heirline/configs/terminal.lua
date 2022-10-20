@@ -1,10 +1,11 @@
 local conditions = require('heirline.conditions')
 local utils = require('heirline.utils')
-local devicons = require('nvim-web-devicons')
 
 local meta = require('user.setup.heirline.components.meta')
-local file = require('user.setup.heirline.components.file')
 local mode = require('user.setup.heirline.components.mode')
+local file = require('user.setup.heirline.components.file')
+
+local devicons = require('nvim-web-devicons')
 
 local function condition()
   return conditions.buffer_matches {

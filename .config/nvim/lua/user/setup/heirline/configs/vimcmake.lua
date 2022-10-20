@@ -1,8 +1,8 @@
+local meta = require('user.setup.heirline.components.meta')
+
 local function condition()
   return vim.bo.filetype == 'vimcmake'
 end
-
-local meta = require('user.setup.heirline.components.meta')
 
 local cmake_config = {
   provider = function (self)

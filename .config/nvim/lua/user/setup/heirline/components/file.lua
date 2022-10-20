@@ -1,10 +1,11 @@
 local utils = require('heirline.utils')
 
-local devicons = require('nvim-web-devicons')
-
 local colors = require('user.setup.heirline.colors')
 local icons = require('user.setup.heirline.icons')
+
 local meta = require('user.setup.heirline.components.meta')
+
+local devicons = require('nvim-web-devicons')
 
 local M = {}
 

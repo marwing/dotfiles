@@ -1,4 +1,5 @@
 local conditions = require('heirline.conditions')
+
 local colors = require('user.setup.heirline.colors')
 local icons = require('user.setup.heirline.icons')
 

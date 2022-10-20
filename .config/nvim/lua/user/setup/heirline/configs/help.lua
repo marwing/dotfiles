@@ -1,9 +1,9 @@
+local meta = require('user.setup.heirline.components.meta')
+local file = require('user.setup.heirline.components.file')
+
 local function condition()
   return vim.bo.buftype == 'help'
 end
-
-local meta = require('user.setup.heirline.components.meta')
-local file = require('user.setup.heirline.components.file')
 
 local statusline = {
   condition = condition,

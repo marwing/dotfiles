@@ -1,4 +1,5 @@
 local conditions = require('heirline.conditions')
+
 local utils = require('user.utils')
 
 -- TODO: don't recompute when buffer not modifiable or readonly

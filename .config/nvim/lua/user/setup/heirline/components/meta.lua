@@ -1,5 +1,5 @@
-local icons = require('user.setup.heirline.icons')
 local utils = require('user.setup.heirline.utils')
+local icons = require('user.setup.heirline.icons')
 
 local meta = {
   align = { provider = '%=' },

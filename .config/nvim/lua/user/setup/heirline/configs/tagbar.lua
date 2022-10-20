@@ -1,5 +1,6 @@
-local meta = require('user.setup.heirline.components.meta')
 local colors = require('user.setup.heirline.colors')
+
+local meta = require('user.setup.heirline.components.meta')
 
 local function condition()
   return vim.bo.filetype == 'tagbar'
