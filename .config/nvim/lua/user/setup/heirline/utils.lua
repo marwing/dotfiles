@@ -1,5 +1,7 @@
 local he_utils = require('heirline.utils')
 
+local utils = require('user.utils')
+
 local colors = require('user.setup.heirline.colors')
 
 local M = {}
@@ -98,6 +100,84 @@ function M.disable_winbar(cond)
       end, 50)
     end,
   }
+end
+
+local function defer_internal(opts)
+  local data = { cmd = {} }
+
+  data.new_init, data.timer = utils.defer[opts.method](function()
+    vim.api.nvim_exec_autocmds('User', { pattern = opts.names.user_pattern })
+  end, opts.ms)
+
+  data.group = vim.api.nvim_create_augroup(opts.names.group, { clear = true })
+  data.cmd.enter = vim.api.nvim_create_autocmd(opts.events.bypass, {
+    group = data.group,
+    callback = function()
+      vim.api.nvim_exec_autocmds('User', { pattern = opts.names.user_pattern })
+    end,
+  })
+  data.cmd.update = vim.api.nvim_create_autocmd(opts.events.defer, {
+    group = data.group,
+    callback = function(args)
+      if opts.callback then
+        opts.callback(data.new_init, args)
+      else
+        data.new_init()
+      end
+    end,
+  })
+  -- cleanup
+  data.cmd.cleanup = vim.api.nvim_create_autocmd('VimLeave', {
+    group = data.group,
+    callback = function()
+      data.timer:stop()
+      data.timer:close()
+    end,
+  })
+
+  return data
+end
+
+function M.defer(name, opts)
+  local methods = setmetatable({
+    dl = 'debounce_leading',
+    dt = 'debounce_trailing',
+    tl = 'throttle_leading',
+    tt = 'throttle_trailing',
+  }, {
+    __index = function(_, key)
+      M.notify_once('utils.defer: tried to defer using unknown method: ' .. key)
+    end,
+  })
+
+  local default_opts = {
+    method = 'dt',
+    ms = 500,
+    events = {
+      bypass = {},
+      defer = {},
+    },
+    callback = nil,
+  }
+  opts = vim.tbl_deep_extend('force', default_opts, opts or {})
+  opts.method = methods[opts.method]
+
+  opts.names = {}
+  opts.names.user_pattern = 'user_heirline_update_' .. name
+  opts.names.group = opts.names.user_pattern .. '_group'
+
+  local data = defer_internal(opts)
+
+  return { user_heirline_defer_data = data }, { 'User', pattern = opts.names.user_pattern }
+end
+
+function M.defer_helper(component, name, opts)
+  vim.validate { component = { component, 'table' } }
+
+  local static, update = M.defer(name, opts)
+  component = he_utils.clone(component, { static = static })
+  component.update = update
+  return component
 end
 
 return M

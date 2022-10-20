@@ -1,6 +1,6 @@
 local conditions = require('heirline.conditions')
 
-local utils = require('user.utils')
+local utils = require('user.setup.heirline.utils')
 
 -- TODO: don't recompute when buffer not modifiable or readonly
 
@@ -15,37 +15,6 @@ local wc_vim = {
   end,
 }
 
-local wc_vimtex_data = { cmd = {} }
-
-wc_vimtex_data.debounced_init, wc_vimtex_data.timer = utils.defer.debounce_trailing(function()
-  vim.api.nvim_exec_autocmds('User', { pattern = 'user_heirline_update_wordcount_vimtex' })
-end, 500)
-
-wc_vimtex_data.group = vim.api.nvim_create_augroup('user_heirline_update_wordcount_vimtex_group', { clear = true })
-wc_vimtex_data.cmd.enter = vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
-  group = wc_vimtex_data.group,
-  callback = function()
-    vim.api.nvim_exec_autocmds('User', { pattern = 'user_heirline_update_wordcount_vimtex' })
-  end,
-})
--- Visual
-wc_vimtex_data.cmd.update = vim.api.nvim_create_autocmd({ 'CursorMoved', 'ModeChanged' }, {
-  group = wc_vimtex_data.group,
-  callback = function(args)
-    if inVisual() or string.match(args.match, '[vV\22]:.*') then
-      wc_vimtex_data.debounced_init()
-    end
-  end,
-})
--- cleanup
-wc_vimtex_data.cmd.cleanup = vim.api.nvim_create_autocmd('VimLeave', {
-  group = wc_vimtex_data.group,
-  callback = function()
-    wc_vimtex_data.timer:stop()
-    wc_vimtex_data.timer:close()
-  end,
-})
-
 local get_visual_range = function()
   if inVisual() then
     local vis = vim.fn.line('v')
@@ -58,8 +27,20 @@ local get_visual_range = function()
   end
 end
 
+local static, update = utils.defer('wordcount_vimtex', {
+  events = {
+    bypass = { 'BufEnter', 'BufWritePost' },
+    defer = { 'CursorMoved', 'ModeChanged' },
+  },
+  callback = function(callback, args)
+    if inVisual() or string.match(args.match, '[vV\22]:.*') then
+      callback()
+    end
+  end,
+})
+
 local wc_vimtex = {
-  static = vim.tbl_extend('error', wc_vimtex_data, { cache = {} }),
+  static = static,
   condition = function()
     return vim.b.vimtex ~= nil
   end,
@@ -69,7 +50,7 @@ local wc_vimtex = {
   provider = function(self)
     return tostring(self.count)
   end,
-  update = { 'User', pattern = 'user_heirline_update_wordcount_vimtex' },
+  update = update,
 }
 
 local wordcount = {
