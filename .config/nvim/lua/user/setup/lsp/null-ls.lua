@@ -16,6 +16,11 @@ null_ls.setup {
 
     -- lua
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.diagnostics.selene,
+    null_ls.builtins.diagnostics.selene.with {
+      cwd = function()
+        -- falls back to cwd if return is nil
+        return vim.fs.dirname(vim.fs.find('selene.toml', { upward = true, path = vim.api.nvim_buf_get_name(0) })[1])
+      end,
+    },
   },
 }
