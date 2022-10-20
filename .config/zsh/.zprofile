@@ -46,7 +46,7 @@ export MAKEFLAGS=-j$(($(nproc) + 2))
 if (( $+commands[ccache] )); then
     for lang in "C" "CXX"; do
         export CMAKE_${lang}_COMPILER_LAUNCHER="ccache"
-        export ${lang}FLAGS="${${(P)lang}FLAGS} -fdiagnostics-color=always"
+        export CMAKE_COLOR_DIAGNOSTICS=ON
     done
 fi
 
