@@ -210,13 +210,6 @@ require('packer').startup {
       end,
     }
     use {
-      'antoinemadec/FixCursorHold.nvim',
-      config = function()
-        -- How fast some features update (some airline plugins, tagbar, ...)
-        vim.g.cursorhold_updatetime = 300
-      end,
-    }
-    use {
       'gaoDean/autolist.nvim',
       config = function()
         require('autolist').setup {}

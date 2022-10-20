@@ -44,6 +44,8 @@ vim.o.termguicolors = vim.env.COLORTERM == 'truecolor'
 -- keep some paths out of shada file
 vim.opt.shada:append { 'r/mnt', 'r/run/media', 'r/run/user', 'r/tmp' }
 
+vim.o.updatetime = 300
+
 -- don't insert comments around comments with o/O
 -- the autocmd is necessary because some ftplugins override this
 vim.api.nvim_create_autocmd('FileType', {
