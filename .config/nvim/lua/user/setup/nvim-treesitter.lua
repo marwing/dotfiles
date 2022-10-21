@@ -1,8 +1,36 @@
 require('nvim-treesitter.configs').setup {
-  ensure_installed = 'all',
+  ensure_installed = {
+    -- neovim languages
+    'c',
+    'lua',
+    'vim',
+    'help',
+
+    -- other languages I use regularly
+    'bash',
+    'cmake',
+    'cpp',
+    'python',
+
+    -- markup
+    'latex',
+    'bibtex',
+    'markdown',
+    'markdown_inline',
+
+    -- data formats
+    'json',
+    'toml',
+    'yaml',
+
+    -- injection only
+    'regex',
+    'comment',
+  },
+  auto_install = true,
   highlight = {
     enable = true,
-    disable = { 'cmake', 'vim', 'latex' },
+    disable = { 'latex', 'diff' },
     additional_vim_regex_highlighting = false,
   },
   textobjects = {
