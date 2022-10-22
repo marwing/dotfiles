@@ -233,6 +233,12 @@ require('packer').startup {
       end,
     }
     use {
+      'akinsho/toggleterm.nvim',
+      config = function()
+        require('user.setup.toggleterm')
+      end,
+    }
+    use {
       'norcalli/nvim-colorizer.lua',
       config = function()
         require('colorizer').setup({}, {
