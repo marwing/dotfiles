@@ -26,6 +26,17 @@ M.notify_once = function(title, default_level)
   end
 end
 
-M.defer = require'user.utils.defer'
+M.defer = require('user.utils.defer')
+
+M.keymap = function(prefix, mode)
+  vim.validate {
+    prefix = { prefix, 's' },
+  }
+
+  return function(lhs, rhs, opts)
+    opts = opts or {}
+    vim.keymap.set(opts.mode or mode, prefix .. lhs, rhs, opts)
+  end
+end
 
 return M

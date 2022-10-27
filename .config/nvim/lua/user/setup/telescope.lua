@@ -1,26 +1,14 @@
-return {
-  config = function()
-    local telescope = require('telescope')
+local telescope = require('telescope')
+telescope.load_extension('fzf')
+telescope.load_extension('lsp_handlers')
+telescope.load_extension('notify')
 
-    telescope.load_extension('fzf')
-    telescope.load_extension('lsp_handlers')
-    telescope.load_extension('notify')
-  end,
-  setup = function()
-    vim.keymap.set('n', '<leader>fb', function()
-      require('telescope.builtin').builtin()
-    end, { desc = 'Telescope builtin' })
-    vim.keymap.set('n', '<leader>fr', function()
-      require('telescope.builtin').resume()
-    end, { desc = 'Telescope resume' })
-    vim.keymap.set('n', '<leader>ff', function()
-      require('telescope.builtin').find_files()
-    end, { desc = 'Telescope find_files' })
-    vim.keymap.set('n', '<leader>fl', function()
-      require('telescope.builtin').buffers { sort_lastused = true }
-    end, { desc = 'Telescope buffers' })
-    vim.keymap.set('n', '<leader>fg', function()
-      require('telescope.builtin').live_grep()
-    end, { desc = 'Telescope live_grep' })
-  end,
-}
+local map = require('user.utils').keymap('<leader>f', 'n')
+local tb = require('telescope.builtin')
+map('b', tb.builtin, { desc = 'Telescope builtin' })
+map('r', tb.resume, { desc = 'Telescope resume' })
+map('f', tb.find_files, { desc = 'Telescope find_files' })
+map('l', function()
+  tb.buffers { sort_lastused = true }
+end, { desc = 'Telescope buffers' })
+map('g', tb.live_grep, { desc = 'Telescope live_grep' })

@@ -186,14 +186,8 @@ require('packer').startup {
         'gbrlsnchs/telescope-lsp-handlers.nvim',
       },
       config = function()
-        require('user.setup.telescope').config()
+        require('user.setup.telescope')
       end,
-      setup = function()
-        require('user.setup.telescope').setup()
-      end,
-      -- Figure out how to lazy load telescope and still use lsp_handlers
-      -- cmd = 'Telescope',
-      -- module = 'telescope',
     }
 
     -- misc

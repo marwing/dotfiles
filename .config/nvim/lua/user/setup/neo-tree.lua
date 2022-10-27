@@ -14,8 +14,9 @@ return {
   setup = function()
     vim.g.neo_tree_remove_legacy_commands = true
 
-    vim.keymap.set('n', '<leader>tf', '<cmd>Neotree toggle filesystem show reveal<CR>')
-    vim.keymap.set('n', '<leader>tb', '<cmd>Neotree toggle buffers show right<CR>')
-    vim.keymap.set('n', '<leader>tg', '<cmd>Neotree toggle git_status float<CR>')
+    local map = require('user.utils').keymap('<leader>t', 'n')
+    map('f', '<cmd>Neotree toggle filesystem show reveal<CR>')
+    map('b', '<cmd>Neotree toggle buffers show right<CR>')
+    map('g', '<cmd>Neotree toggle git_status float<CR>')
   end,
 }
