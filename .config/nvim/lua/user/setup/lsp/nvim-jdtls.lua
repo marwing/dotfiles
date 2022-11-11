@@ -24,7 +24,24 @@ local function on_ft()
     -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
     -- for a list of options
     settings = {
-      java = {},
+      java = {
+        configuration = {
+          runtimes = {
+            {
+              name = 'JavaSE-1.8',
+              path = '/usr/lib/jvm/java-8-openjdk',
+            },
+            {
+              name = 'JavaSE-11',
+              path = '/usr/lib/jvm/java-11-openjdk',
+            },
+            {
+              name = 'JavaSE-17',
+              path = '/usr/lib/jvm/java-17-openjdk',
+            },
+          },
+        },
+      },
     },
 
     -- Language server `initializationOptions`
