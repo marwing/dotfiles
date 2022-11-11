@@ -1,9 +1,7 @@
 local conditions = require('heirline.conditions')
 
-local lspclients = {
-  condition = conditions.lsp_attached,
+local long = {
   update = { 'LspAttach', 'LspDetach' },
-
   provider = function()
     local names = {}
     -- TODO: Retry {bufnr = 0}, requires new update autocmd (e.g. BufSwitched)
@@ -13,6 +11,18 @@ local lspclients = {
     end
     return '[' .. table.concat(names, ', ') .. ']'
   end,
+}
+
+local short = {
+  provider = '[LSP]',
+}
+
+local lspclients = {
+  condition = conditions.lsp_attached,
+
+  flexible = 0,
+  long,
+  short,
 
   on_click = {
     callback = function()

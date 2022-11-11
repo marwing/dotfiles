@@ -22,7 +22,11 @@ local statusline = {
   meta.slanted(spell),
   meta.slanted(search),
   meta.slanted(macro),
-  meta.slanted(file.short_file, colors.bg1),
+  {
+    flexible = 1,
+    meta.slanted(file.file, colors.bg1),
+    {},
+  },
   meta.slanted(git),
   diagnostics,
 
@@ -41,7 +45,7 @@ local statusline = {
 
 local winbar = {
   meta.space,
-  file.short_file,
+  file.file,
   gps,
 
   meta.align,

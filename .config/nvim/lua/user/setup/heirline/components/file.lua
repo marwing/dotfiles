@@ -22,23 +22,6 @@ M.file_icon = {
 }
 
 M.file_name = {
-  -- provider = function(self)
-  --   if self.filename == '' then
-  --     return '[No Name]'
-  --   end
-
-  --   local filename = vim.fn.fnamemodify(self.filename, ':~:.')
-
-  --   if not conditions.width_percent_below(#filename, 0.25) then
-  --     filename = vim.fn.pathshorten(filename)
-  --   end
-
-  --   return filename
-  -- end,
-  provider = '%f',
-}
-
-M.short_file_name = {
   provider = '%t',
 }
 
@@ -60,15 +43,9 @@ M.file_base = {
   end,
 }
 
-M.long_file = utils.insert(M.file_base, {
+M.file = utils.insert(M.file_base, {
   utils.insert(M.file_icon, meta.space),
   M.file_name,
-  M.file_flags,
-})
-
-M.short_file = utils.insert(M.file_base, {
-  utils.insert(M.file_icon, meta.space),
-  M.short_file_name,
 })
 
 M.enc = {

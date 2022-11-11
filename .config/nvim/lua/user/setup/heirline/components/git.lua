@@ -15,12 +15,7 @@ local function git_diff_component(s)
   }
 end
 
-local git = {
-  condition = conditions.is_git_repo,
-  init = function(self)
-    self.status_dict = vim.b.gitsigns_status_dict
-  end,
-
+local long = {
   { -- branch
     provider = function(self)
       local ret = icons.git.branch
@@ -36,6 +31,29 @@ local git = {
   git_diff_component('added'),
   git_diff_component('changed'),
   git_diff_component('removed'),
+}
+
+local short = {
+  {
+    provider = icons.git.branch,
+    hl = {
+      bold = true,
+    },
+  },
+  git_diff_component('added'),
+  git_diff_component('changed'),
+  git_diff_component('removed'),
+}
+
+local git = {
+  condition = conditions.is_git_repo,
+  init = function(self)
+    self.status_dict = vim.b.gitsigns_status_dict
+  end,
+
+  flexible = 2,
+  long,
+  short,
 }
 
 return git
