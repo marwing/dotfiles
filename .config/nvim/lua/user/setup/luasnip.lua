@@ -19,8 +19,8 @@ require('luasnip.loaders.from_snipmate').lazy_load()
 require('luasnip.loaders').load_lazy_loaded { 'all' }
 
 vim.keymap.set({ 'i', 's' }, '<C-k>', function()
-  if ls.expand_or_jumpable() then
-    ls.expand_or_jump()
+  if ls.jumpable(1) then
+    ls.jump(1)
   end
 end)
 
