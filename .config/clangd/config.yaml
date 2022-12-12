@@ -1,9 +1,0 @@
-Diagnostics:
-  UnusedIncludes: Strict
----
-If:
-  PathMatch: /home/marwin/Workspace/03_thirdparty/llvm-project/.*
-Index:
-  External:
-    Server: clangd-index.llvm.org:5900
-    MountPoint: /home/marwin/Workspace/03_thirdparty/llvm-project/

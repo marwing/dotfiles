@@ -10,9 +10,3 @@
 [submodule ".config/zsh/.omz_custom/plugins/zsh-syntax-highlighting"]
 	path = .config/zsh/.omz_custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule ".config/tmux/plugins/tmux-1password"]
-	path = .config/tmux/plugins/tmux-1password
-	url = https://github.com/yardnsm/tmux-1password.git
-[submodule ".config/ranger/plugins/ranger_devicons"]
-	path = .config/ranger/plugins/ranger_devicons
-	url = https://github.com/alexanderjeurissen/ranger_devicons.git

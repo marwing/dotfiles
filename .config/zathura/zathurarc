@@ -1,6 +1,0 @@
-# shorter names
-set window-title-basename true
-set statusbar-home-tilde true
-
-set incremental-search true
-set highlight-transparency 0.2
