@@ -7,11 +7,11 @@ focus_follows_mouse no
 # xwayland disable
 
 # Setup GTK-3 theme as it doesn't read XDG_CONFIG_HOME/gtk-3.0/settings.ini under wayland
-set $gnome-schema org.gnome.desktop.interface
 exec_always {
-  gsettings set $gnome-schema gtk-theme 'Adapta-Nokto-Eta'
-  # gsettings set $gnome-schema icon-theme 'Adwaita'
-  # gsettings set $gnome-schema cursor-theme 'Adwaita'
+  gsettings set org.gnome.desktop.interface gtk-theme 'Adapta-Nokto-Eta'
+  # gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
+  # gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 }
 
 include output
