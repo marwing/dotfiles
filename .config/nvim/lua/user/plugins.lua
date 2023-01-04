@@ -217,7 +217,6 @@ require('packer').startup {
         require('user.setup.startify').setup()
       end,
     }
-    use { 'editorconfig/editorconfig-vim' } -- support for editorconfig files
     use { 'tpope/vim-sleuth' } -- heuristically set buffer options
     use { 'tpope/vim-surround' } -- surrounding text
     use {
