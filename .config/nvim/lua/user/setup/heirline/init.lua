@@ -48,7 +48,7 @@ local config = setup {
   'default',
 }
 
-require('heirline').setup(config.statusline, config.winbar, config.tabline)
+require('heirline').setup(config)
 vim.opt.laststatus = 3
 
 return {
