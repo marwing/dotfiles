@@ -23,7 +23,7 @@ local overrides = {
     set('<A-S-f>', function()
       vim.lsp.buf.format {
         filter = function(client)
-          return client.name ~= 'sumneko_lua' -- null-ls stylua formats lua code
+          return client.name ~= 'lua_ls' -- null-ls stylua formats lua code
         end,
       }
     end, nil, { 'n', 'v' })
