@@ -12,7 +12,9 @@ local gps = {
 }
 
 local navic = {
-  condition = nvim_navic.is_available,
+  condition = function()
+    nvim_navic.is_available()
+  end,
   provider = function()
     local location = nvim_navic.get_location()
     if #location > 0 then
