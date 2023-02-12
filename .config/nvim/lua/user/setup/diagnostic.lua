@@ -4,12 +4,6 @@ vim.diagnostic.config {
   virtual_text = { source = 'always' },
   float = {
     source = 'always',
-    format = function(diagnostic)
-      if diagnostic.code then
-        return diagnostic.message .. ' [' .. diagnostic.code .. ']'
-      end
-      return diagnostic.message
-    end,
   },
 }
 
