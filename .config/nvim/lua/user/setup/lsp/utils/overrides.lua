@@ -43,7 +43,7 @@ local overrides = {
     set('<F12>', '<cmd>ClangdSwitchSourceHeader<CR>', 'clangd')
 
     -- plugin hooks
-    require('user.setup.lsp.document_highlight').on_attach(client, bufnr)
+    require('user.setup.lsp.utils.document_highlight').on_attach(client, bufnr)
 
     if client.supports_method('textDocument/documentSymbol') then
       require('nvim-navic').attach(client, bufnr)

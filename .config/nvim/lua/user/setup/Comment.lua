@@ -1,3 +1,9 @@
-require('Comment').setup {
-  ignore = '^$',
+return {
+  'numToStr/Comment.nvim',
+  opts = {
+    ignore = '^$',
+  },
+  keys = {
+    { 'gc', mode = { 'n', 'x' } },
+  },
 }

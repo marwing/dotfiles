@@ -6,7 +6,7 @@ local function on_ft()
   local data_dir = workspace_root .. vim.fn.fnamemodify(root_dir, ':p:h:t')
 
   -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
-  local config = require('user.setup.lsp.overrides').default_params {
+  local config = require('user.setup.lsp.utils.overrides').default_params {
     -- The command that starts the language server
     -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
     cmd = {
@@ -71,9 +71,15 @@ local function on_ft()
   require('jdtls').start_or_attach(config)
 end
 
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('user_jdtls', { clear = true }),
-  pattern = 'java',
-  callback = on_ft,
-  desc = 'Setup jdtls for current buffer',
-})
+return {
+  'mfussenegger/nvim-jdtls',
+  config = function()
+    vim.api.nvim_create_autocmd('FileType', {
+      group = vim.api.nvim_create_augroup('user_jdtls', { clear = true }),
+      pattern = 'java',
+      callback = on_ft,
+      desc = 'Setup jdtls for current buffer',
+    })
+  end,
+  ft = 'java',
+}

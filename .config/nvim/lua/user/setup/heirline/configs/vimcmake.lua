@@ -7,20 +7,20 @@ local function condition()
 end
 
 local cmake_config = {
-  provider = function (self)
+  provider = function(self)
     return self.data.config
-  end
+  end,
 }
 
 local cmake_status = {
-  provider = function (self)
+  provider = function(self)
     return self.data.status
-  end
+  end,
 }
 
 local winbar = {
   condition = condition,
-  init = function (self)
+  init = function(self)
     self.data = vim.fn['cmake#GetInfo']()
   end,
   meta.slanted_right(cmake_config),

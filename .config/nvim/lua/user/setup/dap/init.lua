@@ -1,35 +1,39 @@
-local map = require('user.utils').keymap('<leader>d', 'n')
+local function config()
+  local dap = require('dap')
+  local dapui = require('dapui')
 
-local dap = require('dap')
-local dapui = require('dapui')
+  dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+  dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+  dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-dapui.setup {
-  controls = {
-    enabled = false, -- don't override winbar
-  },
-}
+  -- signs
+  vim.fn.sign_define('DapBreakpoint', { text = '●', texthl = 'GruvboxRedSign' })
 
-dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-dap.listeners.before.event_exited['dapui_config'] = dapui.close
-
-local function set_conditional_breakpoint()
-  dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+  -- adapters/configs
+  require('user.setup.dap.lldb')
 end
 
--- keymaps
-map('l', dap.run_last)
-map('b', dap.toggle_breakpoint)
-map('B', set_conditional_breakpoint)
-map('R', dap.clear_breakpoints)
-map('c', dap.continue)
-map('C', dap.run_to_cursor)
-map('si', dap.step_into)
-map('so', dap.step_over)
-map('sO', dap.step_out)
-
--- signs
-vim.fn.sign_define('DapBreakpoint', { text = '●', texthl = 'GruvboxRedSign' })
-
--- adapters/configs
-require('user.setup.dap.lldb')
+return {
+  'mfussenegger/nvim-dap',
+  dependencies = {
+    'rcarriga/nvim-dap-ui',
+    opts = {
+      controls = {
+        enabled = false, -- don't override winbar
+      },
+    },
+  },
+  config = config,
+  -- stylua: ignore
+  keys = {
+    { '<leader>dl', function() require('dap').run_last() end },
+    { '<leader>db', function() require('dap').toggle_breakpoint() end },
+    { '<leader>dB', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end },
+    { '<leader>dR', function() require('dap').clear_breakpoints() end },
+    { '<leader>dc', function() require('dap').continue() end },
+    { '<leader>dC', function() require('dap').run_to_cursor() end },
+    { '<leader>dsi', function() require('dap').step_into() end },
+    { '<leader>dso', function() require('dap').step_over() end },
+    { '<leader>dsO', function() require('dap').step_out() end },
+  },
+}

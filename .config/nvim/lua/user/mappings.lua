@@ -13,7 +13,3 @@ vim.keymap.set('n', '<leader>m', '<cmd>tabnext<cr>')
 
 -- escaping from :terminal
 vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]])
-
----------------- Plugins ----------------
--- tagbar
-vim.keymap.set('n', '<leader>o', '<cmd>TagbarToggle<CR>')
