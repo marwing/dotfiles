@@ -1,18 +1,7 @@
 return {
-  -- syntax
-  { 'HerringtonDarkholme/yats.vim' },
-  { 'MaxMEllon/vim-jsx-pretty' },
   {
     'terminalnode/sway-vim-syntax',
     ft = 'swayconfig',
-  },
-  {
-    'tpope/vim-fugitive',
-    dependencies = {
-      'tpope/vim-rhubarb',
-      'shumphrey/fugitive-gitlab.vim',
-    },
-    event = 'VeryLazy',
   },
   { 'rhysd/committia.vim' },
   {
@@ -43,7 +32,6 @@ return {
       { 'ga', '<Plug>(EasyAlign)', mode = { 'n', 'x' } },
     },
   },
-  { 'tpope/vim-sleuth' },
   {
     'tpope/vim-surround',
     event = 'VeryLazy',
@@ -56,12 +44,6 @@ return {
       })
     end,
     cmd = { 'ColorizerToggle', 'ColorizerAttachToBuffer' },
-  },
-  {
-    'folke/todo-comments.nvim',
-    dependencies = 'nvim-lua/plenary.nvim',
-    config = true,
-    event = 'VeryLazy',
   },
   {
     'dhruvasagar/vim-table-mode',
