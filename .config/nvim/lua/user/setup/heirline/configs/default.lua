@@ -1,42 +1,29 @@
 local utils = require('user.setup.heirline.utils')
-
 local colors = require('user.setup.heirline.colors')
 
-local meta = require('user.setup.heirline.components.meta')
-local mode = require('user.setup.heirline.components.mode')
-local spell = require('user.setup.heirline.components.spell')
-local search = require('user.setup.heirline.components.search')
-local macro = require('user.setup.heirline.components.macro')
-local file = require('user.setup.heirline.components.file')
-local git = require('user.setup.heirline.components.git')
-local diagnostics = require('user.setup.heirline.components.diagnostics')
-local lsp = require('user.setup.heirline.components.lsp')
-local wordcount = require('user.setup.heirline.components.wordcount')
-local visual_lines = require('user.setup.heirline.components.visual_lines')
-local obsession = require('user.setup.heirline.components.obsession')
-local vimtex = require('user.setup.heirline.components.vimtex')
-local gps = require('user.setup.heirline.components.gps')
+local meta = utils.component('meta')
+local file = utils.component('file')
 
 local statusline = {
-  meta.slanted_right(mode),
-  meta.slanted(spell),
-  meta.slanted(search),
-  meta.slanted(macro),
+  meta.slanted_right('mode'),
+  meta.slanted('spell'),
+  meta.slanted('search'),
+  meta.slanted('macro'),
   {
     flexible = 1,
     meta.slanted(file.file, colors.bg1),
     {},
   },
-  meta.slanted(git),
-  diagnostics,
+  meta.slanted('git'),
+  utils.component('diagnostics'),
 
   meta.align,
 
-  utils.surround(lsp, ' ', false),
-  meta.blocked(wordcount),
-  meta.blocked(visual_lines),
-  meta.blocked(obsession),
-  meta.blocked(vimtex),
+  utils.surround('lsp', ' ', false),
+  meta.blocked('wordcount'),
+  meta.blocked('visual_lines'),
+  meta.blocked('obsession'),
+  meta.blocked('vimtex'),
   meta.blocked(file.type),
   meta.blocked(file.format),
   meta.blocked(file.enc),
@@ -46,12 +33,12 @@ local statusline = {
 local winbar = {
   meta.space,
   file.file,
-  gps,
+  utils.component('gps'),
 
   meta.align,
 
-  require('user.setup.heirline.components.dap'),
-  diagnostics,
+  utils.component('dap'),
+  utils.component('diagnostics'),
   meta.space,
 }
 

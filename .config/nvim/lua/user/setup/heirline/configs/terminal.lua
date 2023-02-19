@@ -1,9 +1,10 @@
 local conditions = require('heirline.conditions')
-local utils = require('heirline.utils')
+local he_utils = require('heirline.utils')
 
-local meta = require('user.setup.heirline.components.meta')
-local mode = require('user.setup.heirline.components.mode')
-local file = require('user.setup.heirline.components.file')
+local utils = require('user.setup.heirline.utils')
+
+local meta = utils.component('meta')
+local file = utils.component('file')
 
 local devicons = require('nvim-web-devicons')
 
@@ -36,12 +37,12 @@ local term = {
 local statusline = {
   condition = condition,
 
-  meta.slanted_right(mode),
+  meta.slanted_right('mode'),
   meta.align,
   term.full,
   meta.align,
-  utils.insert(file.format, meta.space),
-  utils.insert(file.position, meta.space),
+  he_utils.insert(file.format, meta.space),
+  he_utils.insert(file.position, meta.space),
 }
 
 local winbar = {

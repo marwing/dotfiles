@@ -1,4 +1,6 @@
-local meta = require('user.setup.heirline.components.meta')
+local utils = require('user.setup.heirline.utils')
+
+local meta = utils.component('meta')
 
 local function condition()
   return vim.bo.filetype == 'vimcmake'

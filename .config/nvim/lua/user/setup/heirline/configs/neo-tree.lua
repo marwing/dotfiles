@@ -1,6 +1,7 @@
+local utils = require('user.setup.heirline.utils')
 local colors = require('user.setup.heirline.colors')
 
-local meta = require('user.setup.heirline.components.meta')
+local meta = utils.component('meta')
 
 local function condition()
   return vim.bo.filetype == 'neo-tree'

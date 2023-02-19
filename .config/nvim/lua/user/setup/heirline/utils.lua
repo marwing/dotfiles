@@ -42,16 +42,24 @@ local function surroundf(component, sep)
   })
 end
 
+function M.component(name)
+  return require('user.setup.heirline.components.' .. name)
+end
+
 --- Correctly surround a component with seperators, lifting out necessary parts to not leave empty seperators
---- @param component table the component to surround
+--- @param component table|string the component to surround
 --- @param sep string|{left: string|nil, right: string|nil} the seperators with wich to surround the component
 --- @param color? string|number|false color or nil to disable
 function M.surround(component, sep, color)
   vim.validate {
-    component = { component, 'table' },
+    component = { component, { 'table', 'string' } },
     sep = { sep, { 'table', 'string' } },
     color = { color, { 'string', 'number', 'boolean' }, true },
   }
+
+  if type(component) == 'string' then
+    component = M.component(component)
+  end
 
   component = he_utils.clone(component)
 

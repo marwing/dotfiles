@@ -1,5 +1,7 @@
-local meta = require('user.setup.heirline.components.meta')
-local file = require('user.setup.heirline.components.file')
+local utils = require('user.setup.heirline.utils')
+
+local meta = utils.component('meta')
+local file = utils.component('file')
 
 local function condition()
   return vim.bo.buftype == 'help'
