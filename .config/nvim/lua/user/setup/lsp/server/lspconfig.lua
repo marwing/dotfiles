@@ -8,44 +8,51 @@ local function yaml_schemas(opts)
   return schemas
 end
 
-local function config()
-  local lspconfig = require('lspconfig')
-  local default_params = require('user.setup.lsp.utils.overrides').default_params
-
-  local servers = { 'cmake', 'ltex', 'pylsp', 'texlab', 'tsserver', 'vimls' }
-  for _, server in ipairs(servers) do
-    lspconfig[server].setup(default_params)
-  end
-
-  lspconfig.jsonls.setup(default_params {
-    on_new_config = function(new_config)
-      new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-      vim.list_extend(new_config.settings.json.schemas, require('schemastore').json.schemas())
-    end,
-    settings = {
-      json = {
-        validate = { enable = true },
-      },
-    },
-  })
-
-  lspconfig.yamlls.setup(default_params {
-    on_new_config = function(new_config)
-      new_config.settings.yaml.schemas =
-        vim.tbl_deep_extend('keep', new_config.settings.yaml.schemas or {}, yaml_schemas())
-    end,
-    settings = {
-      yaml = {
-        validate = { enable = true },
-      },
-    },
-  })
-end
-
 return {
   {
     'neovim/nvim-lspconfig',
-    config = config,
+    opts = {
+      cmake = {},
+      ltex = {},
+      pylsp = {},
+      texlab = {},
+      tsserver = {},
+      vimls = {},
+      jsonls = {
+        on_new_config = function(new_config)
+          new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+          vim.list_extend(new_config.settings.json.schemas, require('schemastore').json.schemas())
+        end,
+        settings = {
+          json = {
+            validate = { enable = true },
+          },
+        },
+      },
+      yamlls = {
+        on_new_config = function(new_config)
+          new_config.settings.yaml.schemas =
+            vim.tbl_deep_extend('keep', new_config.settings.yaml.schemas or {}, yaml_schemas())
+        end,
+        settings = {
+          yaml = {
+            validate = { enable = true },
+          },
+        },
+      },
+    },
+    config = function(_, opts)
+      local default_params = require('user.setup.lsp.utils.overrides').default_params
+
+      for server, config in pairs(opts) do
+        vim.validate {
+          server = { server, 'string' },
+          config = { config, 'table' },
+        }
+
+        require('lspconfig')[server].setup(default_params(config))
+      end
+    end,
     event = { 'VeryLazy', 'BufReadPre' },
   },
   {
