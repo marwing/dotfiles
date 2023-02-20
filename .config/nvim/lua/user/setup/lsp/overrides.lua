@@ -48,6 +48,10 @@ local overrides = {
     if client.supports_method('textDocument/documentSymbol') then
       require('nvim-navic').attach(client, bufnr)
     end
+
+    if client.name == 'jdtls' then
+      require('jdtls.setup').add_commands()
+    end
   end,
   capabilities = (function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -41,6 +41,11 @@ local function on_ft()
             },
           },
         },
+        format = {
+          settings = {
+            url = vim.fs.find('eclipse-formatter.xml', { upward = true, path = vim.api.nvim_buf_get_name(0) })[1],
+          },
+        },
       },
     },
 
@@ -57,7 +62,6 @@ local function on_ft()
   }
 
   require('jdtls').start_or_attach(config)
-  require('jdtls.setup').add_commands()
 end
 
 vim.api.nvim_create_autocmd('FileType', {
