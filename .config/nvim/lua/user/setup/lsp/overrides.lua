@@ -1,3 +1,9 @@
+local function disable_for(clients)
+  return function(client)
+    return not vim.tbl_contains(clients, client.name)
+  end
+end
+
 local overrides = {
   on_attach = function(client, bufnr)
     local function set(key, action, method_or_client, modes)
@@ -22,12 +28,10 @@ local overrides = {
     set('<F2>', vim.lsp.buf.rename)
     set('<A-S-f>', function()
       vim.lsp.buf.format {
-        filter = function(client)
-          return client.name ~= 'lua_ls' -- null-ls stylua formats lua code
-        end,
+        filter = disable_for { 'lua_ls', 'texlab' },
       }
     end, nil, { 'n', 'v' })
-    set('Kk', vim.lsp.buf.code_action, 'textDocument/codeAction')
+    set('Kk', vim.lsp.buf.code_action, 'textDocument/codeAction', { 'n', 'v' })
 
     set('<space>wa', vim.lsp.buf.add_workspace_folder)
     set('<space>wr', vim.lsp.buf.remove_workspace_folder)
@@ -40,6 +44,7 @@ local overrides = {
 
     -- plugin hooks
     require('user.setup.lsp.document_highlight').on_attach(client, bufnr)
+
     if client.supports_method('textDocument/documentSymbol') then
       require('nvim-navic').attach(client, bufnr)
     end

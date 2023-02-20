@@ -114,6 +114,7 @@ require('packer').startup {
       requires = {
         { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' },
         { 'windwp/nvim-ts-autotag', after = 'nvim-treesitter' },
+        { 'nvim-treesitter/playground', after = 'nvim-treesitter' },
       },
       config = function()
         require('user.setup.nvim-treesitter')
@@ -197,12 +198,7 @@ require('packer').startup {
       cmd = 'StartupTime',
     }
     use { 'tpope/vim-repeat' } -- repeatable plugin actions
-    use { -- easier session management
-      'tpope/vim-obsession',
-      config = function()
-        vim.g.obsession_no_bufenter = true
-      end,
-    }
+    use { 'tpope/vim-obsession' } -- easier session management
     use {
       'gaoDean/autolist.nvim',
       config = function()
@@ -210,6 +206,12 @@ require('packer').startup {
       end,
     }
     use { 'famiu/bufdelete.nvim' }
+    use {
+      'junegunn/vim-easy-align',
+      config = function()
+        vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)')
+      end,
+    }
     use { -- startup screen
       'mhinz/vim-startify',
       requires = 'kyazdani42/nvim-web-devicons',

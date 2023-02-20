@@ -6,13 +6,14 @@ local function setup(args, opts)
   args = args or {}
   opts = opts or {}
 
-  local default_opts = { statusline = true, winbar = true, tabline = false }
+  local default_opts = { statusline = true, winbar = true, tabline = false, statuscolumn = false }
   opts = vim.tbl_extend('force', default_opts, opts)
 
   local configs = {
     statusline = opts.statusline and { fallthrough = false, hl = colors.default },
     winbar = opts.winbar and { fallthrough = false, hl = { fg = colors.gray } },
     tabline = opts.tabline and { fallthrough = false },
+    statuscolumn = opts.statuscolumn and { fallthrough = false },
   }
 
   for _, config in ipairs(args) do
@@ -26,6 +27,9 @@ local function setup(args, opts)
       end
       if opts.tabline and module.tabline then
         table.insert(configs.tabline, module.tabline)
+      end
+      if opts.statuscolumn and module.statuscolumn then
+        table.insert(configs.statuscolumn, module.statuscolumn)
       end
     else
       -- stylua: ignore

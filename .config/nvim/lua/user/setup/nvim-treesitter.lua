@@ -30,7 +30,7 @@ require('nvim-treesitter.configs').setup {
   auto_install = true,
   highlight = {
     enable = true,
-    disable = { 'latex', 'diff' },
+    disable = { 'latex', 'diff', 'gitcommit', 'git_rebase' },
     additional_vim_regex_highlighting = false,
   },
   textobjects = {

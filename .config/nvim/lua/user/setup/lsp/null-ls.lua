@@ -2,7 +2,7 @@ local null_ls = require('null-ls')
 null_ls.setup {
   on_attach = require('user.setup.lsp.overrides').on_attach,
   sources = {
-    -- common
+    -- git
     null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.code_actions.gitrebase,
 
@@ -22,5 +22,8 @@ null_ls.setup {
         return vim.fs.dirname(vim.fs.find('selene.toml', { upward = true, path = vim.api.nvim_buf_get_name(0) })[1])
       end,
     },
+
+    -- python
+    null_ls.builtins.formatting.black,
   },
 }

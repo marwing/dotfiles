@@ -44,6 +44,8 @@ vim.o.termguicolors = vim.env.COLORTERM == 'truecolor'
 -- keep some paths out of shada file
 vim.opt.shada:append { 'r/mnt', 'r/run/media', 'r/run/user', 'r/tmp' }
 
+vim.opt.diffopt:append { 'linematch:60' }
+
 vim.o.updatetime = 300
 
 -- don't insert comments around comments with o/O

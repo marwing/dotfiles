@@ -1,6 +1,6 @@
 vim.g.cmake_build_dir_location = 'build'
 vim.g.cmake_link_compile_commands = 1
-vim.g.cmake_generate_options = { '-GNinja' }
+vim.g.cmake_generate_options = { '-GNinja', '-DENABLE_DEVELOPER_MODE:BOOL=ON' }
 
 local map = require('user.utils').keymap('<leader>c', 'n')
 map('b', '<Plug>(CMakeBuild)')

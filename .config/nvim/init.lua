@@ -10,3 +10,6 @@ require('user.options')
 require('user.plugins')
 
 require('user.setup.diagnostic')
+
+-- don't load black.vim
+vim.g.load_black = ''
