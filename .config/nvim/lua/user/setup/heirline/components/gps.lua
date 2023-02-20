@@ -1,10 +1,10 @@
-local nvim_gps = require('nvim-gps')
-local nvim_navic = require('nvim-navic')
-
 local gps = {
-  condition = nvim_gps.is_available,
+  condition = function()
+    local nvim_gps = package.loaded['nvim-gps']
+    return nvim_gps and nvim_gps.is_available()
+  end,
   provider = function()
-    local location = nvim_gps.get_location()
+    local location = require('nvim-gps').get_location()
     if #location > 0 then
       return ' > ' .. location
     end
@@ -13,10 +13,11 @@ local gps = {
 
 local navic = {
   condition = function()
-    nvim_navic.is_available()
+    local nvim_navic = package.loaded['nvim-navic']
+    return nvim_navic and nvim_navic.is_available()
   end,
   provider = function()
-    local location = nvim_navic.get_location()
+    local location = require('nvim-navic').get_location()
     if #location > 0 then
       return ' > ' .. location
     end
