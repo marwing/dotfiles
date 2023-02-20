@@ -3,6 +3,7 @@ local conditions = require('heirline.conditions')
 local utils = require('user.setup.heirline.utils')
 
 -- TODO: don't recompute when buffer not modifiable or readonly
+-- FIXME: somehow only enable component on click. Massive lag when opening large project (example: c++ draft)
 
 local function inVisual()
   return vim.tbl_contains({ 'v', 'V', '\22' }, vim.fn.mode())
@@ -32,10 +33,10 @@ local wc_vimtex = {
     return vim.b.vimtex ~= nil
   end,
   init = function(self)
-    self.count = vim.fn['vimtex#misc#wordcount'] { range = get_visual_range() }
+    self.ok, self.count = pcall(vim.fn['vimtex#misc#wordcount'], { range = get_visual_range() })
   end,
   provider = function(self)
-    return tostring(self.count)
+    return self.ok and tostring(self.count) or 'error'
   end,
   update = utils.defer('wordcount_vimtex', {
     events = {
