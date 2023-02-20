@@ -57,7 +57,14 @@ local function on_ft()
     --
     -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
     init_options = {
-      bundles = {},
+      -- TODO: auto install
+      bundles = vim.list_extend({
+        vim.fn.glob(
+          vim.fn.stdpath('data')
+            .. '/jdtls/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.42.0.jar',
+          true
+        ),
+      }, vim.split(vim.fn.glob(vim.fn.stdpath('data') .. '/jdtls/vscode-java-test/server/*.jar', true), '\n')),
     },
   }
 

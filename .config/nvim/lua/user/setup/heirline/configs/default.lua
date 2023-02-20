@@ -50,6 +50,7 @@ local winbar = {
 
   meta.align,
 
+  require('user.setup.heirline.components.dap'),
   diagnostics,
   meta.space,
 }

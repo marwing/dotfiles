@@ -50,6 +50,7 @@ local overrides = {
     end
 
     if client.name == 'jdtls' then
+      require('jdtls').setup_dap { hotcodereplace = 'auto' }
       require('jdtls.setup').add_commands()
     end
   end,

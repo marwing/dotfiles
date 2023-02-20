@@ -175,6 +175,17 @@ require('packer').startup {
     }
     use { 'b0o/schemastore.nvim' }
 
+    -- dap
+    use {
+      'mfussenegger/nvim-dap',
+      requires = {
+        'rcarriga/nvim-dap-ui',
+      },
+      config = function()
+        require('user.setup.dap')
+      end,
+    }
+
     -- telescope
     use {
       'nvim-telescope/telescope.nvim',
