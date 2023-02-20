@@ -24,6 +24,7 @@ local statusline = {
   meta.blocked('visual_lines'),
   meta.blocked('obsession'),
   meta.blocked('vimtex'),
+  meta.blocked('lazy'),
   meta.blocked(file.type),
   meta.blocked(file.format),
   meta.blocked(file.enc),
