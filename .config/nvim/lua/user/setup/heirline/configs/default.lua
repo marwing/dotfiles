@@ -1,4 +1,4 @@
-local utils = require('heirline.utils')
+local utils = require('user.setup.heirline.utils')
 
 local colors = require('user.setup.heirline.colors')
 
@@ -32,7 +32,7 @@ local statusline = {
 
   meta.align,
 
-  utils.insert(lsp, meta.space),
+  utils.surround(lsp, ' ', false),
   meta.blocked(wordcount),
   meta.blocked(visual_lines),
   meta.blocked(obsession),

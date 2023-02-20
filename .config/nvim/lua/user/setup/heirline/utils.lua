@@ -44,16 +44,20 @@ end
 
 --- Correctly surround a component with seperators, lifting out necessary parts to not leave empty seperators
 --- @param component table the component to surround
---- @param sep {left: string|nil, right: string|nil} the seperators with wich to surround the component
---- @param color? string|number
+--- @param sep string|{left: string|nil, right: string|nil} the seperators with wich to surround the component
+--- @param color? string|number|false color or nil to disable
 function M.surround(component, sep, color)
   vim.validate {
     component = { component, 'table' },
-    sep = { sep, 'table' },
-    color = { color, { 'string', 'number' }, true },
+    sep = { sep, { 'table', 'string' } },
+    color = { color, { 'string', 'number', 'boolean' }, true },
   }
 
   component = he_utils.clone(component)
+
+  if type(sep) == 'string' then
+    sep = { left = sep, right = sep }
+  end
 
   if not (sep and (sep.left or sep.right)) then
     M.notify('utils.surround called without any seperators')
@@ -64,7 +68,11 @@ function M.surround(component, sep, color)
     return surroundf(component, sep)
   end
 
-  color = color or (component.hl and component.hl.bg) or colors.bg1
+  if type(color) ~= 'boolean' then
+    color = color or (component.hl and component.hl.bg) or colors.bg1
+  else
+    color = nil
+  end
 
   -- lift condition out of component to apply to seperators as well
   local condition
@@ -72,17 +80,16 @@ function M.surround(component, sep, color)
 
   return {
     condition = condition,
-    -- he_utils.surround({ sep.left, sep.right }, color, component),
     {
-      hl = { fg = color },
+      hl = color and { fg = color },
       provider = sep.left,
     },
     {
-      hl = { bg = color },
+      hl = color and { bg = color },
       component,
     },
     {
-      hl = { fg = color },
+      hl = color and { fg = color },
       provider = sep.right,
     },
   }
