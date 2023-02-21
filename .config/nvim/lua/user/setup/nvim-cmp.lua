@@ -20,6 +20,7 @@ local config = function()
       },
     },
     sources = {
+      { name = 'git' },
       { name = 'calc' },
       { name = 'luasnip' },
       { name = 'nvim_lsp' },
@@ -35,6 +36,7 @@ local config = function()
       format = require('lspkind').cmp_format {
         mode = 'symbol_text',
         menu = {
+          git = '[Git]',
           calc = '[Calc]',
           luasnip = '[LuaSnip]',
           nvim_lsp = '[LSP]',
@@ -78,6 +80,11 @@ return {
     'hrsh7th/cmp-emoji',
     'hrsh7th/cmp-nvim-lsp-document-symbol',
     'hrsh7th/cmp-cmdline',
+    {
+      'petertriho/cmp-git',
+      dependencies = 'nvim-lua/plenary.nvim',
+      config = true,
+    },
   },
   config = config,
   event = { 'InsertEnter', 'CmdlineEnter' },
