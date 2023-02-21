@@ -27,4 +27,16 @@ return {
       vim.cmd.colorscheme('gruvbox')
     end,
   },
+  {
+    'folke/tokyonight.nvim',
+    opts = {
+      style = 'moon',
+      sidebars = {
+        'help',
+        'qf',
+        'tagbar',
+      },
+    },
+    lazy = true,
+  },
 }
