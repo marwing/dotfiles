@@ -21,7 +21,7 @@ local statusline = {
 
   utils.surround('lsp', ' ', false),
   meta.blocked('wordcount'),
-  meta.blocked('visual_lines'),
+  meta.blocked('visual_selection'),
   meta.blocked('obsession'),
   meta.blocked('vimtex'),
   meta.blocked('lazy'),

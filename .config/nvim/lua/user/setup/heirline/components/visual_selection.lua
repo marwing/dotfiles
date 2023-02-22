@@ -16,22 +16,22 @@ return {
     end
     self.line = line.cur - line.vis + 1
 
-    if self.mode == '\22' then
-      local col = {
-        visual[3],
-        current[3],
-      }
-      if col[1] > col[2] then
-        col[1], col[2] = col[2], col[1]
-      end
-      self.col = col[2] - col[1] + 1
+    local col = {
+      vis = visual[3],
+      cur = current[3],
+    }
+    if col.vis > col.cur then
+      col.vis, col.cur = col.cur, col.vis
     end
+    self.col = col.cur - col.vis + 1
   end,
   provider = function(self)
-    if self.mode ~= '\22' then
-      return self.line
-    else
+    if self.mode == '\22' then
       return self.line .. 'x' .. self.col
+    elseif self.mode == 'v' and self.line == 1 then
+      return self.col
+    else
+      return self.line
     end
   end,
 }
