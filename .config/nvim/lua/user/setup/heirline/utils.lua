@@ -2,8 +2,6 @@ local he_utils = require('heirline.utils')
 
 local utils = require('user.utils')
 
-local colors = require('user.setup.heirline.colors')
-
 local M = {}
 
 M.notify = require('user.utils').notify('Heirline Config')
@@ -77,7 +75,7 @@ function M.surround(component, sep, color)
   end
 
   if type(color) ~= 'boolean' then
-    color = color or (component.hl and component.hl.bg) or colors.bg1
+    color = color or (component.hl and component.hl.bg) or 'stl.surround'
   else
     color = nil
   end

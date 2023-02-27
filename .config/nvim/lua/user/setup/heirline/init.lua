@@ -1,7 +1,7 @@
 local function config()
   local notify = require('user.setup.heirline.utils').notify
 
-  local colors = require('user.setup.heirline.colors')
+  require('user.setup.heirline.themes.init')
 
   local function setup(args, opts)
     args = args or {}
@@ -11,8 +11,8 @@ local function config()
     opts = vim.tbl_extend('force', default_opts, opts)
 
     local configs = {
-      statusline = opts.statusline and { fallthrough = false, hl = colors.default },
-      winbar = opts.winbar and { fallthrough = false, hl = { fg = colors.gray } },
+      statusline = opts.statusline and { fallthrough = false, hl = { fg = 'stl.fg', bg = 'stl.bg' } },
+      winbar = opts.winbar and { fallthrough = false, hl = { fg = 'wb.fg', bg = 'wb.bg' } },
       tabline = opts.tabline and { fallthrough = false },
       statuscolumn = opts.statuscolumn and { fallthrough = false },
     }

@@ -1,6 +1,5 @@
 local conditions = require('heirline.conditions')
 
-local colors = require('user.setup.heirline.colors')
 local icons = require('user.setup.heirline.icons')
 
 local function git_diff_component(s)
@@ -11,7 +10,7 @@ local function git_diff_component(s)
     provider = function(self)
       return ' ' .. icons.git[s] .. self.status_dict[s]
     end,
-    hl = { fg = colors.git[s] },
+    hl = { fg = 'git.' .. s },
   }
 end
 

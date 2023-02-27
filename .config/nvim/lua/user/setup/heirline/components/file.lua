@@ -1,7 +1,5 @@
 local utils = require('heirline.utils')
 
-local colors = require('user.setup.heirline.colors')
-
 local meta = require('user.setup.heirline.components.meta')
 
 local devicons = require('nvim-web-devicons')
@@ -35,9 +33,9 @@ M.file_base = {
   end,
   hl = function()
     if vim.bo.modified then
-      return { fg = colors.blue }
+      return { fg = 'file.modified' }
     elseif not vim.bo.modifiable or vim.bo.readonly then
-      return { fg = colors.gray }
+      return { fg = 'file.readonly' }
     end
     return nil
   end,
@@ -74,7 +72,7 @@ M.type = {
     return vim.bo.filetype
   end,
   hl = {
-    fg = colors.filetype,
+    fg = 'file.type',
     bold = true,
   },
 }

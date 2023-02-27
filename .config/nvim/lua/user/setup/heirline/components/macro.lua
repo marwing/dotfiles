@@ -1,5 +1,3 @@
-local colors = require('user.setup.heirline.colors')
-
 return {
   condition = function(self)
     self.reg = vim.fn.reg_recording()
@@ -9,8 +7,8 @@ return {
     return '@' .. self.reg
   end,
   hl = {
-    fg = colors.fg0,
-    bg = colors.red,
+    fg = 'macro.fg',
+    bg = 'macro.bg',
     bold = true,
   },
 }

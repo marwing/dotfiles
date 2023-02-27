@@ -1,4 +1,3 @@
-local colors = require('user.setup.heirline.colors')
 local icons = require('user.setup.heirline.icons')
 
 return {
@@ -59,25 +58,6 @@ return {
       shell = 'SHELL',
       terminal = 'TERMINAL',
     },
-    mode_colors = {
-      normal = colors.gray,
-      op = colors.green,
-      visual = colors.orange,
-      visual_line = colors.orange,
-      visual_block = colors.orange,
-      select = colors.orange,
-      select_line = colors.orange,
-      select_block = colors.orange,
-      insert = colors.blue,
-      replace = colors.red,
-      virtual_replace = colors.red,
-      command = colors.green,
-      enter = colors.red,
-      more = colors.green,
-      confirm = colors.green,
-      shell = colors.green,
-      terminal = colors.gray,
-    },
   },
 
   init = function(self)
@@ -86,8 +66,8 @@ return {
 
   hl = function(self)
     return {
-      fg = colors.bg1,
-      bg = self.mode_colors[self.mode],
+      fg = 'mode.bg',
+      bg = 'mode.' .. self.mode,
       bold = true,
     }
   end,

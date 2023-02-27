@@ -1,5 +1,4 @@
 local utils = require('user.setup.heirline.utils')
-local colors = require('user.setup.heirline.colors')
 
 local meta = utils.component('meta')
 local file = utils.component('file')
@@ -11,7 +10,7 @@ local statusline = {
   meta.slanted('macro'),
   {
     flexible = 1,
-    meta.slanted(file.file, colors.bg1),
+    meta.slanted(file.file, 'stl.surround'),
     {},
   },
   meta.slanted('git'),

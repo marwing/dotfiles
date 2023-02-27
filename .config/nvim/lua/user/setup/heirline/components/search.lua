@@ -1,5 +1,3 @@
-local colors = require('user.setup.heirline.colors')
-
 return {
   condition = function(self)
     local lines = vim.api.nvim_buf_line_count(0)
@@ -34,8 +32,8 @@ return {
   end,
 
   hl = {
-    fg = colors.bg1,
-    bg = colors.aqua,
+    fg = 'search.fg',
+    bg = 'search.bg',
     bold = true,
   },
 

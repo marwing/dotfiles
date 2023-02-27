@@ -1,5 +1,4 @@
 local utils = require('user.setup.heirline.utils')
-local colors = require('user.setup.heirline.colors')
 
 local meta = utils.component('meta')
 
@@ -39,7 +38,8 @@ local tree_type = {
 local winbar = {
   condition = condition,
   hl = {
-    fg = colors.fg2,
+    fg = "wb.header.fg",
+    bg = "wb.header.bg",
     bold = true,
   },
 

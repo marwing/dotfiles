@@ -39,4 +39,6 @@ M.keymap = function(prefix, mode)
   end
 end
 
+M.flatten = require('user.utils.flatten')
+
 return M

@@ -1,6 +1,5 @@
 local conditions = require('heirline.conditions')
 
-local colors = require('user.setup.heirline.colors')
 local icons = require('user.setup.heirline.icons')
 
 local function diagnostics_component(comp)
@@ -11,7 +10,7 @@ local function diagnostics_component(comp)
     provider = function(self)
       return ' ' .. icons.diag[comp] .. ' ' .. self[comp]
     end,
-    hl = { fg = colors.diag[comp] },
+    hl = { fg = 'diag.' .. comp },
   }
 end
 
