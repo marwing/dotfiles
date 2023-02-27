@@ -14,11 +14,12 @@ return {
       return
     end
 
-    local search_count = vim.fn.searchcount { recompute = 1, maxcount = -1 }
-    local active = false
-    if vim.v.hlsearch and vim.v.hlsearch == 1 and search_count.total > 0 then
-      active = true
+    local ok, search_count = pcall(vim.fn.searchcount, { recompute = 1, maxcount = -1 })
+    if not ok then
+      return false
     end
+
+    local active = vim.v.hlsearch and vim.v.hlsearch == 1 and search_count.total > 0
     if not active then
       return
     end
