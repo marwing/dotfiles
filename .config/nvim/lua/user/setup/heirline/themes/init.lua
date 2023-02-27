@@ -5,6 +5,10 @@ local colorschemes = setmetatable(
     return 'user.setup.heirline.themes.' .. value
   end, {
     gruvbox = 'gruvbox',
+    tokyonight = 'tokyonight',
+    ["tokyonight-moon"] = 'tokyonight',
+    ["tokyonight-storm"] = 'tokyonight',
+    ["tokyonight-night"] = 'tokyonight',
   }),
   {
     __index = function(t, k)
