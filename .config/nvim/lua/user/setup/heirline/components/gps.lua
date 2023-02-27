@@ -6,7 +6,7 @@ local gps = {
   provider = function()
     local location = require('nvim-gps').get_location()
     if #location > 0 then
-      return ' > ' .. location
+      return ' | ' .. location
     end
   end,
 }
