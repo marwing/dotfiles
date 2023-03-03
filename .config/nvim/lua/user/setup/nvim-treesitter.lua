@@ -13,6 +13,7 @@ return {
         'lua',
         'vim',
         'help',
+        'query',
 
         -- other languages I use regularly
         'bash',
