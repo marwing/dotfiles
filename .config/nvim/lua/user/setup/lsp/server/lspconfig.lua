@@ -1,13 +1,3 @@
--- slightly modified from
--- https://github.com/b0o/SchemaStore.nvim/pull/10/files#diff-aeab26203d2103a80a94a9089ae766cfa9905df45f3fbb343928b31b54a53219R94-R102
-local function yaml_schemas(opts)
-  local schemas = {}
-  vim.tbl_map(function(schema)
-    schemas[schema.url] = schema.fileMatch
-  end, require('schemastore').json.schemas(opts))
-  return schemas
-end
-
 return {
   {
     'neovim/nvim-lspconfig',
@@ -31,8 +21,8 @@ return {
       },
       yamlls = {
         on_new_config = function(new_config)
-          new_config.settings.yaml.schemas =
-            vim.tbl_deep_extend('keep', new_config.settings.yaml.schemas or {}, yaml_schemas())
+          new_config.settings.yaml.schemas = new_config.settings.yaml.schemas or {}
+          vim.list_extend(new_config.settings.yaml.schemas, require('schemastore').yaml.schemas())
         end,
         settings = {
           yaml = {
