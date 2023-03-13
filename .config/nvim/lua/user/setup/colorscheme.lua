@@ -15,7 +15,6 @@ return {
           DiagnosticFloatingWarn = { link = 'DiagnosticWarn' },
           Directory = { link = 'GruvboxGreenBold' },
           String = { italic = false },
-          Operator = { italic = false },
           ['@variable'] = { link = 'Identifier' },
 
           -- overrides for vim.lsp.buf.document_highlight()
