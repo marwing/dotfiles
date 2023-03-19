@@ -17,6 +17,18 @@ return {
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.code_actions.shellcheck,
         null_ls.builtins.diagnostics.zsh,
+        null_ls.builtins.formatting.shfmt.with {
+          extra_args = function(params)
+            local opts = params.options or {}
+
+            return {
+              '-i',
+              opts.insertSpaces and opts.tabSize or 0,
+              '-sr',
+              '-ci',
+            }
+          end,
+        },
 
         -- lua
         null_ls.builtins.formatting.stylua,
