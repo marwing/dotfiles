@@ -11,10 +11,12 @@ return {
     priority = 1000,
     config = function()
       require('gruvbox').setup {
+        italic = {
+          strings = false,
+        },
         overrides = {
           DiagnosticFloatingWarn = { link = 'DiagnosticWarn' },
           Directory = { link = 'GruvboxGreenBold' },
-          String = { italic = false },
           ['@variable'] = { link = 'Identifier' },
 
           -- overrides for vim.lsp.buf.document_highlight()
