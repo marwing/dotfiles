@@ -23,6 +23,8 @@ return {
           LspReferenceText = { link = 'CursorLine' },
           LspReferenceWrite = { link = 'CursorLine' },
           LspReferenceRead = { link = 'CursorLine' },
+
+          LazyDimmed = { link = 'Comment' },
         },
       }
       vim.cmd.colorscheme('gruvbox')
