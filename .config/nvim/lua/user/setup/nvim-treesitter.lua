@@ -70,9 +70,7 @@ return {
         enable = true,
       },
     },
-    config = function(_, opts)
-      require('nvim-treesitter.configs').setup(opts)
-    end,
+    main = 'nvim-treesitter.configs',
     event = { 'VeryLazy', 'BufReadPre' },
   },
   {
