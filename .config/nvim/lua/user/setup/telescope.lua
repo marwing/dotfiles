@@ -43,11 +43,11 @@ return {
   end,
   -- stylua: ignore
   keys = {
-    { '<leader>fb', function() require('telescope.builtin').builtin() end, desc = 'Telescope builtin' },
-    { '<leader>fr', function() require('telescope.builtin').resume() end, desc = 'Telescope resume' },
-    { '<leader>ff', function() require('telescope.builtin').find_files() end, desc = 'Telescope find_files' },
+    { '<leader>fb', function() require('telescope.builtin').builtin() end,                        desc = 'Telescope builtin' },
+    { '<leader>fr', function() require('telescope.builtin').resume() end,                         desc = 'Telescope resume' },
+    { '<leader>ff', function() require('telescope.builtin').find_files() end,                     desc = 'Telescope find_files' },
     { '<leader>fl', function() require('telescope.builtin').buffers { sort_lastused = true } end, desc = 'Telescope buffers' },
-    { '<leader>fg', function() require('telescope.builtin').live_grep() end, desc = 'Telescope live_grep' },
-    { '<leader>fo', function() require('telescope.builtin').oldfiles() end, desc = 'Telescope old_files' },
+    { '<leader>fg', function() require('telescope.builtin').live_grep() end,                      desc = 'Telescope live_grep' },
+    { '<leader>fo', function() require('telescope.builtin').oldfiles() end,                       desc = 'Telescope old_files' },
   },
 }

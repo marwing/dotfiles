@@ -15,5 +15,7 @@ return {
       border = 'curved',
     },
   },
-  keys = { open_mapping },
+  keys = {
+    { open_mapping, desc = 'Toggle Terminal' },
+  },
 }

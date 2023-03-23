@@ -4,6 +4,6 @@ return {
     ignore = '^$',
   },
   keys = {
-    { 'gc', mode = { 'n', 'x' } },
+    { 'gc', mode = { 'n', 'x' }, desc = 'Comment' },
   },
 }

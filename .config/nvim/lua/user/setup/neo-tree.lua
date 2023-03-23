@@ -18,10 +18,11 @@ return {
   init = function()
     vim.g.neo_tree_remove_legacy_commands = true
   end,
+  -- stylua: ignore
   keys = {
     { '<leader>tf', '<cmd>Neotree toggle filesystem show reveal<cr>', desc = 'NeoTree filesystem' },
-    { '<leader>tb', '<cmd>Neotree toggle buffers show right<cr>', desc = 'NeoTree buffers' },
-    { '<leader>tg', '<cmd>Neotree toggle git_status float<cr>', desc = 'NeoTree git_status' },
+    { '<leader>tb', '<cmd>Neotree toggle buffers show right<cr>',     desc = 'NeoTree buffers' },
+    { '<leader>tg', '<cmd>Neotree toggle git_status float<cr>',       desc = 'NeoTree git_status' },
   },
   cmd = 'Neotree',
   ft = 'netrw', -- FIXME: loads neo-tree but doesn't trigger hijack

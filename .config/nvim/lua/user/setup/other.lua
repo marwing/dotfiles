@@ -22,8 +22,8 @@ return {
     cmd = { 'Bdelete', 'Bwipeout' },
     -- stylua: ignore
     keys = {
-      { '<leader>bd', function() require'bufdelete'.bufdelete(0) end },
-      { '<leader>bw', function() require'bufdelete'.bufwipeout(0) end },
+      { '<leader>bd', function() require'bufdelete'.bufdelete(0) end,  desc = 'bufdelete' },
+      { '<leader>bw', function() require'bufdelete'.bufwipeout(0) end, desc = 'bufwipeout' },
     },
   },
   {
