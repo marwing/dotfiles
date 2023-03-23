@@ -34,6 +34,7 @@ return {
 
         -- injection only
         'regex',
+        'luap',
         'comment',
       },
       auto_install = true,
