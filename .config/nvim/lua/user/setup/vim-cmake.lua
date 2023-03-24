@@ -14,5 +14,5 @@ return {
     { '<leader>cd', '<cmd>CMakeSwitch Debug<CR>',   desc = 'CMake switch Debug' },
     { '<leader>cq', '<Plug>(CMakeClose)',           desc = 'CMake close' },
   },
-  cmd = { 'CMakeGenerate' },
+  cmd = { 'CMakeGenerate', 'CMakeClean' },
 }
