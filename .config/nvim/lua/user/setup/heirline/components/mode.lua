@@ -76,5 +76,10 @@ return {
     return icons.mode .. ' ' .. self.mode_label[self.mode]
   end,
 
-  update = 'ModeChanged',
+  update = {
+    'ModeChanged',
+    callback = vim.schedule_wrap(function()
+      vim.cmd.redrawstatus()
+    end),
+  },
 }
