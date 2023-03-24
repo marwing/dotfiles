@@ -23,7 +23,7 @@ set $ws8 8
 set $ws9 9
 set $ws10 10
 
-set $locker swaylock -Ffc 00000088
+set $locker swaylock -Ffc 000066
 
 set $primary 'Dell Inc. DELL P2719H C1W8NS2'
 set $secondary eDP-1
