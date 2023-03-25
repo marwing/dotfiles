@@ -44,7 +44,10 @@ vim.o.termguicolors = vim.env.COLORTERM == 'truecolor'
 -- keep some paths out of shada file
 vim.opt.shada:append { 'r/mnt', 'r/run/media', 'r/run/user', 'r/tmp' }
 
-vim.opt.diffopt:append { 'linematch:60' }
+-- TODO: remove if nvim-0.9 is released
+if vim.fn.has('nvim-0.9') == 1 then
+  vim.opt.diffopt:append { 'linematch:60' }
+end
 
 vim.o.updatetime = 300
 
