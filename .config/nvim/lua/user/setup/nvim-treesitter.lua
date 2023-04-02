@@ -12,7 +12,7 @@ return {
         'c',
         'lua',
         'vim',
-        'help',
+        'vimdoc',
         'query',
 
         -- other languages I use regularly
