@@ -1,3 +1,3 @@
 #!/bin/sh
 
-${TERMINAL:-alacritty} --working-directory $@
+exec "${TERMINAL:-alacritty}" --working-directory "$@"

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-${TERMINAL:-alacritty} -e ranger $@
+exec "${TERMINAL:-alacritty}" -e ranger "$@"
