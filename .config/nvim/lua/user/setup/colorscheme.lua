@@ -10,6 +10,7 @@ return {
     'ellisonleao/gruvbox.nvim',
     priority = 1000,
     config = function()
+      local colors = require('gruvbox.palette').get_base_colors()
       require('gruvbox').setup {
         italic = {
           strings = false,
@@ -23,6 +24,11 @@ return {
           LspReferenceText = { link = 'CursorLine' },
           LspReferenceWrite = { link = 'CursorLine' },
           LspReferenceRead = { link = 'CursorLine' },
+
+          DiffDelete = { fg = 'NONE', bg = colors.subtle_red, reverse = false },
+          DiffAdd = { fg = 'NONE', bg = colors.subtle_green, reverse = false },
+          DiffChange = { fg = 'NONE', bg = colors.subtle_brown, reverse = false },
+          DiffText = { fg = 'NONE', bg = colors.subtle_yellow, reverse = false },
 
           LazyDimmed = { link = 'Comment' },
         },
