@@ -24,10 +24,10 @@ if ! command -v git > /dev/null 2>&1; then
 fi
 
 # setup repo
-git clone --bare "$GIT_URL" "$DOTFILES_DIR"
+git clone --bare --depth 1 -b "$BRANCH" "$GIT_URL" "$DOTFILES_DIR"
 dotfiles config --local status.showUntrackedFiles no
 
-if ! dotfiles checkout "$BRANCH"; then
+if ! dotfiles checkout; then
   echo "Backing up old dotfiles to '$CONFIG_BACKUP'"
   mkdir -p "$CONFIG_BACKUP"
 
@@ -38,7 +38,7 @@ if ! dotfiles checkout "$BRANCH"; then
   done
 
   echo "Retrying checkout..."
-  dotfiles checkout "$BRANCH"
+  dotfiles checkout
 else
   echo "Checked out dotfiles"
 fi
@@ -46,4 +46,4 @@ fi
 dotfiles submodule update --init
 
 # install oh-my-zsh
-git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.config/zsh/.oh-my-zsh
+git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.config/zsh/.oh-my-zsh
