@@ -10,6 +10,7 @@ cd "$HOME" || exit 1
 GIT_URL="https://gitlab.com/marwing/dotfiles.git"
 CONFIG_BACKUP="$HOME/.config_backup"
 DOTFILES_DIR="$HOME/.dotfiles"
+BRANCH="${1:-master}"
 
 dotfiles() {
   git --git-dir="$DOTFILES_DIR" --work-tree="$HOME" "$@"
@@ -26,7 +27,7 @@ fi
 git clone --bare "$GIT_URL" "$DOTFILES_DIR"
 dotfiles config --local status.showUntrackedFiles no
 
-if ! dotfiles checkout; then
+if ! dotfiles checkout "$BRANCH"; then
   echo "Backing up old dotfiles to '$CONFIG_BACKUP'"
   mkdir -p "$CONFIG_BACKUP"
 
@@ -37,7 +38,7 @@ if ! dotfiles checkout; then
   done
 
   echo "Retrying checkout..."
-  dotfiles checkout
+  dotfiles checkout "$BRANCH"
 else
   echo "Checked out dotfiles"
 fi
