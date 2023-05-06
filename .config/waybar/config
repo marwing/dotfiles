@@ -125,29 +125,22 @@
   "battery": {
     "format": " {icon} {capacity}% ({time})",
     "format-discharging": "{icon} {capacity}% ({time})",
-    "format-unknown": "",
+    "format-unknown": "󰂑",
     "format-full": "{icon}",
     "format-time": "{H}:{M}",
     "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
     ],
-    // "format-icons": [
-      // "",
-      // "",
-      // "",
-      // "",
-      // ""
-    // ],
     "states": {
       "warning": 10,
       "critical": 5

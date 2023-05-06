@@ -7,10 +7,10 @@ return {
     removed = '-',
   },
   diag = {
-    error = '',
-    warning = '',
-    info = '',
-    hint = '',
+    error = '󰅚',
+    warning = '󰀪',
+    info = '󰋽',
+    hint = '󰌶',
   },
   format = {
     unix = '',
