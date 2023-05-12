@@ -3,7 +3,7 @@
 -- without having to go through all active clients and filtering them by buffer and supports_method
 local bufs = setmetatable({}, {
   __index = function(table, key)
-    table[key] = {}
+    table[key] = 0
     return table[key]
   end,
 })
@@ -13,13 +13,13 @@ local function on_attach(client, bufnr)
     return
   end
 
-  table.insert(bufs[bufnr], client.id)
-  if #bufs[bufnr] > 1 then
+  bufs[bufnr] = bufs[bufnr] + 1
+  if bufs[bufnr] > 1 then
     -- autocmds are already created for previous client
     return
   end
 
-  local group = vim.api.nvim_create_augroup('lsp_highlight_document_b_' .. tostring(bufnr), { clear = true })
+  local group = vim.api.nvim_create_augroup('lsp_highlight_document_b_' .. bufnr, { clear = true })
 
   -- highlight
   vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
@@ -38,8 +38,8 @@ local function on_attach(client, bufnr)
     group = group,
     buffer = bufnr,
     callback = function(args)
-      table.remove(bufs[args.buf], args.data.client_id)
-      if #bufs[args.buf] < 1 then
+      bufs[bufnr] = bufs[bufnr] - 1
+      if bufs[args.buf] < 1 then
         vim.api.nvim_del_augroup_by_id(group)
         -- make sure there are no stale highlights sitting in the buffer that would otherwise never be removed
         vim.lsp.buf.clear_references()
