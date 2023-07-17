@@ -1,5 +1,6 @@
 return {
   'nvim-neo-tree/neo-tree.nvim',
+  branch = 'v3.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
@@ -15,9 +16,6 @@ return {
       follow_current_file = true,
     },
   },
-  init = function()
-    vim.g.neo_tree_remove_legacy_commands = true
-  end,
   -- stylua: ignore
   keys = {
     { '<leader>tf', '<cmd>Neotree toggle filesystem show reveal<cr>', desc = 'NeoTree filesystem' },
