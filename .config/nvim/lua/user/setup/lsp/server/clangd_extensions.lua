@@ -11,7 +11,6 @@ return {
           '--malloc-trim',
           '--enable-config',
           '--use-dirty-headers',
-          '--include-cleaner-stdlib',
         },
       },
       extensions = {
