@@ -2,7 +2,7 @@ local function setup(args, opts)
   args = args or {}
   opts = opts or {}
 
-  local default_opts = { statusline = true, winbar = true, tabline = false, statuscolumn = false }
+  local default_opts = { statusline = true, winbar = true, tabline = true, statuscolumn = false }
   opts = vim.tbl_extend('force', default_opts, opts)
 
   local configs = {

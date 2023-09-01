@@ -42,7 +42,10 @@ local winbar = {
   meta.space,
 }
 
+local tabline = utils.component('tab')
+
 return {
   statusline = statusline,
   winbar = winbar,
+  tabline = tabline,
 }

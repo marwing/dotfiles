@@ -18,6 +18,20 @@ return function()
         bg = 'NONE',
       },
     },
+    tl = {
+      active = {
+        fg = h('TabLineSel').fg,
+        bg = h('TabLineSel').bg,
+      },
+      inactive = {
+        fg = h('TabLine').fg,
+        bg = h('TabLine').bg,
+      },
+      empty = {
+        fg = h('StatusLine').bg,
+        bg = h('StatusLine').fg,
+      },
+    },
 
     mode = {
       bg = colors.bg1,
