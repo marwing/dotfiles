@@ -26,8 +26,6 @@ M.notify_once = function(title, default_level)
   end
 end
 
-M.defer = require('user.utils.defer')
-
 M.keymap = function(prefix, mode)
   vim.validate {
     prefix = { prefix, 's' },
@@ -39,6 +37,9 @@ M.keymap = function(prefix, mode)
   end
 end
 
-M.flatten = require('user.utils.flatten')
-
-return M
+return setmetatable(M, {
+  __index = function(t, k)
+    t[k] = require('user.utils.' .. k)
+    return t[k]
+  end,
+})
