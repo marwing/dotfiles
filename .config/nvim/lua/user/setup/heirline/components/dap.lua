@@ -6,6 +6,6 @@ return {
   end,
   -- let's see if this api is stable
   provider = function()
-    package.loaded.dapui.controls()
+    require('dapui.controls').controls()
   end,
 }
