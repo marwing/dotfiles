@@ -52,6 +52,7 @@ local winbar = {
   term.icon,
   meta.space,
   term.command,
+  meta.align,
 }
 
 return {
