@@ -2,7 +2,7 @@ local conditions = require('heirline.conditions')
 
 local function build_server_list(opts)
   local names = {}
-  local servers = vim.lsp.get_active_clients(opts.buf_only and { bufnr = 0 })
+  local servers = vim.lsp.get_clients(opts.buf_only and { bufnr = 0 })
 
   for _, server in ipairs(servers) do
     if opts.expand_nullls and server.name == 'null-ls' then
@@ -53,13 +53,6 @@ local lspclients = {
   long { buf_only = true, expand_nullls = true, sort = true },
   long { buf_only = true, expand_nullls = false, sort = true },
   short,
-
-  on_click = {
-    callback = function()
-      vim.defer_fn(vim.cmd.LspInfo, 100)
-    end,
-    name = 'heirline_lsp',
-  },
 }
 
 return lspclients
