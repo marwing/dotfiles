@@ -1,5 +1,6 @@
 Diagnostics:
   UnusedIncludes: Strict
+  MissingIncludes: Strict
 ---
 If:
   PathMatch: /home/marwin/Workspace/03_thirdparty/llvm-project/.*
