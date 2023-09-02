@@ -10,6 +10,7 @@ return {
       height = 0.9,
       width = 140,
       options = {
+        signcolumn = 'no',
         number = false,
         relativenumber = false,
       },
