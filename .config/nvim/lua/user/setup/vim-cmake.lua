@@ -1,6 +1,5 @@
 return {
   'cdelledonne/vim-cmake',
-  dev = true,
   init = function()
     vim.g.cmake_build_dir_location = 'build'
     vim.g.cmake_link_compile_commands = 1
