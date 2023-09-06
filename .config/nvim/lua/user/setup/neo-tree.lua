@@ -13,7 +13,9 @@ return {
         visible = true,
       },
       use_libuv_file_watcher = true,
-      follow_current_file = true,
+      follow_current_file = {
+        enabled = true,
+      },
     },
   },
   -- stylua: ignore
