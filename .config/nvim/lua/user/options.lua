@@ -38,9 +38,6 @@ vim.o.scrolloff = 5
 
 vim.o.list = true
 
--- enable truecolor support if terminal claims to support it
-vim.o.termguicolors = vim.env.COLORTERM == 'truecolor'
-
 -- keep some paths out of shada file
 vim.opt.shada:append { 'r/mnt', 'r/run/media', 'r/run/user', 'r/tmp' }
 
