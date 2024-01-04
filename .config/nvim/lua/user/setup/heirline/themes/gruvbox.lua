@@ -1,6 +1,6 @@
 return function()
   local h = require('heirline.utils').get_highlight
-  local colors = require('gruvbox.palette').get_base_colors()
+  local colors = require('gruvbox').palette
 
   local gruvbox = {
     -- have to manually reverse colors for statusline
@@ -8,13 +8,13 @@ return function()
     stl = {
       fg = h('StatusLine').bg,
       bg = h('StatusLine').fg,
-      surround = colors.bg1,
+      surround = colors.dark1,
     },
     wb = {
       fg = colors.gray,
       bg = 'NONE',
       header = {
-        fg = colors.fg2,
+        fg = colors.light2,
         bg = 'NONE',
       },
     },
@@ -34,28 +34,28 @@ return function()
     },
 
     mode = {
-      bg = colors.bg1,
+      bg = colors.dark1,
       normal = colors.gray,
-      op = colors.green,
-      visual = colors.orange,
-      visual_line = colors.orange,
-      visual_block = colors.orange,
-      select = colors.orange,
-      select_line = colors.orange,
-      select_block = colors.orange,
-      insert = colors.blue,
-      replace = colors.red,
-      virtual_replace = colors.red,
-      command = colors.green,
-      enter = colors.red,
-      more = colors.green,
-      confirm = colors.green,
-      shell = colors.green,
+      op = colors.bright_green,
+      visual = colors.bright_orange,
+      visual_line = colors.bright_orange,
+      visual_block = colors.bright_orange,
+      select = colors.bright_orange,
+      select_line = colors.bright_orange,
+      select_block = colors.bright_orange,
+      insert = colors.bright_blue,
+      replace = colors.bright_red,
+      virtual_replace = colors.bright_red,
+      command = colors.bright_green,
+      enter = colors.bright_red,
+      more = colors.bright_green,
+      confirm = colors.bright_green,
+      shell = colors.bright_green,
       terminal = colors.gray,
     },
 
     file = {
-      modified = colors.blue,
+      modified = colors.bright_blue,
       readonly = colors.gray,
       type = h('Type').fg,
     },
@@ -74,21 +74,21 @@ return function()
     },
 
     macro = {
-      fg = colors.fg0,
+      fg = colors.light0,
       bg = colors.neutral_red,
     },
 
     search = {
-      fg = colors.bg1,
-      bg = colors.aqua,
+      fg = colors.dark1,
+      bg = colors.bright_aqua,
     },
 
     spell = {
-      fg = colors.fg2,
-      bg = colors.bg4,
+      fg = colors.light2,
+      bg = colors.dark4,
     },
 
-    lazy = colors.aqua,
+    lazy = colors.bright_aqua,
   }
 
   return gruvbox

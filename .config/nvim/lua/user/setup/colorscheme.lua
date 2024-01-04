@@ -28,7 +28,19 @@ return {
         DiffChange = { fg = 'NONE', bg = '#3b3307', reverse = false },
         DiffText = { fg = 'NONE', bg = '#4d520d', reverse = false },
 
+        GitSignsAdd = { link = 'GruvboxGreenSign' },
+        GitSignsChange = { link = 'GruvboxAquaSign' },
+        GitSignsDelete = { link = 'GruvboxRedSign' },
+
         LazyDimmed = { link = 'Comment' },
+
+        -- From https://github.com/mars90226/dotvim/commit/33e0c531f33264765b5bc82eda33b9fb91837466
+        -- Fix Vim's default highlight group linking
+        -- Ref: https://github.com/neovim/neovim/issues/26378
+        -- Ref: https://github.com/ellisonleao/gruvbox.nvim/issues/307
+        ['@punctuation.bracket'] = { link = 'Special' },
+        ['@punctuation.delimiter'] = { link = 'Special' },
+        ['@punctuation.special'] = { link = 'Special' },
       },
     },
     config = function(_, opts)
