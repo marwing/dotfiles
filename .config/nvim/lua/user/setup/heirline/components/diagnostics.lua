@@ -17,10 +17,11 @@ end
 local diagnostics = {
   condition = conditions.has_diagnostics,
   init = function(self)
-    self.error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-    self.warning = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-    self.hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
-    self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+    local counts = vim.diagnostic.count()
+    self.error = counts[vim.diagnostic.severity.ERROR] or 0
+    self.warning = counts[vim.diagnostic.severity.WARN] or 0
+    self.hint = counts[vim.diagnostic.severity.HINT] or 0
+    self.info = counts[vim.diagnostic.severity.INFO] or 0
   end,
   update = { 'DiagnosticChanged', 'BufEnter' },
   diagnostics_component('error'),
