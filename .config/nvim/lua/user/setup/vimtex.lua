@@ -10,5 +10,6 @@ return {
     vim.g.vimtex_fold_enabled = 1
     vim.g.vimtex_doc_handlers = { 'vimtex#doc#handlers#texdoc' }
     vim.g.vimtex_doc_confirm_single = false
+    vim.g.vimtex_parser_bib_backend = 'lua'
   end,
 }

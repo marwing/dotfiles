@@ -41,10 +41,7 @@ vim.o.list = true
 -- keep some paths out of shada file
 vim.opt.shada:append { 'r/mnt', 'r/run/media', 'r/run/user', 'r/tmp' }
 
--- TODO: remove if nvim-0.9 is released
-if vim.fn.has('nvim-0.9') == 1 then
-  vim.opt.diffopt:append { 'linematch:60' }
-end
+vim.opt.diffopt:append { 'linematch:60' }
 
 vim.o.updatetime = 300
 

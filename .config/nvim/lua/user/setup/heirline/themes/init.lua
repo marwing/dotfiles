@@ -6,14 +6,15 @@ local colorschemes = setmetatable(
   end, {
     gruvbox = 'gruvbox',
     tokyonight = 'tokyonight',
-    ["tokyonight-moon"] = 'tokyonight',
-    ["tokyonight-storm"] = 'tokyonight',
-    ["tokyonight-night"] = 'tokyonight',
+    ['tokyonight-moon'] = 'tokyonight',
+    ['tokyonight-storm'] = 'tokyonight',
+    ['tokyonight-night'] = 'tokyonight',
   }),
   {
     __index = function(t, k)
-      utils.notify('No theme for "' .. tostring(k) .. '". Falling back to gruvbox.', vim.log.levels.WARN)
-      return t.gruvbox
+      -- the tokyonight theme doesn't get it's colors from highlight groups (doesn't depend on the current nvim colorscheme)
+      utils.notify('No theme for "' .. tostring(k) .. '". Falling back to tokyonight.', vim.log.levels.WARN)
+      return t.tokyonight
     end,
   }
 )

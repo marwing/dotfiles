@@ -31,7 +31,7 @@ return {
       end
     end
 
-    if vimtex.viewer.xwinid then
+    if vimtex.viewer and vimtex.viewer.xwinid then
       self.status.viewer = true
     end
 

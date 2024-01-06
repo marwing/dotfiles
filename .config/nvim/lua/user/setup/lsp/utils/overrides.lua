@@ -28,7 +28,7 @@ local overrides = {
     set('<F2>', vim.lsp.buf.rename)
     set('<A-S-f>', function()
       vim.lsp.buf.format {
-        filter = disable_for { 'lua_ls', 'texlab' },
+        filter = disable_for { 'lua_ls', 'texlab', 'pylsp' },
       }
     end, nil, { 'n', 'v' })
     set('Kk', vim.lsp.buf.code_action, 'textDocument/codeAction', { 'n', 'v' })
@@ -36,7 +36,9 @@ local overrides = {
     set('<space>wa', vim.lsp.buf.add_workspace_folder)
     set('<space>wr', vim.lsp.buf.remove_workspace_folder)
     set('<space>wl', function()
-      vim.pretty_print(vim.lsp.buf.list_workspace_folders())
+      vim.schedule(function()
+        vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      end)
     end)
 
     -- server extensions
@@ -45,12 +47,12 @@ local overrides = {
     -- plugin hooks
     require('user.setup.lsp.utils.document_highlight').on_attach(client, bufnr)
 
-    if client.supports_method('textDocument/documentSymbol') then
-      require('nvim-navic').attach(client, bufnr)
-    end
-
-    -- Reset gq behavior. Formatting (with client filtering) is done with a custom bind
+    -- :h *lsp-defaults-disable*
     vim.bo[bufnr].formatexpr = nil
+    vim.bo[bufnr].omnifunc = nil
+    -- This claims such a keybind doesn't exists
+    -- keywordprg is Man so it shouldn't map, but does?
+    -- vim.keymap.del('n', 'K', { buffer = bufnr })
   end,
   capabilities = (function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()

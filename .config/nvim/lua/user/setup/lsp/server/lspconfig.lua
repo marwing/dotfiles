@@ -43,7 +43,6 @@ return {
         require('lspconfig')[server].setup(default_params(config))
       end
     end,
-    event = { 'VeryLazy', 'BufReadPre' },
   },
   {
     'b0o/schemastore.nvim',

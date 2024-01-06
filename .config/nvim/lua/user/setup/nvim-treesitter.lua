@@ -8,24 +8,24 @@ return {
     },
     opts = {
       ensure_installed = {
-        -- neovim languages
+        -- parsers in neovim core
         'c',
         'lua',
         'vim',
         'vimdoc',
         'query',
+        'python',
+        'bash',
+        'markdown',
+        'markdown_inline',
 
         -- other languages I use regularly
-        'bash',
         'cmake',
         'cpp',
-        'python',
 
         -- markup
         'latex',
         'bibtex',
-        'markdown',
-        'markdown_inline',
 
         -- data formats
         'json',

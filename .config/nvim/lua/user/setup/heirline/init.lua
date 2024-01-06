@@ -66,6 +66,14 @@ return {
   {
     'SmiteshP/nvim-navic',
     dependencies = 'neovim/nvim-lspconfig',
+    -- TODO: setup auto attach config
+    init = function()
+      require('user.utils.lsp').on_attach(function(client, bufnr)
+        if client.supports_method('textDocument/documentSymbol') then
+          require('nvim-navic').attach(client, bufnr)
+        end
+      end)
+    end,
     lazy = true, -- loaded in on_attach
   },
   {
@@ -73,5 +81,6 @@ return {
     dependencies = 'nvim-treesitter/nvim-treesitter',
     config = true,
     event = 'VeryLazy',
+    enabled = false,
   },
 }

@@ -22,10 +22,10 @@ return {
             local opts = params.options or {}
 
             return {
-              '-i',
+              '--indent',
               opts.insertSpaces and opts.tabSize or 0,
-              '-sr',
-              '-ci',
+              '--space-redirects',
+              '--case-indent',
             }
           end,
         },
@@ -44,5 +44,4 @@ return {
       },
     }
   end,
-  event = 'VeryLazy',
 }

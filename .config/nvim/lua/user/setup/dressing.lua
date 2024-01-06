@@ -7,5 +7,4 @@ return {
       start_in_insert = false,
     },
   },
-  event = 'VeryLazy',
 }

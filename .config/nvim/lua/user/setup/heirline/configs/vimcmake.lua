@@ -26,6 +26,7 @@ local winbar = {
   meta.slanted_right(cmake_config),
   meta.space,
   cmake_status,
+  meta.align,
 }
 
 return {
