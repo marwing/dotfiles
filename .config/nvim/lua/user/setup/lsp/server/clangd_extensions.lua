@@ -1,9 +1,9 @@
 return {
   'p00f/clangd_extensions.nvim',
-  dependencies = 'neovim/nvim-lspconfig',
-  config = function()
-    require('clangd_extensions').setup {
-      server = require('user.setup.lsp.utils.overrides').default_params {
+  dependencies = {
+    'neovim/nvim-lspconfig',
+    opts = {
+      clangd = {
         cmd = {
           'clangd',
           '-query-driver=/usr/**/arm-none-eabi*',
@@ -13,10 +13,6 @@ return {
           '--use-dirty-headers',
         },
       },
-      extensions = {
-        autoSetHints = false,
-      },
-    }
-  end,
-  ft = { 'c', 'cpp' },
+    },
+  },
 }
