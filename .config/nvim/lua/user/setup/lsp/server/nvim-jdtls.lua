@@ -2,7 +2,13 @@ local function on_ft()
   -- TODO: multiplatform? stdpath()
   local workspace_root = vim.fn.expand('~/.cache/jdtls/')
 
-  local root_dir = require('jdtls.setup').find_root { '.git', 'mvnw', 'gradlew', 'pom.xml' }
+  local root_dir = require('jdtls.setup').find_root {
+    '.git',
+    'mvnw',
+    'gradlew',
+    -- Breaks with multiple modules in one workspace
+    -- 'pom.xml',
+  }
   local data_dir = workspace_root .. vim.fn.fnamemodify(root_dir, ':p:h:t')
 
   -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
