@@ -49,11 +49,6 @@ local overrides = {
       require('nvim-navic').attach(client, bufnr)
     end
 
-    if client.name == 'jdtls' then
-      require('jdtls').setup_dap { hotcodereplace = 'auto' }
-      require('jdtls.setup').add_commands()
-    end
-
     -- Reset gq behavior. Formatting (with client filtering) is done with a custom bind
     vim.bo[bufnr].formatexpr = nil
   end,
